@@ -14,7 +14,7 @@ Description: This is a graduate course in cancer bioinformatics. This course is 
 
 ## Previous courses
 
-[Statistical Methods for High-throughput Genomic Data I](https://mdozmorov.github.io/BIOS567.2018/)
+[Statistical Methods for High-throughput Genomic Data I](https://mdozmorov.github.io/BIOS567.2018/)  
 [Statistical Methods for High-throughput Genomic Data II](https://mdozmorov.github.io/BIOS668.2018/)
 
 ## Site template
