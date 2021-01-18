@@ -12,6 +12,8 @@ Equipment Required:  A computer with Internet access
 Registrant Limit: 25    
 Description: This is a graduate course in cancer bioinformatics. This course is designed to provide an introduction to genomics, sequencing technologies, data analysis. We will cover the technology and statistics of omics data, common statistical methods and tools for data analysis and visualization. Knowledge of basic statistics and R programming is a plus but not required.  
 
+[Other Computational Genomics Courses](https://bios691-cancer-bioinformatics.netlify.app/reading/)
+
 ## Previous courses
 
 [Statistical Methods for High-throughput Genomic Data I](https://mdozmorov.github.io/BIOS567.2018/)  
