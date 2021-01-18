@@ -5,7 +5,7 @@ headless: true
 active: true
 weight: 10
 
-title: "Biostatistical Computing with R"
+title: "Cancer Bioinformatics"
 
 # Hero image (optional). Enter filename of an image in the `static/img/` folder.
 # Photo by Markus Spiske on Unsplash
@@ -21,5 +21,5 @@ design:
     text_color_light: true
 
 cta_note:
-  label: Fall 2020<br>Department of Biostatistics<br>Virginia Commonwealth University
+  label: Spring 2021<br>Department of Biostatistics<br>Virginia Commonwealth University
 ---

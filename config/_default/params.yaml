@@ -37,7 +37,7 @@ font_size: "L"
 site_type: "Course"
 
 # Description for social sharing and search engines. If undefined, superuser role is used in place.
-description: "Biostatistical computing using R"
+description: "Cancer Bioinformatics"
 
 # Display a logo in navigation bar rather than title (optional).
 #   To enable, place an image in `static/img/` and reference its filename below. To disable, set the value to "".
@@ -74,7 +74,7 @@ privacy_pack: false
 # Enable visitors to edit pages?
 #   `repo` defines the repository URL. `editable` defines which page types can be edited.
 edit_page:
-  repo_url: 'https://github.com/mdozmorov/BIOS524_biostatistical_computing_R'
+  repo_url: 'https://github.com/mdozmorov/BIOS691_Cancer_Bioinformatics'
   content_dir: ''
   repo_branch: master
   editable:
@@ -103,14 +103,14 @@ instructor:
 #  appointment_url: https://calendly.com/andrewheiss/meeting/
 
 course:
-  number: "BIOS 524"
-  semester: "Fall 2020"
-  days: "Tuesday, Thursday"
-  time: "1:00pm – 2:20pm"
+  number: "BIOS 691"
+  semester: "Spring 2021"
+  days: "Monday, Wednesday"
+  time: "9:00am – 10:20sm"
   location: "Online"
-  dates: "September 21 – October 23, 2020"
-  github: "mdozmorov/BIOS524_biostatistical_computing_R"
-  copyrightYear: "2020"
+  dates: "January 25 – May 7, 2021"
+  github: "mdozmorov/BIOS691_Cancer_Bioinformatics"
+  copyrightYear: "2021"
 
 university: 
   name: Virginia Commonwealth University

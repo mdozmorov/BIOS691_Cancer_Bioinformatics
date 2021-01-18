@@ -1,6 +1,6 @@
-baseurl: "https://bios524-biostatistical-computing-r.netlify.app/"
+baseurl: "https://bios691-cancer-bioinformatics.netlify.app/"
 defaultContentLanguage: en
-title: "Biostatistical Computing with R"
+title: "Cancer Bioinformatics"
 theme: hugo-academic
 
 
