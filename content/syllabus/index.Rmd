@@ -33,7 +33,10 @@ This is a blended course that combines in-class learning (lectures, labs) with s
     - Basic statistics knowledge: descriptive statistics, estimators, (linear) modeling (e.g., BIOS 544 or 554 courses)
     - Basic programming skills in R, familiarity with command line (e.g., BIOS 524 course)
 - Hardware
-    - A laptop, Mac or Linux OSs are recommended. 
+    - A laptop, Mac or Linux OSs are recommended
+- Textbook
+    - All articles, reading, course material, and references will be posted on the course website
+    - No formal textbook requirement
 
 ## Topics
 
