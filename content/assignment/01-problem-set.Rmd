@@ -1,0 +1,47 @@
+---
+title: "Assignment 1"
+date: "2021-01-25"
+due_date: "2021-02-03"
+due_time: "5:00 PM"
+menu:
+  assignment:
+    parent: Assignments
+    weight: 2
+type: docs
+weight: 1
+output:
+  blogdown::html_page:
+    toc: false
+editor_options: 
+  chunk_output_type: console
+---
+
+<!--
+# To do yourself
+
+- Join [Slack #bios691_cancer_bioinformatics channel](https://dozmorovlab.slack.com/archives/C01J4NKL1B7), invite to be sent
+
+- Download/install R, RStudio
+
+- Explore the "Help" menu, "RStudio Docs", "RStudio Community Forum", "Cheatsheets -> RStudio IDE Cheat Sheet", "Browse cheatsheets...", "Keyboard Shortcut Help"
+
+- Subscribe to Cheatsheet updates at [RStudio Cheatsheets](https://rstudio.com/resources/cheatsheets/)
+
+- Read sections "[2 Why R?](https://ismayc.github.io/rbasics-book/2-whyR.html)" and "[3 R and RStudio Basics](https://ismayc.github.io/rbasics-book/3-rstudiobasics.html)". Make sure to watch the videos
+
+
+# To submit on blackboard, due 09-29-2020, 5:00pm
+
+1) Introduce yourself. Write a few sentences:
+    - Your Name
+    - Your Department/Program
+    - What are your programming skills
+    - What you hope to learn from this part of the course
+
+2) Describe all ways how to find:
+    - R version
+    - R installation path
+    - Copy-paste selected output and describe your observations
+
+3) Submit your homework as a text or Word document. Files should be named, e.g., `LASTNAME-FIRSTNAME-HW01`.
+-->

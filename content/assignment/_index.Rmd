@@ -1,0 +1,14 @@
+---
+title: Assignment details
+menu:
+  assignment:
+    parent: Assignments
+    weight: 1
+type: docs
+weight: 1
+output:
+  blogdown::html_page:
+    toc: true
+---
+
+Code and Assignments will be posted following each class session

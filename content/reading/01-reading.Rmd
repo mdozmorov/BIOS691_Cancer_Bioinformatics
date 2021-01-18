@@ -1,0 +1,23 @@
+---
+title: "Week 1 reading"
+# linktitle: "1. Introduction to RStudio and Images"
+date: "2021-01-25"
+class_date: "2021-01-25"
+output:
+  blogdown::html_page:
+    toc: false
+menu:
+  reading:
+    parent: Reading
+    weight: 1
+type: docs
+# weight: 1 
+# pdf: 
+# thumb: 
+editor_options: 
+  chunk_output_type: console
+---
+
+# Week 1.1
+
+# Week 1.2

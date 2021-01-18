@@ -1,0 +1,16 @@
+---
+title: "Schedule"
+slug: schedule
+---
+
+Class materials (references, code examples, slides, etc.) will be added three days before each class.
+
+- <i class="fas fa-book-reader"></i> Review references
+- <i class="fas fa-laptop-code"></i> Review and run code examples for each class
+- <i class="fas fa-chalkboard-teacher"></i> Review slides and links in them
+
+The schedule is currently work in progress.
+
+---
+
+`r blogdown::shortcode("schedule")`

@@ -1,0 +1,39 @@
+---
+title: References
+menu:
+  reading:
+    parent: Reading details
+    weight: 1
+type: docs
+weight: 1
+---
+
+Topic-specific references will be posted here. Class-specific reading assignments will be posted under the [Assignments](/assignment/) section following each class.
+
+
+### Acknowledgements
+
+This course would be impossible without many resources and material shared by others, listed at [Bioinformatics notes](https://github.com/mdozmorov/Bioinformatics_notes) GitHub repository.
+
+- **Applied Computational Genomics** course, by Aaron Quinlan. [GitHub](https://github.com/quinlan-lab/applied-computational-genomics) with links to slides, [Youtube playlist](https://www.youtube.com/playlist?list=PLCbXw1opqIQeNfF26-wWegdGoCC1aut0P) with full lecture videos
+
+- **Foundations of Computational and Systems Biology** MIT course, by Christopher Burge, David Gifford, Ernest Fraenkel. [Course web site](https://ocw.mit.edu/courses/biology/7-91j-foundations-of-computational-and-systems-biology-spring-2014/index.htm) with slides, [Youtube playlist](https://www.youtube.com/playlist?list=PLUl4u3cNGP63uK-oWiLgO7LLJV6ZCWXac) with full lecture videos
+
+- **Algorithms for DNA Sequencing** course, by Ben Langmead. [GitHub](https://github.com/BenLangmead/ads1-slides) with slies, [Youtube playlist](https://www.youtube.com/playlist?list=PL2mpR0RYFQsBiCWVJSvVAO3OJ2t7DzoHA) with short videos. [More teaching material](http://www.langmead-lab.org/teaching-materials/)
+
+- **Introduction to Computational Biology** course, by Steven Skiena. [Course web site](https://www3.cs.stonybrook.edu/~skiena/549/) with course material, [Youtube playlist](https://www.youtube.com/watch?v=pJAIalWDgY0&list=PLA48145CC64FE7990) with full lecture videos
+
+- **Bioconductor for Genomic Data Science** course, by Kasper Hansen. [Course web site](https://kasperdanielhansen.github.io/genbioconductor/) with short videos, slides, code
+
+- **Applied Genomics** course, by Michael Schatz. [GitHub](https://github.com/schatzlab/appliedgenomics2018) with lectures and assignments. [More teaching material](http://schatzlab.cshl.edu/teaching/)
+
+- **STAT115/215 BST/BIO282** course, by Xiaole Shirley Liu. [GitHub](https://github.com/liulab-dfci/bioinfo-combio), [Bookdown](https://liulab-dfci.github.io/bioinfo-combio/), [Youtube playlist](https://www.youtube.com/playlist?list=PLeB-Dlq-v6tY3QLdQBA7rwb4a7fK9mLpv) with short videos
+
+- **Biomedical Data Science PH525x** course, by Rafael Irizarry and Michael Love. [Course web site](https://genomicsclass.github.io/book/) with course material, [GitHub](https://github.com/genomicsclass/labs) with source files
+
+- **Introduction to Computational Biology** course, by Michael Love. [Course web site](https://biodatascience.github.io/compbio/) with course material, [GitHub](https://github.com/biodatascience/compbio) 
+
+- [Course material by David Tabb](https://pickingupthetabb.wordpress.com/building-a-bioinformaticist/free-online-training-in-bioinformatics-and-biostatistics/), full lecture videos and slides
+
+- [Course material by Ingo Ruczinski, JHU](http://www.biostat.jhsph.edu/~iruczins/teaching/)
+

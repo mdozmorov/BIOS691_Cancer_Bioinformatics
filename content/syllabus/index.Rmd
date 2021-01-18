@@ -1,0 +1,165 @@
+---
+title: Syllabus
+slug: syllabus
+citeproc: true
+output:
+  blogdown::html_page:
+    toc: true
+    fig_caption: false
+---
+
+`r blogdown::shortcode("courseinfo")`
+
+## Course Overview
+
+**Instructor(s):** Mikhail Dozmorov  
+**Duration:** 15 Weeks  
+**Dates:** Monday/Wednesday class: January 25 to May 7, 2021. No classes on March 24 (reading day, also February 23)  
+**Time:** 9:00am - 10:20am  
+**Location:** online  
+**Office Hours:** online, by appointment  
+
+## Course Description
+
+This is a graduate-level course in cancer bioinformatics. This course aims to introduce the core principles of Cancer Bioinformatics, Computational Genomics, and Biostatistics. 
+
+Genomics and the use of next-generation sequencing are at the forefront of biomedical research. Sequencing market is constantly evolving, stimulating the development of new analytical approaches and software tools. To effectively analyze and interpret genomic sequencing data, it is crucial to (1) understand the technologies that produce the data and (2) develop strong computational skills that will be flexible in this dynamic environment.
+
+This is a blended course that combines in-class learning (lectures, labs) with self-directed activities. The course will introduce high-throughput genomic assays including DNA sequencing and genome variation analysis, transcriptome profiling with RNA-seq and miRNA-seq, metagenomics, epigenomic analysis including ChIP-seq and methylation assays, single-cell sequencing, and chromatin conformation capture technologies. 
+
+## Prerequisites
+
+- No formal course requirements, but basic knowledge of the following will help
+    - Basic statistics knowledge: descriptive statistics, estimators, (linear) modeling (e.g., BIOS 544 or 554 courses)
+    - Basic programming skills in R, familiarity with command line (e.g., BIOS 524 course)
+- Hardware
+    - A laptop, Mac or Linux OSs are recommended. 
+
+## Topics
+
+- Biology overview
+- Unix/Linux overview
+- Genomic technologies & DNA sequencing
+- Intro to R data analysis in RStudio
+- Genomic data/resources
+- R/Bioconductor overview
+- DNA sequencing mapping and alignment
+- Genetic variation
+- RNA-seq
+    - Experimental Design, Quality Control
+    - Normalization, Batch effect
+    - Differential expression, Multiple hypothesis testing
+    - Supervised and Unsupervised learning
+        - Clustering, dimensionality reduction
+    - Gene Ontology, Pathway and Functional enrichment
+    - Alternative splicing analysis
+- Single-cell sequencing
+- Chromatin Immunoprecipitation (ChIP)-, DNAse-, ATAC-seq
+- Epigenomics
+    - Methylation
+- miRNAs
+- Metagenomic
+- Hi-C
+
+## Learning Objectives
+
+- Understand the core principles, strengths, and limitations of high-throughput technologies
+- Learn statistical models and approaches used in sequencing data analysis
+- Gain practical experience in high-throughput Exploratory Data Analysis, visualization, and quality control using Unix and R environment
+- Critically evaluate and apply statistical methods and tools for sequencing data analysis
+- Interpret biological findings provided by different sequencing technologies, and be able to integrate different layers of -omics data
+
+At the conclusion of the course, students will be able to collect, analyze and interpret genomics data using the R programming environment.
+
+## Attendance
+
+Attendance is not checked, but students are responsible for all announcements made in class.
+
+### Homework
+
+Homework will consist of problem sets for the material covered. Files should be named, e.g., `HW01_LASTNAME.Rmd`. The homework due date is one week after the lecture. Late homework will NOT be accepted unless permission was given by the instructor. Assignments that are not well organized/documented will receive no credit. Working in small groups is allowed. However, you must do the final writing-up of solutions entirely by yourself. Any two assignments that are word-for-word exactly the same or highly similar in the coding style will receive zero credit. There will be no extra credit projects available.
+
+### Final project
+
+- A final take-home project  
+
+<!--
+- Final project should be submitted as a fully reproducible GitHub repository
+- The due date is 5:00pm, November 22, 2020. [Final project page](../assignment/11-problem-set)
+
+### Class evaluation
+
+Please, evaluate the course Friday afternoon, June 12, 2020. All evaluations are anonymous
+
+- [Student Course evaluation](https://courseeval.vcu.edu/Blue/svg.aspx?pid=05df79ed-c934-48ae-aa39-72d70fdfd940&sid=62affb957f6d70bbd79f9c2865d00a8bf1e232837e630381dc1095289ecfcd37&tid=f796bf54e5287c0376fde9485d74a0d8&uid=e9c5910f23ceae63a3abaa9bc1f1b34b96eebb7ae0b9c163efc27fccff992a1d&regl=en-us)
+- [Guest Course evaluation](https://docs.google.com/forms/d/1aiSdoZoDKki6N5J0bvjI7duG-WAG7C1Oq-X4WoKyDTs/prefill) 
+-->
+
+### Grading Policy
+
+- Each homework is graded on the scale 0-10, 10 points being the best
+- Total homework grade possible - 100 points
+  - Missed deadline, within 24h - minus 3 points
+  - Missed deadline, within 48h - minus 6 points
+- Final Project is graded on the scale 0-100, 100 points being the best
+
+Homework and final project grades will be averaged.
+
+Standard A-F grading system will be applied:
+
+- A: 90-100
+- B: 80-89
+- C: 70-79
+- D: 60-69
+- F: 0-59
+
+
+## Copyright
+
+Every reasonable effort has been made to protect the copyright requirements of materials used in this course by referring to the original sources. 
+
+## Diversity and inclusivity
+
+A primary goal of this course is to be inclusive and of value to the largest number of contributors, with the most varied and diverse backgrounds possible. All participants in this course are encouraged to help to provide a friendly, safe and welcoming environment for all, regardless of age, gender, gender identity or expression, culture, ethnicity, language, national origin, political beliefs, profession, race, religion, sexual orientation, socioeconomic status, and technical ability.
+
+## Policies and resources
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/n198LbGnflc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+Students should visit [http://go.vcu.edu/syllabus](http://go.vcu.edu/syllabus) and review all syllabus statement information. The full university syllabus statement includes information on safety, registration, the VCU Honor Code, student conduct, withdrawal, and more.
+
+[VCU Honor System](https://conduct.students.vcu.edu/vcu-honor-system/)
+
+Observe the [VCU Honor Pledge](https://students.vcu.edu/studentconduct/vcu-honor-system/academic-misconduct-/honor-pledge/) in any class- and homework activities
+
+[Student Code of Conduct](https://conduct.students.vcu.edu/student-code-of-conduct/)
+
+[Guidelines for a productive return to VCU](https://together.vcu.edu/)
+
+[The Office of Graduate Education](https://medschool.vcu.edu/about/deans-office/graduate/)
+
+[Keep on Teaching](https://altlab.vcu.edu/rapid-response/) and [Keep on Learning](https://keeplearning.vcu.edu/)
+
+For emergencies, contact VCU Police at 804-828-1234
+
+<!--
+### Late Policy
+
+Students get 1 free assignment to submit late without penalties. Please email us through Sakai that you need more time. If you need accommodation, please email us so we can figure out a way to help you.
+
+Graduate Studies in the VCU School of Medicine is committed to providing grades to students in a timely manner. Course instructors will provide students with information in writing at the beginning of each course that describes the grading policies and procedures, including but not limited to evaluation criteria, expected time needed to grade individual student examinations and type of feedback they will provide.
+
+Class grades are due to the Registrar by the Friday following the week of finals. However, on those occasions when a grade has not been submitted by the deadline, the following procedure shall be followed:
+
+1)  The Department/Program Coordinator will immediately contact the Instructor requesting the missing grade, with a copy to the Program Director and Registrar.
+
+2)  If the grade is still overdue by the end of next week, the Department/Program Coordinator will email the Department Chair directly, with a copy to the Instructor and Program Director requesting resolution of the missing grade.
+
+3)  If, after an additional week, the grade is still outstanding, the student or Department/Program Coordinator may petition the Office of Graduate students for final resolution.
+
+1.  *For courses that are run by a specific department.*
+
+2.  *For the conjoined courses (course number is preceded by CON\_ that
+    are run by Graduate Studies.*
+
+-->

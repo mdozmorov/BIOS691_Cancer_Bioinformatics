@@ -1,0 +1,39 @@
+---
+title: "Week 1"
+# linktitle: "1. Introduction to RStudio and Images"
+date: "2021-01-25"
+class_date: "2021-01-25"
+output:
+  blogdown::html_page:
+    toc: false
+menu:
+  class:
+    parent: Class sessions
+    weight: 2
+type: docs
+# weight: 1 
+# pdf: 
+# thumb: 
+editor_options: 
+  chunk_output_type: console
+---
+
+<!--
+## Slides
+
+### Introduction
+
+<a href="../../slides/10_Introduction.html#1" target="_blank">Lecture slides in HTML format</a>
+
+```{r echo=FALSE}
+knitr::include_url('../../slides/10_Introduction.html#1')
+```
+
+### Getting started with R and RStudio
+
+<a href="../../slides/11_Getting_started_with_R_Rstudio.html#1" target="_blank">Lecture slides in HTML format</a>
+
+```{r echo=FALSE}
+knitr::include_url('../../slides/11_Getting_started_with_R_Rstudio.html#1')
+```
+-->
