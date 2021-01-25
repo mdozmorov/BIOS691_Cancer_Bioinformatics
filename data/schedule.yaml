@@ -2,10 +2,10 @@ lessons:
   - title: '<span class="fake-header-table">Cancer Bioinformatics</span>'
     header: True
 
-  - title: '**Week 1.1: TBD**'
+  - title: '**Week 1.1: Biology**'
     date: "January 25"
     reading: "01-reading"
-    assignment: "01-problem-set"
+    # assignment: "01-problem-set"
     class: "01-class"
 
   - title: '**Week 1.2: TBD**'

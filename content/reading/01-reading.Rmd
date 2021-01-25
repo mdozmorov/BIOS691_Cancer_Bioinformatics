@@ -1,15 +1,15 @@
 ---
-title: "Week 1 reading"
+title: "Biology"
 # linktitle: "1. Introduction to RStudio and Images"
 date: "2021-01-25"
-class_date: "2021-01-25"
+# class_date: "2021-01-25"
 output:
   blogdown::html_page:
     toc: false
 menu:
   reading:
     parent: Reading
-    weight: 1
+    weight: 2
 type: docs
 # weight: 1 
 # pdf: 
@@ -18,6 +18,27 @@ editor_options:
   chunk_output_type: console
 ---
 
-# Week 1.1
+## References
 
-# Week 1.2
+- Watson, J. D., and F. H. Crick. “[Molecular Structure of Nucleic Acids; a Structure for Deoxyribose Nucleic Acid](https://www.nature.com/articles/171737a0).” Nature 171, no. 4356 (April 25, 1953): 737–38.
+
+- [NEJM glossary on genetics and genomics](https://illustrated-glossary.nejm.org/index.html)
+
+- [Kimball biology pages](http://biology-pages.info/)
+
+- [Educational items in human genetics](http://atlasgeneticsoncology.org/GeneticEng.html)
+
+### Videos
+
+- [Mitotic cell division](https://www.youtube.com/watch?v=NR0mdDJMHIQ)
+
+- [How DNA Is Packaged](http://www.hhmi.org/biointeractive/dna-packaging)
+
+- [DNA replication 3D](https://www.youtube.com/watch?v=TNKWgcFPHqw)
+
+- [Transcription and Translation](https://www.youtube.com/watch?v=41_Ne5mS2ls) and [Translation](https://www.youtube.com/watch?v=5bLEDd-PSTQ)
+
+- [mRNA translation interactive demo](http://sepuplhs.org/high/sgi/teachers/genetics_act16_sim.html)
+
+- [Size of the genome and coding sequences](http://www.hhmi.org/biointeractive/coding-sequences-dna)
+

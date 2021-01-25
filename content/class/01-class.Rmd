@@ -18,22 +18,20 @@ editor_options:
   chunk_output_type: console
 ---
 
-<!--
 ## Slides
 
 ### Introduction
 
-<a href="../../slides/10_Introduction.html#1" target="_blank">Lecture slides in HTML format</a>
+<a href="../../slides/01_Biology/Intro.html#1" target="_blank">Lecture slides in HTML format</a>
 
 ```{r echo=FALSE}
-knitr::include_url('../../slides/10_Introduction.html#1')
+knitr::include_url('../../slides/01_Biology/Intro.html#1')
 ```
 
-### Getting started with R and RStudio
+### The Biology and Genetics of Cells and Organisms
 
-<a href="../../slides/11_Getting_started_with_R_Rstudio.html#1" target="_blank">Lecture slides in HTML format</a>
+<a href="../../slides/01_Biology/Molecular_Biology.html#1" target="_blank">Lecture slides in HTML format</a>
 
 ```{r echo=FALSE}
-knitr::include_url('../../slides/11_Getting_started_with_R_Rstudio.html#1')
+knitr::include_url('../../slides/01_Biology/Molecular_Biology.html#1')
 ```
--->
