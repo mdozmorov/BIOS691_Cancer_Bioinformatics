@@ -1,31 +1,38 @@
-<!DOCTYPE html>
-<html lang="" xml:lang="">
-  <head>
-    <title>The Biology and Genetics of Cells and Organisms</title>
-    <meta charset="utf-8" />
-    <meta name="author" content="Mikhail Dozmorov" />
-    <script src="libs/header-attrs-2.6/header-attrs.js"></script>
-    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
-    <link rel="stylesheet" href="xaringan-my.css" type="text/css" />
-  </head>
-  <body>
-    <textarea id="source">
-class: center, middle, inverse, title-slide
-
-# The Biology and Genetics of Cells and Organisms
-### Mikhail Dozmorov
-### Virginia Commonwealth University
-### 01-25-2021
-
+---
+title: "The Biology and Genetics of Cells and Organisms"
+# subtitle: "Introduction"
+author: "Mikhail Dozmorov"
+institute: "Virginia Commonwealth University"
+# date: "`r Sys.Date()`"
+date: "01-25-2021"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    css: ["xaringan-themer.css", "xaringan-my.css"]
+    nature:
+      ratio: '16:9'
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
 ---
 
-
-
+```{r xaringan-themer, include = FALSE}
+library(xaringanthemer)
+mono_light(
+  base_color = "midnightblue",
+  header_font_google = google_font("Josefin Sans"),
+  text_font_google   = google_font("Montserrat", "500", "500i"),
+  code_font_google   = google_font("Droid Mono"),
+  link_color = "#8B1A1A", #firebrick4, "deepskyblue1"
+  text_font_size = "28px",
+  code_font_size = "26px"
+)
+```
 
 ## Phylogenetic tree
 
 
-.center[ &lt;img src="img/cells_and_organisms.png" height = 250&gt; ]
+.center[ <img src="img/cells_and_organisms.png" height = 250> ]
 
 Three life domains: bacteria, archaea, and eukaryota
 
@@ -50,20 +57,20 @@ Three life domains: bacteria, archaea, and eukaryota
 ## Procaryotic cell
 
 
-.center[ &lt;img src="img/Procaryotic.png" height = 500&gt; ]
+.center[ <img src="img/Procaryotic.png" height = 500> ]
 
 
 ---
 ## Eukaryotic cell
 
 
-.center[ &lt;img src="img/Eukaryotic.png" height = 500&gt; ]
+.center[ <img src="img/Eukaryotic.png" height = 500> ]
 
 
 ---
 ## Differences between Prokaryotic and Eukaryotic Cells 
 
-.center[ &lt;img src="img/Differences.png" height = 500&gt; ]
+.center[ <img src="img/Differences.png" height = 500> ]
 
 ---
 ## The genome: the secret of life
@@ -79,7 +86,7 @@ Your genome, along with your environment and experiences, shapes who you are
 
 Physical traits tend to be strongly genetic
 
-.center[ &lt;img src="img/dna_in_hands.jpg" height="150px" /&gt; ]
+.center[ <img src="img/dna_in_hands.jpg" height="150px" /> ]
 
 ---
 ## Eukaryotic cells and the genome
@@ -95,7 +102,7 @@ Physical traits tend to be strongly genetic
 ]
 
 .pull-right[
-&lt;img src="img/Eukaryotic.png" height="420px" /&gt;
+<img src="img/Eukaryotic.png" height="420px" />
 ]
 
 ---
@@ -112,7 +119,7 @@ Physical traits tend to be strongly genetic
 ]
 
 .pull-right[
-&lt;img src="img/Eukaryotic.png" height="420px" /&gt;
+<img src="img/Eukaryotic.png" height="420px" />
 ]
 
 ---
@@ -127,7 +134,7 @@ Physical traits tend to be strongly genetic
 ]
 
 .pull-right[
-&lt;img src="img/walter_flemming_mitosis.gif" height="450px" /&gt;
+<img src="img/walter_flemming_mitosis.gif" height="450px" />
 ]
 
 .small[
@@ -162,13 +169,13 @@ Drawing of mitosis by Walther Flemming. Flemming, W. Zellsubstanz, Kern und Zell
 ]
 
 .pull-right[
-&lt;img src="img/chromosome_structure.png" height="460px" /&gt;
+<img src="img/chromosome_structure.png" height="460px" />
 ]
 
 ---
 ##  Chromosome Giemsa banding (G-banding)
 
-.center[ &lt;img src="img/giemsa.png" height="170px" /&gt; ]
+.center[ <img src="img/giemsa.png" height="170px" /> ]
 
 - Heterochromatic regions, which tend to be rich with adenine and thymine (AT-rich) DNA and relatively gene-poor, stain more darkly with Giemsa and result in G-banding  
 
@@ -180,7 +187,7 @@ Drawing of mitosis by Walther Flemming. Flemming, W. Zellsubstanz, Kern und Zell
 ---
 ##  Chromosome Giemsa banding (G-banding)
 
-.center[ &lt;img src="img/giemsa.png" height="170px" /&gt; ]
+.center[ <img src="img/giemsa.png" height="170px" /> ]
 
 - Cytogenetic bands are labeled p1, p2, p3,   q1, q2, q3, etc., counting from the centromere out toward the telomeres. At higher resolutions, sub-bands can be seen within the bands
 
@@ -192,7 +199,7 @@ Drawing of mitosis by Walther Flemming. Flemming, W. Zellsubstanz, Kern und Zell
 ---
 ##  The role of the centromere
 
-.center[ &lt;img src="img/chromosome_division.png" height="270px" /&gt; ]
+.center[ <img src="img/chromosome_division.png" height="270px" /> ]
 
 - Centromeres are required for chromosome separation during cell division
 - The centromeres are attachment points for microtubules, which are protein fibers that pull duplicate chromosomes toward opposite ends of the cell before it divides
@@ -205,9 +212,9 @@ Drawing of mitosis by Walther Flemming. Flemming, W. Zellsubstanz, Kern und Zell
 ---
 ## Centromere positions
 
-.center[ &lt;img src="img/chromosome_centromere.png" height="280px" /&gt; ]
+.center[ <img src="img/chromosome_centromere.png" height="280px" /> ]
 
-&lt;!-- The position of the centromere relative to the ends helps to tell chromosomes apart --&gt;
+<!-- The position of the centromere relative to the ends helps to tell chromosomes apart -->
 
 - **Metacentric** - the centromere lies near the center of the chromosome
 - **Submetacentric** - the centromere that is off-center, so that one chromosome arm is longer than the other. The short arm is designated "p" (for petite), and the long arm is designated "q" (because it follows the letter "p")
@@ -228,7 +235,7 @@ Drawing of mitosis by Walther Flemming. Flemming, W. Zellsubstanz, Kern und Zell
 ]
 
 .pull-right[
-&lt;img src="img/Nucleotide_structure.png" height="430px" /&gt;
+<img src="img/Nucleotide_structure.png" height="430px" />
 ]
 
 ---
@@ -237,10 +244,10 @@ Drawing of mitosis by Walther Flemming. Flemming, W. Zellsubstanz, Kern und Zell
 The information in DNA is stored as a code made up of four chemical bases: adenine (A), guanine (G), cytosine (C), and thymine (T)
 
 
-.center[ &lt;img src="img/Bases.png" height = 400&gt; ]
+.center[ <img src="img/Bases.png" height = 400> ]
 
 
-&lt;!--
+<!--
 ## Getting to know DNA: Gel electrophoresis
 
 - In the mid-1900’s methods were developed to size separate and visualize DNA within an electrically charged gel (originally made from sugar)  
@@ -251,30 +258,30 @@ The information in DNA is stored as a code made up of four chemical bases: adeni
 
 ## Getting to know DNA: Gel electrophoresis 
 
-&lt;img src="img/gel_electrophoresis_dna_bands_yourgenome.png" height="550px" /&gt;
+<img src="img/gel_electrophoresis_dna_bands_yourgenome.png" height="550px" />
 
 http://www.yourgenome.org/facts/what-is-gel-electrophoresis
---&gt;
+-->
 
 ---
 ## Discovery of double helix, 1953
 
 - James Watson and Francis Crick
 
-.center[ &lt;img src="img/JM_FC.png" height = 500&gt; ]
+.center[ <img src="img/JM_FC.png" height = 500> ]
 
 
 ---
 ## Genomic DNA 
 
-.center[ &lt;img src="img/watsoncrick.png" height="450px" /&gt; ]
+.center[ <img src="img/watsoncrick.png" height="450px" /> ]
 
 https://www.nature.com/articles/171737a0
 
 ---
 ## Before the discovery
 
-.center[ &lt;img src="img/before_discovery.png" height="500px" /&gt; ]
+.center[ <img src="img/before_discovery.png" height="500px" /> ]
 
 ---
 ## Genomic DNA
@@ -287,17 +294,17 @@ https://www.nature.com/articles/171737a0
 ]
 
 .pull-right[
-&lt;img src="img/DNA.png" height="470px" /&gt;
+<img src="img/DNA.png" height="470px" />
 ]
 
-&lt;!--
+<!--
 ## Nucleic acid strand
 
 - Strand synthesis - from 5' to 3' end: (5') TACG (3')
 
-.center[ &lt;img src="" height = 300&gt; ](img/strand.png)
+.center[ <img src="" height = 300> ](img/strand.png)
 
---&gt;
+-->
 
 ---
 ## Base pairing
@@ -313,14 +320,14 @@ https://www.nature.com/articles/171737a0
 ]
 
 .pull-right[
-&lt;img src="img/rules_of_pair.png" height="470px" /&gt;
+<img src="img/rules_of_pair.png" height="470px" />
 ]
 
-&lt;!--
+<!--
 ## Helixes conformation 
 
 
-.center[ &lt;img src="" height = 300&gt; ](img/Helixes.png)
+.center[ <img src="" height = 300> ](img/Helixes.png)
 
 
 - A: B-form: Right-handed, 3.4 nm between bases, 10 bases per turn
@@ -330,19 +337,19 @@ https://www.nature.com/articles/171737a0
 ## Helixes conformation 
 
 
-.center[ &lt;img src="" height = 300&gt; ](img/Helixes2.png)
+.center[ <img src="" height = 300> ](img/Helixes2.png)
 
 
 - A: B-form: Right-handed, 3.4 nm between bases, 10 bases per turn
 - B: A-form: Right-handed, 2.3 nm between bases, 11 bases per turn
 - C: Z-form: Left-handed
---&gt;
+-->
 
 ---
 ## Eukaryotic DNA packaging 
 
 
-.center[ &lt;img src="img/packaging.png" height = 450&gt; ]
+.center[ <img src="img/packaging.png" height = 450> ]
 
 http://www.hhmi.org/biointeractive/dna-packaging 
 
@@ -369,7 +376,7 @@ http://www.hhmi.org/biointeractive/dna-packaging
 ]
 
 .pull-right[
-&lt;img src="img/Central_Dogma2.png" height="470px" /&gt;
+<img src="img/Central_Dogma2.png" height="470px" />
 ]
 
 ---
@@ -390,7 +397,7 @@ http://www.hhmi.org/biointeractive/dna-packaging
 ]
 
 .pull-right[
-&lt;img src="img/Difference_DNA_RNA-EN.svg" height="450px" /&gt;
+<img src="img/Difference_DNA_RNA-EN.svg" height="450px" />
 ]
 
 .small[
@@ -419,7 +426,7 @@ https://commons.wikimedia.org/w/index.php?curid=9810855
 ]
 
 .pull-right[
-&lt;img src="img/transcription.png" height="470px" /&gt;
+<img src="img/transcription.png" height="470px" />
 ]
 
 ---
@@ -427,7 +434,7 @@ https://commons.wikimedia.org/w/index.php?curid=9810855
 
 Genes of related function are often organized and transcribed together under the control of a single promoter
 
-.center[ &lt;img src="img/gene_structure.png" height = 400&gt; ]
+.center[ <img src="img/gene_structure.png" height = 400> ]
 
 
 ---
@@ -437,7 +444,7 @@ Genes of related function are often organized and transcribed together under the
 - Coding sequences that are expressed are **exons**
 - Most, but not all eukaryote genes contain introns. Although transcribed, these introns are excised (cut out) before translation
 
-.center[ &lt;img src="img/gene_structure2.png" height="350px" /&gt; ]
+.center[ <img src="img/gene_structure2.png" height="350px" /> ]
 
 
 ---
@@ -447,7 +454,7 @@ Genes of related function are often organized and transcribed together under the
 - At the 5' end the DNA nucleotides are GT [GU in the premessenger RNA (pre-mRNA)]; at the 3' end they are AG.  
 - These nucleotides are part of the splicing sites.
 
-.center[ &lt;img src="img/splicing.jpg" height="270px" /&gt; ]
+.center[ <img src="img/splicing.jpg" height="270px" /> ]
 
 **The GT/AG mRNA processing rule is applicable for almost all eukaryotic genes**
 
@@ -461,17 +468,17 @@ http://www.imgt.org/IMGTeducation/Aide-memoire/_UK/splicing/
 mRNA splicing - variants of mRNA assembly
 
 
-.center[ &lt;img src="img/alternative_splicing2.png" height = 300&gt; ]
+.center[ <img src="img/alternative_splicing2.png" height = 300> ]
 
 
-- Tissue specific alternative splicing patterns of the `\(\alpha\)`-tropomyosin pre-mRNA molecule  
+- Tissue specific alternative splicing patterns of the $\alpha$-tropomyosin pre-mRNA molecule  
 - Exons are blue rectangles  
 - Introns are black carets
 
 ---
 ## Untranslated regions (UTRs)
 
-.center[ &lt;img src="https://upload.wikimedia.org/wikipedia/commons/b/ba/MRNA_structure.svg" height="150px" /&gt; ]
+.center[ <img src="https://upload.wikimedia.org/wikipedia/commons/b/ba/MRNA_structure.svg" height="150px" /> ]
 
 - The 5' UTR is upstream from the coding sequence
     - Within the 5' UTR is a sequence that is recognized by the ribosome which allows the ribosome to bind and initiate translation
@@ -493,21 +500,21 @@ mRNA splicing - variants of mRNA assembly
 ]
 
 .pull-right[
-&lt;img src="img/RNA_processing.png" height="470px" /&gt;
+<img src="img/RNA_processing.png" height="470px" />
 ]
 
 .small[
 http://vcell.ndsu.nodak.edu/animations/mrnaprocessing/movie-flash.htm
 ]
 
-&lt;!--
+<!--
 ## RNA strand structure
 
 - Single stranded
 - Hairpin structure
 
 
-.center[ &lt;img src="" height = 300&gt; ](img/single_stranded.png)
+.center[ <img src="" height = 300> ](img/single_stranded.png)
 
 
 ## RNA strand structure
@@ -515,9 +522,9 @@ http://vcell.ndsu.nodak.edu/animations/mrnaprocessing/movie-flash.htm
 - Transfer RNA (tRNA) structure
 
 
-.center[ &lt;img src="" height = 300&gt; ](img/single_stranded2.png)
+.center[ <img src="" height = 300> ](img/single_stranded2.png)
 
---&gt;
+-->
 
 ---
 ## Translation
@@ -527,11 +534,11 @@ http://vcell.ndsu.nodak.edu/animations/mrnaprocessing/movie-flash.htm
 
 - Consecutive non-overlapping triplets of bases (called codons) act as the code to specify the particular amino acids
 
-- There are `\(4^3=64\)` possible codons but only 20 amino acids. Redundancy safeguards against transcription errors
+- There are $4^3=64$ possible codons but only 20 amino acids. Redundancy safeguards against transcription errors
 ]
 
 .pull-right[
-&lt;img src="img/translation_code.png" height="450px" /&gt;
+<img src="img/translation_code.png" height="450px" />
 ]
 
 .small[
@@ -583,12 +590,12 @@ Eisenberg, Eli, and Erez Y. Levanon. “Human Housekeeping Genes, Revisited.” 
 
 - The specific stretch of nucleotide sequence to which the TFs bind, often called a sequence motif, is usually quite short, typically 5-10 nucleotides long
 
-&lt;!-- - Some TFs provide the RNA polymerase enzyme with access to the gene while other TFs block such access to ensure the gene is transcriptionally repressed --&gt;
+<!-- - Some TFs provide the RNA polymerase enzyme with access to the gene while other TFs block such access to ensure the gene is transcriptionally repressed -->
 
 ]
 
 .pull-right[
-&lt;img src="img/transcription_factor2.png" height="350px" /&gt;
+<img src="img/transcription_factor2.png" height="350px" />
 ]
 
 ---
@@ -606,12 +613,12 @@ Eisenberg, Eli, and Erez Y. Levanon. “Human Housekeeping Genes, Revisited.” 
 ## Genome sizes compared 
 
 
-.center[ &lt;img src="img/genome_sizes.png" height = 450&gt; ]
+.center[ <img src="img/genome_sizes.png" height = 450> ]
 
 
 http://www.hhmi.org/biointeractive/coding-sequences-dna 
 
-&lt;!--
+<!--
 ## The advent of genomics
 
 - In the 1860's while studying peas, Gregor Mendel observed that genetic information is passed in particulate form from an organism to its offspring.
@@ -627,7 +634,7 @@ http://www.indiana.edu/~p1013447/dictionary/mendel.htm
 ## Mendel's theory of inheritance
 
 
-.center[ &lt;img src="" height = 300&gt; ](img/Mendel.png)
+.center[ <img src="" height = 300> ](img/Mendel.png)
 
 ## The advent of genomics
 
@@ -702,7 +709,7 @@ The Linear Arrangement of Six Sex-Linked Factors in Drosophila as shown by their
 
 - _Phylogenic trees_ based on gene homologies provide an independent confirmation of those proposed by taxonomists. This is convincing evidence of evolution.
 - A host of interesting computational problems arise in trying to reconstruct evolutionary history.
---&gt;
+-->
 
 ---
 ## DNA alterations
@@ -718,16 +725,16 @@ Changes in DNA sequence/amount alter gene and/or protein product
 ]
 
 .pull-right[
-&lt;img src="img/Changes_to_chromosome.png" height="400px" /&gt;
+<img src="img/Changes_to_chromosome.png" height="400px" />
 ]
 
-&lt;!--
+<!--
 ## Neutral mutations are "silent" 
 
 but may alter regulatory sites 
 
 
-.center[ &lt;img src="" height = 300&gt; ](img/Neutral_mutations.png)
+.center[ <img src="" height = 300> ](img/Neutral_mutations.png)
 
 
 ## Germline and somatic mutations
@@ -742,17 +749,17 @@ Chromosome disorders
 - Acquired (cancer)  
 
 Single-gene disorders Individually rare   
-- As a group affect `\(\sim\)` 2% of population over lifespan 
+- As a group affect $\sim$ 2% of population over lifespan 
 
 Multifactorial or complex disorders   
 - A result of combination of genes  
-- May affect `\(\sim\)` 60% of entire population   
---&gt;
+- May affect $\sim$ 60% of entire population   
+-->
 
 ---
 ## Hallmarks of cancer 
 
-.center[ &lt;img src="img/hallmarks.jpg" height="450px" /&gt; ]
+.center[ <img src="img/hallmarks.jpg" height="450px" /> ]
 
 Douglas Hanahan, Robert A. Weinberg. [The Hallmarks of Cancer](http://www.sciencedirect.com/science/article/pii/S0092867400816839), Cell, 7 January 2000
 
@@ -770,29 +777,29 @@ Douglas Hanahan, Robert A. Weinberg. [The Hallmarks of Cancer](http://www.scienc
 ---
 ## Polymerase Chain Reaction (PCR) 
 
-.center &lt;img src="img/PCR-polymerase_chain_reaction.png" height="470px" /&gt; ]
+.center <img src="img/PCR-polymerase_chain_reaction.png" height="470px" /> ]
 
 .small[ https://www.abmgood.com/marketing/knowledge_base/polymerase_chain_reaction_introduction.php ]
 
 ---
 ## DNA amplification using PCR
 
-.center[&lt;img src="img/pcr.gif" height="550px" /&gt;]
+.center[<img src="img/pcr.gif" height="550px" />]
 
 .small[https://www.animalgenome.org/edu/doe/pcr.html]
 
-&lt;!--
+<!--
 ## Polymerase Chain Reaction (PCR)
 
-.center[&lt;img src="img/quantification-analysis-f11.jpg" height="500px" /&gt; ]
+.center[<img src="img/quantification-analysis-f11.jpg" height="500px" /> ]
 
 ## Quantitative PCR
 
-&lt;img src="img/quantitated_dna.png" height="400px" /&gt;
+<img src="img/quantitated_dna.png" height="400px" />
 
 - Quantitation requires normalization (comparison to standard curves)
 - Normalization is based on assumptions
---&gt;
+-->
 
 ---
 # Extra
@@ -812,14 +819,14 @@ Douglas Hanahan, Robert A. Weinberg. [The Hallmarks of Cancer](http://www.scienc
 ## Karyotype
 
 
-.center[ &lt;img src="img/Karyotype.png" height = 500&gt; ]
+.center[ <img src="img/Karyotype.png" height = 500> ]
 
 
 ---
 ## Cell cycle
 
 
-.center[ &lt;img src="img/Cell_cycle.png" height = 450&gt; ]
+.center[ <img src="img/Cell_cycle.png" height = 450> ]
 
 https://www.youtube.com/watch?v=NR0mdDJMHIQ 
 
@@ -835,7 +842,7 @@ https://www.youtube.com/watch?v=NR0mdDJMHIQ
 ## Three stages of transcription 
 
 
-.center[ &lt;img src="img/stages.png" height = 450&gt; ]
+.center[ <img src="img/stages.png" height = 450> ]
 
 
 http://vcell.ndsu.nodak.edu/animations/transcription/movie-flash.htm 
@@ -852,133 +859,9 @@ http://vcell.ndsu.nodak.edu/animations/transcription/movie-flash.htm
 ---
 ## DNA replication 
 
-.center[ &lt;img src="img/replication.png" height="470px" /&gt; ]
+.center[ <img src="img/replication.png" height="470px" /> ]
 
 https://www.youtube.com/watch?v=TNKWgcFPHqw 
 
 
 
-    </textarea>
-<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
-<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
-<script>var slideshow = remark.create({
-"ratio": "16:9",
-"highlightStyle": "github",
-"highlightLines": true,
-"countIncrementalSlides": false
-});
-if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
-  window.dispatchEvent(new Event('resize'));
-});
-(function(d) {
-  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
-  if (!r) return;
-  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
-  d.head.appendChild(s);
-})(document);
-
-(function(d) {
-  var el = d.getElementsByClassName("remark-slides-area");
-  if (!el) return;
-  var slide, slides = slideshow.getSlides(), els = el[0].children;
-  for (var i = 1; i < slides.length; i++) {
-    slide = slides[i];
-    if (slide.properties.continued === "true" || slide.properties.count === "false") {
-      els[i - 1].className += ' has-continuation';
-    }
-  }
-  var s = d.createElement("style");
-  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
-  d.head.appendChild(s);
-})(document);
-// delete the temporary CSS (for displaying all slides initially) when the user
-// starts to view slides
-(function() {
-  var deleted = false;
-  slideshow.on('beforeShowSlide', function(slide) {
-    if (deleted) return;
-    var sheets = document.styleSheets, node;
-    for (var i = 0; i < sheets.length; i++) {
-      node = sheets[i].ownerNode;
-      if (node.dataset["target"] !== "print-only") continue;
-      node.parentNode.removeChild(node);
-    }
-    deleted = true;
-  });
-})();
-(function() {
-  "use strict"
-  // Replace <script> tags in slides area to make them executable
-  var scripts = document.querySelectorAll(
-    '.remark-slides-area .remark-slide-container script'
-  );
-  if (!scripts.length) return;
-  for (var i = 0; i < scripts.length; i++) {
-    var s = document.createElement('script');
-    var code = document.createTextNode(scripts[i].textContent);
-    s.appendChild(code);
-    var scriptAttrs = scripts[i].attributes;
-    for (var j = 0; j < scriptAttrs.length; j++) {
-      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
-    }
-    scripts[i].parentElement.replaceChild(s, scripts[i]);
-  }
-})();
-(function() {
-  var links = document.getElementsByTagName('a');
-  for (var i = 0; i < links.length; i++) {
-    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
-      links[i].target = '_blank';
-    }
-  }
-})();
-// adds .remark-code-has-line-highlighted class to <pre> parent elements
-// of code chunks containing highlighted lines with class .remark-code-line-highlighted
-(function(d) {
-  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
-  const preParents = [];
-  const findPreParent = function(line, p = 0) {
-    if (p > 1) return null; // traverse up no further than grandparent
-    const el = line.parentElement;
-    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
-  };
-
-  for (let line of hlines) {
-    let pre = findPreParent(line);
-    if (pre && !preParents.includes(pre)) preParents.push(pre);
-  }
-  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
-})(document);</script>
-
-<script>
-slideshow._releaseMath = function(el) {
-  var i, text, code, codes = el.getElementsByTagName('code');
-  for (i = 0; i < codes.length;) {
-    code = codes[i];
-    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
-      text = code.textContent;
-      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
-          /^\$\$(.|\s)+\$\$$/.test(text) ||
-          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
-        code.outerHTML = code.innerHTML;  // remove <code></code>
-        continue;
-      }
-    }
-    i++;
-  }
-};
-slideshow._releaseMath(document);
-</script>
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-(function () {
-  var script = document.createElement('script');
-  script.type = 'text/javascript';
-  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
-  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
-    script.src  = script.src.replace(/^https?:/, '');
-  document.getElementsByTagName('head')[0].appendChild(script);
-})();
-</script>
-  </body>
-</html>
