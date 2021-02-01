@@ -8,9 +8,9 @@ main:
   - name: Readings
     url: /reading/
     weight: 3
-  - name: Assignments
-    url: /assignment/
-    weight: 4
+  # - name: Assignments
+  #   url: /assignment/
+  #   weight: 4
   - name: Classes
     url: /class/
     weight: 5

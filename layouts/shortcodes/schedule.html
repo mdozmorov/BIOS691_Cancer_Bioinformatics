@@ -10,7 +10,7 @@
             {{- if .header }}
 
             <td style="width:10%;text-align:center" class="mid-table-header">Reading</td>
-            <td style="width:10%;text-align:center" class="mid-table-header">Assignment</td>
+            <!-- <td style="width:10%;text-align:center" class="mid-table-header">Assignment</td> -->
             <td style="width:10%;text-align:center" class="mid-table-header">Class</td>
 
             {{- else }}
@@ -26,7 +26,7 @@
             </td>
             {{- end }}
 
-            {{- if .assignment }}
+            <!-- {{- if .assignment }}
             <td align="center" style="width:10%;text-align:center"><a
                     href="{{ .Site.baseurl }}/assignment/{{ .assignment }}/">
                     <i class="fas fa-laptop-code"></i></a></td>
@@ -35,7 +35,7 @@
                 <font color="f1f1f1">
                     <i class="fas fa-laptop-code"></i></font>
             </td>
-            {{- end }}
+            {{- end }} -->
 
             {{- if .class }}
             <td align="center" style="width:10%;text-align:center"><a href="{{ .Site.baseurl }}/class/{{ .class }}/">
