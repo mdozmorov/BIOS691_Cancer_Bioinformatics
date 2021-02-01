@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Shell scripting</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Mikhail Dozmorov" />
+    <script src="libs/header-attrs-2.6/header-attrs.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+    <link rel="stylesheet" href="xaringan-my.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Shell scripting
+### Mikhail Dozmorov
+### Virginia Commonwealth University
+### 02-01-2021
+
+---
+
+
+
+
+## Workflow scripts
+
+- A script is a file with a `.sh` extension. It contains a list of shell commands executed by an interpreter
+
+- Shebang  (`#!`) defines the interpreter on the first line  
+    - `#!/bin/bash` - commands interpreted by bash
+    - `#!/usr/bin/python` - interpreted by Python
+
+- A script file should have `x` permissions: `chmod u+x hello_world.sh`
+
+- Running a script: `./hello_world.sh`
+
+---
+## Variables
+
+- Set a variable: `count_of_files=3`
+
+- Wrong set a variable: `count_of_files = 3` (spaces)
+
+- Quotes are optional. The following commands are equivalent:
+```
+file="/home/mdozmorov/work/README.md"
+file=/home/mdozmorov/work/README.md
+```
+
+- Use a variable: `echo $file`, or `echo ${file}`
+
+---
+## Capturing output of a command into a variable using backticks
+
+- Wrap a command into backticks - the backwards apostrophes that appear on a US English keyboard at the upper left, under the `~` (tilde)
+
+- Equivalent saying "get the output of the backticked command as a string variable"
+
+```
+echo `date` 
+CURRENT_DIR=`pwd`
+file_name=`basename /bin/mkdir`
+```
+
+---
+## Arguments of a script as variables
+
+- Example of an argument: `./hello_world.sh "Hello World!"`
+
+- Within a script, special variables are reserved:
+
+```
+echo $0		 - prints the script name
+echo $1		 - prints the first argument
+echo $2		 - prints the second argument
+echo ${10} - prints the tenth argument
+echo $#    - prints the number of arguments
+```
+
+---
+## Internal variables
+
+Set system’s parameters. Can be defined in system’s configuration files `.bashrc`, `.bash_profile`
+```
+DISPLAY	- tells X11 on which display to open windows
+EDITOR	- default text editor; usually emacs or vim
+HOME	- path to user's home directory; same as ~
+PATH	- path to executable programs
+PWD		- current directory, same as pwd
+SHELL	- path to the current shell
+TERM	- current terminal type
+USER	- account name of current user, same as whoami
+```
+
+Use, e.g., `echo $DISPLAY` to see their content
+
+---
+## Aliases
+
+To avoid retyping commands - use an alias. Can be defined in system’s configuration files `.profile` (Linux), `.bash_profile`, `.bashrc` (Mac)
+
+```
+alias lah='ls -lah'
+alias ..='cd ..’
+
+# get top process eating memory
+alias psmem='ps auxf | sort -nr -k 4'
+alias psmem10='ps auxf | sort -nr -k 4 | head -10'
+
+# get top process eating cpu
+alias pscpu='ps auxf | sort -nr -k 3'
+alias pscpu10='ps auxf | sort -nr -k 3 | head -10'
+
+# Find files eating space in the current directory
+alias spacehogs='du -cks * | sort -rn'
+```
+
+---
+## Conditional execution (if .. then .. else)
+
+```
+if [ ! -e $results_dir ]; then 
+	mkdir $results_dir; 
+fi 
+```
+
+Some popular operators for checking a condition include:
+```
+-e &lt;file&gt; 		         - TRUE if a specific file/directory exists
+–s &lt;file&gt; 		         - TRUE if non-empty file
+-z &lt;string&gt;		         - TRUE if the given string is empty
+&lt;string1&gt; = &lt;string2&gt;  - TRUE if the two strings are equal
+```
+
+- `help test` - see all operators
+
+---
+## Loops (for .. do .. done)
+
+```
+for file in `ls *.txt`; do 
+	echo $file; 
+	gzip $file;
+done
+```
+
+- `while-do-done` construct also available
+
+---
+## The PATH environment variable
+
+- Unix executable commands are located in special folders
+
+```
+$ which ls
+/usr/bin/ls
+$ which cat
+/usr/bin/cat
+$ which head
+/usr/bin/head
+```
+
+- Executables may be kept in many different places on the Unix system.  
+
+---
+## The PATH environment variable
+
+- The PATH environmental variable is a colon-delimited list of directories where your shell will look to find exexutable commands
+
+```
+$ echo $PATH
+/Users/mdozmorov/miniconda2/bin:/Users/mdozmorov/.rvm/gems/ruby-2.3.1/bin:/Users/mdozmorov/.rvm/gems/ruby-2.3.1@global/bin:/Users/mdozmorov/.rvm/rubies/ruby-2.3.1/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/Library/TeX/texbin:/Users/mdozmorov/.rvm/bin
+```
+
+Exercise:  
+- Check the **$PATH** (or, pick any) variable (hint: use **echo**)
+
+---
+## Expanding the PATH
+
+- Often you need to install software **as a user**, i.e., not as `root` or `sudo` user
+
+- Create user-specific `bin`, `lib` folders, like:
+
+```
+$ mkdir ~/.local/bin
+$ mkdir ~/.local/lib
+```
+
+- `.local` is a hidden folder in your home directory (use `ls -lah` to see it)
+
+- Add these folders to the search path: `export PATH=$PATH:$HOME/.local/bin:$HOME/.local/lib` - now, Unix will look there for executables
+
+- Put the `export ...` command in `bash_profile` to automatically execute it every time you use shell
+
+---
+## Installing software as a user
+
+- Read `README` - each software is different
+- When installing using `make`, typically:
+```
+$ ./configure --prefix=$HOME/.local
+$ make
+$ make install
+```
+- When using Python `setup.py`, typically:
+```
+$ python setup.py install --user
+```
+- When installing Python packages using `pip`
+```
+$ pip install --user FOOBAR
+```
+
+https://unix.stackexchange.com/questions/42567/how-to-install-program-locally-without-sudo-privileges
+
+---
+## Conda environment
+
+Package, dependency and environment management for any language — Python, R, Java, and more. Install "miniconda" for your OS
+
+- **Environment** - a place isolated from the operating system where one can install software without risking system's conflicts. If something will be wrong in the environment, it is easy to delete and start again. Think about environments like subfolders (they are).
+
+By default, you are in "base" environment
+
+https://docs.conda.io/en/latest/miniconda.html
+
+---
+## Conda environment
+
+Making new environment:
+```
+conda create -n new-env
+```
+Choose name `new-env` reflecting what you plan to install, e.g., `conda create -n UCSC`
+
+&lt;div style="font-size: small;"&gt;
+https://docs.conda.io/
+
+---
+## Conda environment
+
+Install any programming language within the environment (add `-y` arguiment to answer Yes to all prompts):
+```
+conda create -n new-env python=3.9
+conda create -n new-env r
+```
+
+Activate/Deactivate environment:
+```
+source activate new-env
+conda deactivate
+```
+
+Note the change in command prompt, when in an environment, e.g. `(jupyterlab) mdozmorov@work:$`
+
+---
+## Conda environment
+
+Install software per instructions. Also, use conda itself to install software:
+```
+conda install -c bioconda ucsc-bigwigtowig
+```
+
+Google "conda install 'software name'"
+
+Create as many environments as you want. List them as:
+```
+conda info --envs
+conda env list
+```
+
+Delete an environment
+```
+conda remove --name new-env --all
+```
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

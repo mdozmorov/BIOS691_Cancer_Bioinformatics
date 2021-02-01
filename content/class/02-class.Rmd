@@ -27,3 +27,11 @@ editor_options:
 ```{r echo=FALSE}
 knitr::include_url('../../slides/02_Unix/01_Unix.html#1')
 ```
+
+### Scripting
+
+<a href="../../slides/02_Unix/02_Scripting.html#1" target="_blank">Lecture slides in HTML format</a>
+
+```{r echo=FALSE}
+knitr::include_url('../../slides/02_Unix/02_Scripting.html#1')
+```
