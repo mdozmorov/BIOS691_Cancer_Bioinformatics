@@ -3,3 +3,6 @@
 .RData
 .Ruserdata
 Garland
+static/slides/*/libs
+static/slides/*/misc
+
