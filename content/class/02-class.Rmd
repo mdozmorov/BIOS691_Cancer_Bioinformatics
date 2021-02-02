@@ -35,3 +35,11 @@ knitr::include_url('../../slides/02_Unix/01_Unix.html#1')
 ```{r echo=FALSE}
 knitr::include_url('../../slides/02_Unix/02_Scripting.html#1')
 ```
+
+### Working with text
+
+<a href="../../slides/02_Unix/03_Text.html#1" target="_blank">Lecture slides in HTML format</a>
+
+```{r echo=FALSE}
+knitr::include_url('../../slides/02_Unix/03_Text.html#1')
+```
