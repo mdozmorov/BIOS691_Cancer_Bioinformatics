@@ -9,8 +9,13 @@ lessons:
     class: "01-class"
 
   - title: '**Unix/Linux**'
-    date: "January 27 - February 1"
+    date: "January 27 - February 3"
     reading: "02-reading"
     # assignment: "01-problem-set"
     class: "02-class"
 
+  - title: '**Genomics technologies**'
+    date: "February 18 - 10"
+    reading: "03-reading"
+    # assignment: "01-problem-set"
+    class: "03-class"
