@@ -20,3 +20,15 @@ editor_options:
 
 ## References
 
+- Schroeder, Michael P., Abel Gonzalez-Perez, and Nuria Lopez-Bigas. “[Visualizing Multidimensional Cancer Genomics Data](https://doi.org/10.1186/gm413).” Genome Medicine, (2013) - Omics visualization tools review, summary table.
+
+## Workflows and tools
+
+- [UCSC tutorial, common data formats, Galaxy tutorial, mentioning of VEP, IGV](http://web.cse.ohio-state.edu/~machiraju.1/teaching/CSE5599-BMI7830/Lectures/pdf/BMI7830-CSE5559-2014-huang-machiraju-Week-11-1.pdf)
+
+- [Read GTF file into R](https://davetang.org/muse/2017/08/04/read-gtf-file-r/) - GTF file format intro, tutorial for command line and R handling of GTF files
+
+- [VCF-tips-tricks](https://github.com/tdelhomme/VCF-tips-tricks)
+
+- [Tip and tricks for BAM files](https://github.com/IARCbioinfo/BAM-tricks)
+
