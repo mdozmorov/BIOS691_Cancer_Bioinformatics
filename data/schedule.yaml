@@ -14,8 +14,14 @@ lessons:
     # assignment: "01-problem-set"
     class: "02-class"
 
-  - title: '**Genomics technologies**'
-    date: "February 18 - 10"
+  - title: '**Genomic technologies**'
+    date: "February 8"
     reading: "03-reading"
     # assignment: "01-problem-set"
     class: "03-class"
+
+  - title: '**Genomic resources**'
+    date: "February 10"
+    reading: "04-reading"
+    # assignment: "01-problem-set"
+    class: "04-class"
