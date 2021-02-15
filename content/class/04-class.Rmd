@@ -27,3 +27,19 @@ editor_options:
 ```{r echo=FALSE}
 knitr::include_url('../../slides/03_Genomic_resources/01_File_formats.html#1')
 ```
+
+### Genomic Resources
+
+<a href="../../slides/03_Genomic_resources/02_Genomic_Resources.html#1" target="_blank">Lecture slides in HTML format</a>
+
+```{r echo=FALSE}
+knitr::include_url('../../slides/03_Genomic_resources/02_Genomic_Resources.html#1')
+```
+
+### The Cancer Genome Atlas (TCGA)
+
+<a href="../../slides/03_Genomic_resources/03_TCGA.html#1" target="_blank">Lecture slides in HTML format</a>
+
+```{r echo=FALSE}
+knitr::include_url('../../slides/03_Genomic_resources/03_TCGA.html#1')
+```
