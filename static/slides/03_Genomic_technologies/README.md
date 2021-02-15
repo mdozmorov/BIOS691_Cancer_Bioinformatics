@@ -9,6 +9,8 @@
 
 ### General
 
+- [Milestones in Genomic Sequencing](https://www.nature.com/immersive/d42859-020-00099-0/index.html) by Nature, 2000-2021 period, interactive infographics
+
 - Claussnitzer, Melina, Judy H. Cho, Rory Collins, Nancy J. Cox, Emmanouil T. Dermitzakis, Matthew E. Hurles, Sekar Kathiresan, et al. “[A Brief History of Human Disease Genetics](https://doi.org/10.1038/s41586-019-1879-7).” Nature, (January 2020) - Timeline and milestones in genomics development focusing on disease genetics.
 
 - Hagen, J. B. “[The Origins of Bioinformatics](https://doi.org/10.1038/35042090).” Nature Reviews. Genetics, (01 December 2000)
