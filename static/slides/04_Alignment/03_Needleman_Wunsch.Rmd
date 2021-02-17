@@ -1,0 +1,162 @@
+---
+title: "Needleman-Wunsch global alignment"
+# subtitle: "subtitle"
+author: "Mikhail Dozmorov"
+institute: "Virginia Commonwealth University"
+date: "02-17-2021"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    css: ["xaringan-themer.css", "xaringan-my.css"]
+    nature:
+      ratio: '16:9'
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r xaringan-themer, include = FALSE}
+library(xaringanthemer)
+mono_light(
+  base_color = "midnightblue",
+  header_font_google = google_font("Josefin Sans"),
+  text_font_google   = google_font("Montserrat", "500", "500i"),
+  code_font_google   = google_font("Droid Mono"),
+  link_color = "#8B1A1A", #firebrick4, "deepskyblue1"
+  text_font_size = "28px",
+  code_font_size = "26px"
+)
+```
+
+## Alignment goals
+
+- **Homology** - sequence similarity - helps to infer functions of genes uncharacterized in one organism but known in another
+
+- **Global sequence alighment** (Needleman-Wunch)
+
+- **Gapped local sequence alignment** (Smith-Waterman)
+
+---
+## Needleman-Wunsch algorithm
+
+- The problem of finding best possible alignment of two sequences is solved by Saul B. Needleman and Christian D. Wunsch in 1970
+
+- General goal is to obtain optimal global alignment between two sequences, allowing gaps
+
+- It refers as optimal matching problem or global alignment
+
+- Online demo: http://experiments.mostafa.io/public/needleman-wunsch/
+- Wikipedia: https://en.wikipedia.org/wiki/Needleman%E2%80%93Wunsch_algorithm
+
+Needleman, S. B., and C. D. Wunsch. “[A General Method Applicable to the Search for Similarities in the Amino Acid Sequence of Two Proteins](https://doi.org/10.1016/0022-2836(70)90057-4).” Journal of Molecular Biology, (March 1970)
+
+---
+## Dynamic programming
+
+- The Needleman-Wunsch algorithm is an example of dynamic programming, a discipline invented by Richard E. Bellman in 1953
+
+- Dynamic programming - solving complex problems by breaking them down into simpler subproblems, and remember subproblem solutions
+    - Guaranteed to provide the optimal alignment for a given set of scoring functions
+    - Slow due to the very large number of computational steps $O(n^2)$
+
+---
+## Needleman-Wunsch algorithm
+
+- In its simplest form, assign a value $A$ where the aligned pair consists of the same letters (nucleotides, amino acids) 
+    - If the letters differ, subtract $B$ - edit penalty.
+    - If a gap needs to be made, subtract a gap penalty times the number of gaps
+
+---
+## Steps
+
+1. Initialization of the score matrix $D(i,j)$
+2. Calculation of scores, such that
+
+$$ D(i,j) = max \begin{cases} D(i-1,j-1) + s(i,j) \\\ D(i-1,j) + g \\\ D(i,j-1) + g \end{cases} $$
+
+Where $s(i,j)$ is the substitution score for entries $i$ and $j$, and $g$ is the gap penalty
+
+Once you construct the matrix, you can trace back the best score for an alignment
+
+---
+## Best possible alignment for two sequences
+
+- The N-W algorithm is mathematically proven to find the best alignment of two sequences
+
+- N-W algorithm takes $O(n^2)$ to find best alignment of $n$ letters in two sequences
+
+- Accessing all possible alignments one by one would date $\binom{2n}{n}$, so $n^2$ is much smaller
+
+---
+## Sequence searching and alignment
+
+- **FASTA** - a DNA and protein sequence alignment software package by David J. Lipman and William R. Pearson in 1985.  
+
+- **BLAST** (Basic Local Alignment Search Tool) - an algorithm for comparing primary biological sequence information, such as the amino-acid sequences of proteins or the nucleotides of DNA sequences. 
+    - Designed by Stephen Altschul, Warren Gish, Webb Miller, Eugene Myers, and David J. Lipman
+    - Innovation: heuristic database search (speed), followed by optimal alignment (accuracy, statistics)
+
+---
+## BLAST
+
+- BLAST is not used for NGS because it is too slow.
+
+- Format for command line version: `blastall -d assemblyfasta -i genefasta -o output.blast -p blastn -e 1e-15`
+    - `-i` indicates what is the gene file
+    - `-o` indicates what you want the output to be
+    - `-p` with ending "n" means nucleotide alignment -e statistical significance of alignments
+
+- Magic-BLAST is an alternative
+
+https://ncbi.github.io/magicblast/
+
+https://ncbiinsights.ncbi.nlm.nih.gov/2016/10/13/introducing-magic-blast/
+
+<!--
+## Significance of the alignment
+
+- For local alignment we want to address how high an alignment score $S$ exceeds a cutoff $x$. 
+- If the quality score is within random chance then it probably isn't a good alignment. We use an extreme value (aka  Gumbel) distribution with parameter:
+
+$$P(S > x) = 1 - exp(-K M N e^{-\lambda x})$$
+
+- $M$ is the effective length of the query sequence
+- $N$ is the effective length of the reference sequence
+- $K$ and $\lambda$ are positive parameters that depend on the score matrix and the composition of the sequences being compared
+
+## E-values
+
+- E-values are the number of alignments with scores at least equal to $x$ that would be expected by chance alone. The larger the database the more likely you will have a hit by chance, therefore we must take the size of the database into consideration.
+- We can treat E-values as multiple comparison corrected p-values.
+    - Low E-value ~ strong match or good hits
+    - Commonly used threshold: E-value < 0.05
+
+## New Aligners for NGS data: MAQ, BWA, Bowtie, SOAP, Rsubread, etc.
+
+- The main technique for faster alignment: indexing. We make substrings of length $k$ (short integer) and put the substring and its location in a hash table.
+- **MAQ** - Mapping and Assemblies with Quality (Li, Ruan, Durbin 2008)
+    - Does the alignment but also calls SNPs
+    - At the alignment stage it searches for the un-gapped match with the lowest mismatch score, defined as the sum of qualities at mismatching bases
+    - Only considers positions that have two or fewer mismatches in the first 28 base pairs (this is the default which can be changed)
+- Sequences that fail to reach a mismatch score threshold are searched with Smith-Waterman algorithm that allows for gaps
+- Always reports a single alignment, positions aligned equally well to a read are chosen randomly
+- Potential problem - multimapped reads will not contribute to variant calling
+-->
+
+---
+## BWA, Bowtie aligners
+
+Bowtie employs Burrows-Wheeler transform (BWT) based on the full-text minute-space (FM) index. Index is built using `bwa index`, `bowtie2-build`
+
+```
+acaacg$ → $acaacg →(sort) $acaacg → gc$aaac
+          g$acaac         aacg$ac
+          cg$acaa         acaacg$
+          acg$aca         acg$aca
+          aacg$ac         caacg$a
+          caacg$a         cg$acaa
+          acaacg$         g$acaac
+```
+- Bowtie has a memory footprint of 1.3 GB for the human genome. Very fast.
+- The last first mapping can transform it back to the original sequence.
+
