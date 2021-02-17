@@ -25,3 +25,9 @@ lessons:
     reading: "04-reading"
     # assignment: "01-problem-set"
     class: "04-class"
+
+  - title: '**Alignment algorithms**'
+    date: "February 17"
+    reading: "05-reading"
+    # assignment: "01-problem-set"
+    class: "05-class"

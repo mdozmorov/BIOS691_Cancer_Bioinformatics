@@ -1,0 +1,79 @@
+---
+title: "Alignment algorithms"
+# linktitle: "1. Introduction to RStudio and Images"
+date: "2021-02-17"
+# class_date: "2021-01-25"
+output:
+  blogdown::html_page:
+    toc: false
+menu:
+  reading:
+    parent: Reading
+    weight: 7
+type: docs
+# weight: 1 
+# pdf: 
+# thumb: 
+editor_options: 
+  chunk_output_type: console
+---
+
+## Online demos and tools
+
+- [TeachEnG](http://teacheng.illinois.edu/#nw) - educational tool for aslgnment algorithms, plylogenetic tree.  - Kim, Minji, Yeonsung Kim, Lei Qian, and Jun S. Song. “[TeachEnG: A Teaching Engine for Genomics](https://doi.org/10.1093/bioinformatics/btx447).” Bioinformatics, October 15, 2017
+
+- [Needleman-Wunsch algorithm demo](http://experiments.mostafa.io/public/needleman-wunsch/)
+
+- [textdistance](https://github.com/life4/textdistance) - compute distance between sequences. 30+ algorithms, pure python implementation, common interface, optional external libs usage
+
+## Alignment algorithms
+
+- Needleman, S. B., and C. D. Wunsch. “[A General Method Applicable to the Search for Similarities in the Amino Acid Sequence of Two Proteins](https://doi.org/10.1016/0022-2836(70)90057-4).” Journal of Molecular Biology, March 1970
+
+- Smith, T. F., and M. S. Waterman. “[Identification of Common Molecular Subsequences](https://doi.org/10.1016/0022-2836(81)90087-5).” Journal of Molecular Biology, March 25, 1981
+
+- Burrows, Michael, and David J Wheeler. “[A Block-Sorting Lossless Data Compression Algorithm](http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.3.8069),” 1994. - BWT paper
+
+- Ferragina, Paolo, and Giovanni Manzini. “[Opportunistic Data Structures with Applications](https://dl.acm.org/citation.cfm?id=796543).” In Foundations of Computer Science, IEEE, 2000 - FM index paper
+
+- Li, Heng, and Richard Durbin. “[Fast and Accurate Short Read Alignment with Burrows-Wheeler Transform](https://doi.org/10.1093/bioinformatics/btp324).” Bioinformatics, July 15, 2009 - BWA first paper
+
+- Li, Heng, and Richard Durbin. “[Fast and Accurate Long-Read Alignment with Burrows-Wheeler Transform](https://doi.org/10.1093/bioinformatics/btp698).” Bioinformatics, March 1, 2010 - BWA second paper
+
+- Li, Heng. “[Aligning Sequence Reads, Clone Sequences and Assembly Contigs with BWA-MEM](https://arxiv.org/abs/1303.3997).” ArXiv, 2013. - BWA-MEM (maximal exact matches). Automatically select end-to-end or gapped alignment.
+
+- Langmead, Ben, and Steven L Salzberg. “[Fast Gapped-Read Alignment with Bowtie 2](https://doi.org/10.1038/nmeth.1923).” Nature Methods, March 4, 2012 - Bowtie2 gapped alignment
+
+- Dobin, Alexander, Carrie A. Davis, Felix Schlesinger, Jorg Drenkow, Chris Zaleski, Sonali Jha, Philippe Batut, Mark Chaisson, and Thomas R. Gingeras. “[STAR: Ultrafast Universal RNA-Seq Aligner](https://doi.org/10.1093/bioinformatics/bts635).” Bioinformatics, January 1, 2013 - STAR gapped aligner. Algorithm, testing on simulated dataset.
+
+- Kim, Daehwan, Ben Langmead, and Steven L. Salzberg. “[HISAT: A Fast Spliced Aligner with Low Memory Requirements](https://doi.org/10.1038/nmeth.3317).” Nature Methods, April 2015 - HISAT aligner. Two indexes - one large with many small
+
+- Fonseca, Nuno A., Johan Rung, Alvis Brazma, and John C. Marioni. “[Tools for Mapping High-Throughput Sequencing Data](https://doi.org/10.1093/bioinformatics/bts605).” Bioinformatics, December 15, 2012 - Sequencing mappers, lists and characteristics of DNA, RNA, bisulfite aligners.
+
+## References
+
+- Nagarajan, Niranjan, and Mihai Pop. “[Sequence Assembly Demystified](https://doi.org/10.1038/nrg3367).” Nature Reviews. Genetics, March 2013 - Gentle introduction into genome assembly. Technologies. Box2: Greedy, overlap-layout-consensus, De Bruijn. Problems
+
+- Pevzner, P. A., H. Tang, and M. S. Waterman. “[An Eulerian Path Approach to DNA Fragment Assembly](https://doi.org/10.1073/pnas.171285098).” Proceedings of the National Academy of Sciences, August 14, 2001 - First de Bruijn graph for genome assembly paper. Idea of breaking reads into fragments. Typical approach reads are vertices connected by edges if they overlap. Hamiltonian path problem - visit each vertex exactly once, NP-complete. de Bruijn graph - overlapping fragments are edges, and the problem is Eulerian path - visit each edge once. Error-correction algorithm.
+
+- Compeau, Phillip E C, Pavel A Pevzner, and Glenn Tesler. “[How to Apply de Bruijn Graphs to Genome Assembly](https://doi.org/10.1038/nbt.2023).” Nature Biotechnology, November 8, 2011
+
+- Chaisson, Mark J. P., Richard K. Wilson, and Evan E. Eichler. “[Genetic Variation and the de Novo Assembly of Human Genomes](https://doi.org/10.1038/nrg3933).” Nature Reviews Genetics, October 7, 2015 - Genome assembling strategies, problems. OLC, De Bruijn, string graphs. Types of gaps. 
+
+- Miller, Jason R., Sergey Koren, and Granger Sutton. “[Assembly Algorithms for Next-Generation Sequencing Data](https://doi.org/10.1016/j.ygeno.2010.03.001).” Genomics, June 2010 - Assembly tools for overlap/layout/consensus and the de Bruijn graph approaches. de Bruin graph Issues with genome assembly, potential solutions.
+
+- String Graph Assembler. Simpson, J. T., and R. Durbin. “[Efficient de Novo Assembly of Large Genomes Using Compressed Data Structures](http://www.genome.org/cgi/doi/10.1101/gr.126953.111).” Genome Research, March 1, 2012 - SGA - String Graph Assembler. From an FM-index. Velvet, ABySS, SOAPdenovo de Bruijn graph assemblers. BWA and FM explanation
+
+- Koren, Sergey, and Adam M. Phillippy. “[One Chromosome, One Contig: Complete Microbial Genomes from Long-Read Sequencing and Assembly](https://doi.org/10.1016/j.mib.2014.11.014).” Current Opinion in Microbiology, February 2015 - Genome assembly overview focusing on long reads. Repeats (global and local) are problematic. Details on technologies: PacBio RS, Illumina's Moleculo, ONT MinION. Assembling approaches: OLC, hierarchical hybrid (long reads correction using another technology) and non-hybrid (self long reads alignment-correction). Assembly augmentation: gap filling, scaffolding, read threading. Table 1 - long read assembly tools and descriptions.
+
+### Videos
+
+- [Algorithms for DNA Sequencing](https://www.youtube.com/playlist?list=PL2mpR0RYFQsBiCWVJSvVAO3OJ2t7DzoHA) - 55 short videos by Ben Langmead
+    - [Ben Langmead's Slides for Algorithms for DNA Sequencing Coursera class, GitHub repo](https://github.com/BenLangmead/ads1-slides.git)
+    - [Ben Langmead's teaching material with links to videos, lecture notes, python notebooks](http://www.langmead-lab.org/teaching-materials/)
+
+- [MIT 7.91J Foundations of Computational and Systems](https://www.youtube.com/watch?v=lJzybEXmIj0&list=PLUl4u3cNGP63uK-oWiLgO7LLJV6ZCWXac&index=1) - full lecture videos (approx 1h 20m), by Christopher Burge, David Gifford, Ernest Fraenkel
+
+- Vector illustrations of BWT based searching on small strings, https://github.com/ekg/drawbwt
+    - [FM-Indexes and Backwards Search](https://alexbowe.com/fm-index/)
+

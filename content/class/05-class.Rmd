@@ -1,0 +1,70 @@
+---
+title: "Alignment algorithms"
+# linktitle: "1. Introduction to RStudio and Images"
+date: "2021-02-17"
+class_date: "2021-02-17"
+output:
+  blogdown::html_page:
+    toc: false
+menu:
+  class:
+    parent: Class sessions
+    weight: 6
+type: docs
+# weight: 1 
+# pdf: 
+# thumb: 
+editor_options: 
+  chunk_output_type: console
+---
+
+## Slides
+
+### Alignment introduction
+
+<a href="../../slides/04_Alignment/01_Alignment_intro.html#1" target="_blank">Lecture slides in HTML format</a>
+
+```{r echo=FALSE}
+knitr::include_url('../../slides/04_Alignment/01_Alignment_intro.html#1')
+```
+
+### Alignment introduction
+
+<a href="../../slides/04_Alignment/01_Alignment_intro.html#1" target="_blank">Lecture slides in HTML format</a>
+
+```{r echo=FALSE}
+knitr::include_url('../../slides/04_Alignment/01_Alignment_intro.html#1')
+```
+
+### Approximate matching
+
+<a href="../../slides/04_Alignment/02_Approximate_matching.html#1" target="_blank">Lecture slides in HTML format</a>
+
+```{r echo=FALSE}
+knitr::include_url('../../slides/04_Alignment/02_Approximate_matching.html#1')
+```
+
+[02_Approximate_matching_Langmead.pdf](../../slides/04_Alignment/02_Approximate_matching_Langmead.pdf)
+
+- "[Approximate matching, Hamming and edit distance](https://www.youtube.com/watch?v=MCvHeW13DsE&index=30&list=PL2mpR0RYFQsBiCWVJSvVAO3OJ2t7DzoHA)"
+    - [naive_Hamming.R](../../slides/04_Alignment/lab/naive_Hamming.R)
+- "[Solving the edit distance problem](https://www.youtube.com/watch?v=8Q2IEIY2pDU&index=33&list=PL2mpR0RYFQsBiCWVJSvVAO3OJ2t7DzoHA)"
+    - [edDistRecursive.R](../../slides/04_Alignment/lab/edDistRecursive.R)
+- "[Using dynamic programming for edit distance](https://www.youtube.com/watch?v=0KzWq118UNI&index=34&list=PL2mpR0RYFQsBiCWVJSvVAO3OJ2t7DzoHA)"
+    - [edDistDynamic.R](../../slides/04_Alignment/lab/edDistDynamic.R)
+- "[Edit distance for approximate matching](https://www.youtube.com/watch?v=NjfNZzJiu8o&list=PL2mpR0RYFQsBiCWVJSvVAO3OJ2t7DzoHA&index=36)"
+- "[Meet the family: global and local alignment](https://www.youtube.com/watch?v=-bjSPP2v6_Q&index=37&list=PL2mpR0RYFQsBiCWVJSvVAO3OJ2t7DzoHA)"
+
+### Needleman-Wunsch global alignment
+
+<a href="../../slides/04_Alignment/03_Needleman_Wunsch.html#1" target="_blank">Lecture slides in HTML format</a>
+
+```{r echo=FALSE}
+knitr::include_url('../../slides/04_Alignment/03_Needleman_Wunsch.html#1')
+```
+
+### Smith-Waterman local alignment
+
+<a href="../../slides/04_Alignment/04_Smith-Waterman.pdf" target="_blank">Lecture slides in PDF format</a>
+
+
