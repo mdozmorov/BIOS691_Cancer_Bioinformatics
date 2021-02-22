@@ -1,0 +1,20 @@
+---
+title: "Bioconductor"
+# linktitle: "1. Introduction to RStudio and Images"
+date: "2021-02-22"
+# class_date: "2021-01-25"
+output:
+  blogdown::html_page:
+    toc: false
+menu:
+  reading:
+    parent: Reading
+    weight: 8
+type: docs
+# weight: 1 
+# pdf: 
+# thumb: 
+editor_options: 
+  chunk_output_type: console
+---
+

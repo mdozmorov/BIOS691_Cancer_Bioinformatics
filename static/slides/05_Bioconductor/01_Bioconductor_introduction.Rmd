@@ -1,0 +1,335 @@
+---
+title: "https://bioconductor.org/"
+# subtitle: "subtitle"
+author: "Mikhail Dozmorov"
+institute: "Virginia Commonwealth University"
+date: "02-22-2021"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    css: ["xaringan-themer.css", "xaringan-my.css"]
+    nature:
+      ratio: '16:9'
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r xaringan-themer, include = FALSE}
+library(xaringanthemer)
+mono_light(
+  base_color = "midnightblue",
+  header_font_google = google_font("Josefin Sans"),
+  text_font_google   = google_font("Montserrat", "500", "500i"),
+  code_font_google   = google_font("Droid Mono"),
+  link_color = "#8B1A1A", #firebrick4, "deepskyblue1"
+  text_font_size = "28px",
+  code_font_size = "26px"
+)
+```
+
+## High-throughput sequence workflow
+
+.center[ <img src="img/SequencingEcosystem.png" height = 500> ]
+
+---
+## Bioconductor
+
+https://bioconductor.org/
+
+Analysis and comprehension of high-throughput genomic data
+
+- Statistical analysis designed for large genomic data
+
+- Interpretation: biological context, visualization, reproducibility
+
+- Support for all high-throughput technologies
+    - Sequencing: RNASeq, ChIPSeq, variants, copy number, ...
+    - Microarrays: expression, SNP, ...
+    - Flow cytometry, proteomics, images, ...
+
+Bioconductor cheat sheet https://github.com/mikelove/bioc-refcard
+
+---
+## Bioconductor by the numbers
+
+- Project started in 2002
+
+- Built on and in R, the open source software platform for data science
+
+- An estimated 2,000,000 users worldwide
+
+- More than 50,000 unique downloads per month
+
+- More than 22,000 PubmedCentral citations
+
+- Bioconductor Release: 1,974 biomedical and omics data science software packages (02-20-2021)
+
+- Receiving submissions of 3-6 new packages per week
+
+.small[ [Bioconductor: Software for orchestrating high-throughput biological data analysis](https://docs.google.com/presentation/d/1gbhpG_Z5Ca-R0aA1pWBy8TTimq2_ux5KI6qH65u3Z1c/edit#slide=id.p) by Sean Davis ]
+
+---
+## Reference manuals, vignettes
+
+- All user-visible functions have help pages, most with runnable examples
+
+- 'Vignettes' an important feature in _Bioconductor_ -- narrative documents illustrating how to use the package, with integrated code
+
+- Example: `AnnotationHub` landing page, [AnnotationHub HOW TO's](http://bioconductor.org/packages/devel/bioc/vignettes/AnnotationHub/inst/doc/AnnotationHub-HOWTO.html) vignette illustrating some fun use cases
+
+.small[ https://bioconductor.org/packages/AnnotationHub/ ]
+
+---
+## Bioconductor classes
+
+- _Bioconductor_ makes extensive use of classes to represent complicated data types
+    - The core components: _classes_, _generic functions_ and _methods_
+    - The S4 class system is a set of facilities for object-oriented programming
+
+- Classes foster interoperability - many different packages can work on the same data - but can be a bit intimidating 
+
+---
+## Formal S4 object system
+
+- Often a class is described on a particular home page, e.g., `?GRanges`, and in vignettes, e.g., `vignette(package="GenomicRanges")`, `vignette("GenomicRangesIntroduction")`
+
+- Many methods and classes can be discovered interactively , e.g., `methods(class="GRanges")` to find out what one can do with a `GRanges` instance, and `methods(findOverlaps)` for classes that the `findOverlaps()` function operates on
+
+- In more advanced cases, one can look at the actual definition of a class or method using `getClass()`, `getMethod()`
+
+- Getting help:`?findOverlaps,<tab>` to select help on a specific method, `?GRanges-class` for help on a class.
+
+---
+## High-throughput sequence data
+
+.center[ <img src="img/FilesToPackages.png" height = 450> ]
+
+---
+## DNA/amino acid sequences: FASTA files
+
+- The `Biostrings` package is used to represent DNA sequences, with many convenient sequence-related functions, e.g., `?consensusMatrix`.
+
+Input & manipulation, FASTA file example:
+
+    >NM_078863_up_2000_chr2L_16764737_f chr2L:16764737-16766736
+    gttggtggcccaccagtgccaaaatacacaagaagaagaaacagcatctt
+    gacactaaaatgcaaaaattgctttgcgtcaatgactcaaaacgaaaatg
+    ...
+    atgggtatcaagttgccccgtataaaaggcaagtttaccggttgcacggt
+    >NM_001201794_up_2000_chr2L_8382455_f chr2L:8382455-8384454
+    ttatttatgtaggcgcccgttcccgcagccaaagcactcagaattccggg
+    cgtgtagcgcaacgaccatctacaaggcaatattttgatcgcttgttagg
+    ...
+
+.small[ http://bioconductor.org/packages/Biostrings ]
+
+---
+## Reads: FASTQ files
+
+- The `ShortRead` package can be used for lower-level access to FASTQ files. `readFastq()`, `FastqStreamer()`, `FastqSampler()`
+
+Input & manipulation, FASTQ file example: 
+
+    @ERR127302.1703 HWI-EAS350_0441:1:1:1460:19184#0/1
+    CCTGAGTGAAGCTGATCTTGATCTACGAAGAGAGATAGATCTTGATCGTCGAGGAGATGCTGACCTTGACCT
+    +
+    HHGHHGHHHHHHHHDGG<GDGGE@GDGGD<?B8??ADAD<BE@EE8EGDGA3CB85*,77@>>CE?=896=:
+    @ERR127302.1704 HWI-EAS350_0441:1:1:1460:16861#0/1
+    GCGGTATGCTGGAAGGTGCTCGAATGGAGAGCGCCAGCGCCCCGGCGCTGAGCCGCAGCCTCAGGTCCGCCC
+    +
+    DE?DD>ED4>EEE>DE8EEEDE8B?EB<@3;BA79?,881B?@73;1?---#####################
+
+.small[ http://bioconductor.org/packages/ShortRead ]
+
+Quality scores: 'phred-like', encoded. See http://en.wikipedia.org/wiki/FASTQ_format#Encoding
+
+---
+## Biostrings, DNA or amino acid sequences
+
+**Classes**
+
+- `XString`, `XStringSet`, e.g., `DNAString` (genomes), `DNAStringSet` (reads)
+
+**Methods**
+
+- Manipulation, e.g., `reverseComplement()`
+- Summary, e.g., `letterFrequency()`
+- Matching, e.g., `matchPDict()`, `matchPWM()`
+
+Related packages: `BSgenome` for working with whole genome sequences, e.g., `?"getSeq,BSgenome-method"`
+
+.small[ http://bioconductor.org/packages/BSgenome
+
+http://bioconductor.org/packages/release/bioc/vignettes/Biostrings/inst/doc/BiostringsQuickOverview.pdf ]
+
+---
+## Aligned reads: SAM/BAM files
+
+Input & manipulation: `Rsamtools` - `scanBam()`, `BamFile()`
+
+SAM Header example
+
+    @HD     VN:1.0  SO:coordinate
+    @SQ     SN:chr1 LN:249250621
+    @SQ     SN:chr10        LN:135534747
+    @SQ     SN:chr11        LN:135006516
+    ...
+    @SQ     SN:chrY LN:59373566
+
+<!-- @PG     ID:TopHat       VN:2.0.8b       CL:/home/hpages/tophat-2.0.8b.Linux_x86_64/tophat --mate-inner-dist 150 --solexa-quals --max-multihits 5 --no-discordant --no-mixed --coverage-search --microexon-search --library-type fr-unstranded --num-threads 2 --output-dir tophat2_out/ERR127306 /home/hpages/bowtie2-2.1.0/indexes/hg19 fastq/ERR127306_1.fastq fastq/ERR127306_2.fastq -->
+  
+.small[ http://bioconductor.org/packages/Rsamtools
+
+http://bioconductor.org/packages/GenomicAlignments ]
+
+---
+## GenomicAlignments, Aligned reads
+
+The `GenomicAlignments` package is used to input reads aligned to a reference genome. See for instance the `?readGAlignments` help page and `vignette(package="GenomicAlignments", "summarizeOverlaps")`
+
+**Classes** - `GenomicRanges`-like behaivor
+
+- `GAlignments`, `GAlignmentPairs`, `GAlignmentsList`
+
+**Methods**
+
+- `readGAlignments()`, `readGAlignmentsList()`
+    - Easy to restrict input, iterate in chunks
+- `summarizeOverlaps()`
+
+---
+## Genomic variants: VCF files
+
+- `VariantAnnotation` - Input and annotation of genomic variants
+
+**Classes** - `GenomicRanges`-like behavior
+
+- `VCF` -- 'wide'
+- `VRanges` -- 'tall'
+
+**Methods**
+
+- I/O and filtering: `readVcf()`, `readGeno()`, `readInfo()`, `readGT()`, `writeVcf()`, `filterVcf()`
+- Annotation: `locateVariants()` (variants overlapping ranges), `predictCoding()`, `summarizeVariants()`
+- SNPs: `genotypeToSnpMatrix()`, `snpSummary()`
+
+.small[ http://bioconductor.org/packages/VariantAnnotation ]
+
+
+<!--
+## VCF Header
+
+    ##fileformat=VCFv4.2
+    ##fileDate=20090805
+    ##source=myImputationProgramV3.1
+    ##reference=file:///seq/references/1000GenomesPilot-NCBI36.fasta
+    ##contig=<ID=20,length=62435964,assembly=B36,md5=f126cdf8a6e0c7f379d618ff66beb2da,species="Homo sapiens",taxonomy=x>
+    ##phasing=partial
+    ##INFO=<ID=DP,Number=1,Type=Integer,Description="Total Depth">
+    ##INFO=<ID=AF,Number=A,Type=Float,Description="Allele Frequency">
+        ...
+    ##FILTER=<ID=q10,Description="Quality below 10">
+    ##FILTER=<ID=s50,Description="Less than 50% of samples have data">
+        ...
+    ##FORMAT=<ID=GT,Number=1,Type=String,Description="Genotype">
+    ##FORMAT=<ID=GQ,Number=1,Type=Integer,Description="Genotype Quality">
+          
+## VCF Location info
+
+    #CHROM POS     ID        REF    ALT     QUAL FILTER ...
+    20     14370   rs6054257 G      A       29   PASS   ...
+    20     17330   .         T      A       3    q10    ...
+    20     1110696 rs6040355 A      G,T     67   PASS   ...
+    20     1230237 .         T      .       47   PASS   ...
+    20     1234567 microsat1 GTC    G,GTCT  50   PASS   ...
+          
+## VCF Variant INFO
+
+    #CHROM POS     ...	INFO                              ...
+    20     14370   ...	NS=3;DP=14;AF=0.5;DB;H2           ...
+    20     17330   ...	NS=3;DP=11;AF=0.017               ...
+    20     1110696 ...	NS=2;DP=10;AF=0.333,0.667;AA=T;DB ...
+    20     1230237 ...	NS=3;DP=13;AA=T                   ...
+    20     1234567 ...	NS=3;DP=9;AA=G                    ...
+    
+## Genotype FORMAT and samples
+
+    ... POS     ...  FORMAT      NA00001        NA00002        NA00003
+    ... 14370   ...  GT:GQ:DP:HQ 0|0:48:1:51,51 1|0:48:8:51,51 1/1:43:5:.,.
+    ... 17330   ...  GT:GQ:DP:HQ 0|0:49:3:58,50 0|1:3:5:65,3   0/0:41:3
+    ... 1110696 ...  GT:GQ:DP:HQ 1|2:21:6:23,27 2|1:2:0:18,2   2/2:35:4
+    ... 1230237 ...  GT:GQ:DP:HQ 0|0:54:7:56,60 0|0:48:4:51,51 0/0:61:2
+    ... 1234567 ...  GT:GQ:DP    0/1:35:4       0/2:17:2       1/1:40:3
+-->
+
+---
+## VCF-Related packages
+
+- `ensemblVEP`- query the Ensembl Variant Effect Predictor
+
+- `VariantTools` - Explore, diagnose, and compare variant calls.
+
+- `VariantFiltering` - Filtering of coding and non-coding genetic variants.
+
+- `h5vc` - has variant calling functionality.
+
+- `snpStats` - Classes and statistical methods for large SNP association studies. 
+
+.small[ http://bioconductor.org/packages/ensemblVEP
+
+http://bioconductor.org/packages/VariantTools
+
+http://bioconductor.org/packages/VariantFiltering
+
+http://bioconductor.org/packages/h5vc
+
+https://bioconductor.org/packages/release/bioc/html/snpStats.html
+
+Obenchain, V, Lawrence, M, Carey, V, Gogarten, S, Shannon, P, and Morgan, M. [VariantAnnotation: a Bioconductor package for exploration and annotation of genetic variants](http://bioinformatics.oxfordjournals.org/content/early/2014/04/21/bioinformatics.btu168). Bioinformatics, March 28, 2014
+
+Introduction to VariantAnnotation, http://bioconductor.org/packages/release/bioc/vignettes/ShortRead/inst/doc/Overview.pdf ]
+
+---
+## Genome annotations: BED, WIG, GTF, etc. files
+
+- The `rtracklayer`'s `import` and `export` functions can read in many common file types, e.g., `BED`, `WIG`, `GTF`, ..., in addition to querying and navigating the UCSC genome browser. Check out the `?import` page for basic usage.
+  
+Input: `rtracklayer::import()`
+
+- `BED`: range-based annotation (see http://genome.ucsc.edu/FAQ/FAQformat.html for definition of this and related formats)
+- `WIG`/`bigWig`: dense, continuous-valued data
+- `GTF`: gene model
+
+.small[ http://bioconductor.org/packages/rtracklayer ]
+
+<!--
+## GTF Component coordinates
+  
+    7   protein_coding  gene        27221129    27224842    .   -   . ...
+    ...
+    7   protein_coding  transcript  27221134    27224835    .   -   . ...
+    7   protein_coding  exon        27224055    27224835    .   -   . ...
+    7   protein_coding  CDS         27224055    27224763    .   -   0 ...
+    7   protein_coding  start_codon 27224761    27224763    .   -   0 ...
+    7   protein_coding  exon        27221134    27222647    .   -   . ...
+    7   protein_coding  CDS         27222418    27222647    .   -   2 ...
+    7   protein_coding  stop_codon  27222415    27222417    .   -   0 ...
+    7   protein_coding  UTR         27224764    27224835    .   -   . ...
+    7   protein_coding  UTR         27221134    27222414    .   -   . ...
+
+## GTF Annotations
+
+    gene_id "ENSG00000005073"; gene_name "HOXA11"; gene_source "ensembl_havana"; gene_biotype "protein_coding";
+    ...
+    ... transcript_id "ENST00000006015"; transcript_name "HOXA11-001"; transcript_source "ensembl_havana"; tag "CCDS"; ccds_id "CCDS5411";
+    ... exon_number "1"; exon_id "ENSE00001147062";
+    ... exon_number "1"; protein_id "ENSP00000006015";
+    ... exon_number "1";
+    ... exon_number "2"; exon_id "ENSE00002099557";
+    ... exon_number "2"; protein_id "ENSP00000006015";
+    ... exon_number "2";
+    ...
+
+Read GTF file into R, https://davetang.org/muse/2017/08/04/read-gtf-file-r/
+-->

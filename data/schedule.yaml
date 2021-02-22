@@ -27,7 +27,13 @@ lessons:
     class: "04-class"
 
   - title: '**Alignment algorithms**'
-    date: "February 17"
+    date: "February 17 - 19"
     reading: "05-reading"
     # assignment: "01-problem-set"
     class: "05-class"
+
+  - title: '**Bioconductor**'
+    date: "February 22 - March 3"
+    reading: "06-reading"
+    # assignment: "01-problem-set"
+    class: "06-class"
