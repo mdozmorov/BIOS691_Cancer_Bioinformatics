@@ -1,0 +1,127 @@
+---
+title: "GEO"
+author: "Mikhail Dozmorov"
+date: '`r Sys.Date()`'
+output:
+  pdf_document:
+    toc: yes
+  html_document:
+    theme: united
+    toc: yes
+---
+
+```{r setup, echo=FALSE}
+# Set up the environment
+library(knitr) 
+opts_chunk$set(cache.path='cache/', fig.path='img/', cache=T, tidy=T, fig.keep='high', echo=T, dpi=100, out.width=700, warning = FALSE)
+options(replace.assign=TRUE, width=220)
+options(stringsAsFactors = FALSE)
+set.seed(1)
+```
+
+# Reading the NCBI's GEO microarray SOFT files in R/BioConductor
+
+GEO expression omnibus, [https://www.ncbi.nlm.nih.gov/geo/](https://www.ncbi.nlm.nih.gov/geo/), is the largest repository of gene expression data. It may have the data you're looking for, saving you time and money to do the experiment yourself. 
+
+We will discuss how to load GEO SOFT format microarray data from the Gene Expression Omnibus database (GEO) (hosted by the NCBI) into R/BioConductor. SOFT stands for Simple Omnibus Format in Text. There are actually four types of GEO SOFT file available:
+
+- `GEO Platform (GPL)` - These files describe a particular type of microarray. They are annotation files.
+- `GEO Sample (GSM)` - Files that contain all the data from the use of a single chip. For each gene there will be multiple scores including the main one, held in the VALUE column.
+- `GEO Series (GSE)` - Lists of GSM files that together form a single experiment.
+- `GEO Dataset (GDS)` - These are curated files that hold a summarized combination of a GSE file and its GSM files. They contain normalized expression levels for each gene from each sample (i.e. just the VALUE field from the GSM file).
+
+As long as you just need the expression level then a GDS file will suffice. If you need to dig deeper into how the expression levels were calculated, you'll need to get all the GSM files instead (which are listed in the GDS or GSE file)
+
+Installing GEOquery. Assuming you are running a recent version of BioConductor (1.8 or later) you should be able to install it from within R as follows:
+
+```{r eval=FALSE}
+source("http://www.bioconductor.org/biocLite.R")
+biocLite("GEOquery")
+```
+
+Loading a GDS file with GEOquery. Here is a quick introduction to how to load a GDS file, and turn it into an expression set object:
+
+```{r}
+library(Biobase)
+library(GEOquery)
+# Download GDS file, put it in the current directory, and load it:
+gds858 <- getGEO('GDS858', destdir="../data/")
+# Or, open an existing GDS file (even if its compressed):
+gds858 <- getGEO(filename='../data/GDS858.soft.gz', destdir="../data/")
+```
+
+The SOFT file is available in compressed form here GDS858.soft.gz, but GEOquery takes care of finding this file for you and unzipping it automatically.
+
+There are two main things the GDS object gives us, meta data (from the file header) and a table of expression data. These are extracted using the `Meta` and `Table` functions. First lets have a look at the metadata:
+
+```{r}
+Meta(gds858)$channel_count
+Meta(gds858)$description
+Meta(gds858)$feature_count
+Meta(gds858)$platform
+Meta(gds858)$sample_count
+Meta(gds858)$sample_organism
+Meta(gds858)$sample_type
+Meta(gds858)$title
+Meta(gds858)$type
+```
+
+Useful stuff, and now the expression data table:
+
+```{r}
+colnames(Table(gds858))
+Table(gds858)[1:10,1:6]
+```
+
+Now, lets turn this GDS object into an expression set object (using base 2 logarithms) and have a look at it:
+
+```{r}
+eset <- GDS2eSet(gds858, do.log2=TRUE)
+eset
+featureNames(eset)[1:10]
+sampleNames(eset)[1:10]
+```
+
+GEOquery does an excellent job of extracting the phenotype data, as you can see:
+
+```{r}
+pData(eset)
+pData(eset)$infection
+pData(eset)$"genotype/variation"
+```
+
+As with any expression set object, its easy to pull out a subset of the data:
+
+```{r}
+eset["1320_at", "GSM14504"]
+```
+
+In addition to loading a GDS file to get the expression levels, you can also load the associated platform annotation file. You can find this out from the GDS858 meta information:
+
+```{r}
+Meta(gds858)$platform # Which platform?
+```
+
+Now let's load up the GPL file and have a look at it (its a big file, about 12 MB, so this takes a while!):
+
+```{r}
+#Download GPL file, put it in the current directory, and load it:
+gpl96 <- getGEO('GPL96', destdir="../data/")
+# Or, open an existing GPL file:
+gpl96 <- getGEO(filename='../data/GPL96.soft', destdir="../data/")
+```
+
+As with the GDS object, we can use the Meta and Table functions to extract information:
+
+```{r}
+Meta(gpl96)$title
+colnames(Table(gpl96))
+```
+
+Lets look at the first four columns, for the first ten genes:
+
+```{r}
+Table(gpl96)[1:10,1:4]
+```
+
+You can also use Bioconductor annotation file for GPL96/HG-U133A by using `library(hgu133a)`.

@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Annotations</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Mikhail Dozmorov" />
+    <script src="libs/header-attrs-2.7/header-attrs.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+    <link rel="stylesheet" href="xaringan-my.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Annotations
+### Mikhail Dozmorov
+### Virginia Commonwealth University
+### 02-24-2021
+
+---
+
+
+
+
+class: center, middle
+
+# Gene annotations
+
+---
+## Gene identifiers
+
+**Gene**
+
+- **Ensembl:** ENSG00000139618
+- **Entrez Gene:** 675
+- **Unigene:** Hs.34012
+
+**RNA transcript**
+
+- **GenBank:** BC026160.1
+- **RefSeq:** NM_000059
+- **Ensembl:** ENST00000380152
+
+---
+## ID cross-mapping
+
+- There are many IDs
+
+- Software tools recognize only a handful
+
+- Humans better recognize gene names
+
+---
+## ID challenges
+
+- Avoid errors: map IDs correctly
+    - Beware of 1-to-many mappings
+
+- Gene name ambiguity – not a good ID
+    - e.g. BMFS5, LFS1, TRP53, p53
+    - Better to use the standard gene symbol, not aliases: TP53
+
+- Excel error-introduction
+    - OCT4 is changed to October-4  (open file/paste as text)
+
+- Problems reaching 100% cross-mapping
+    - E.g. due to version issues
+    - Use multiple sources to increase coverage
+
+---
+## Reference Sequences (RefSeq)
+
+- Reference standard
+    - Eukaryotes: genomic, transcript, protein sequences, derived from: 
+        - Computation
+        - Manual curation of submitted data
+        - Collaboration with other experts
+
+- 69,000 organisms
+    - &gt;7000 viruses, &gt;40,000 prokaryotes, &gt;10,000 eukaryotes
+
+.small[ O'Leary, Nuala A., Mathew W. Wright, J. Rodney Brister, Stacy Ciufo, Diana Haddad, Rich McVeigh, Bhanu Rajput et al. "[Reference sequence (RefSeq) database at NCBI: current status, taxonomic expansion, and functional annotation](https://dx.doi.org/10.1093%2Fnar%2Fgkv1189)." Nucleic acids research, (2016) ]
+
+---
+## RefSeq Accession Prefixes
+
+NM\_ = mRNA (experimentally supported)  
+
+XM\_ = mRNA (predicted model)  
+
+NP\_ = protein (experimentally supported)
+
+XP\_ = protein (predicted model)
+
+NC\_ = genomic/chromosome
+
+NG\_ = incomplete genomic assembly
+
+
+.small[ https://www.ncbi.nlm.nih.gov/books/NBK21091/table/ch18.T.refseq_accession_numbers_and_mole/?report=objectonly ]
+
+---
+## HUGO Gene Nomenclature Committee (HGNC) Gene Names
+
+This resource lists gene name synonyms, which is useful if you are conducting a comprehensive literature search and need to find articles about a gene that may have been called other names in the past.
+
+&lt;center&gt;&lt;img src="img/hgnc.png" height="300px" /&gt;&lt;/center&gt;
+
+.small[ https://www.genenames.org/ ]
+
+---
+## NCBI Gene
+
+&lt;center&gt;&lt;img src="img/ncbi_gene.png" height="450px" /&gt;&lt;/center&gt;
+
+.small[ https://www.ncbi.nlm.nih.gov/gene ]
+
+
+---
+## GeneCards
+
+&lt;center&gt;&lt;img src="img/genecards.png" height="450px" /&gt;&lt;/center&gt;
+
+.small[ http://www.genecards.org/ ]
+
+---
+## ID conversion helpers
+
+- `clusterProfiler::bitr()` function - Biological Id TranslatoR
+
+- `HGNChelper` R package to correct invalid Human/Mouse Gene Symbols
+
+- `annotables` R package by Stephen Turner, annotating/converting Gene IDs
+
+- `AnnotationDbi` R package for manipulation of SQLite-based annotations
+
+- `biomaRt` R package - Interface to BioMart databases (i.e. Ensembl)
+
+.small[ http://yulab-smu.top/clusterProfiler-book/chapter14.html#bitr
+
+https://CRAN.R-project.org/package=HGNChelper
+
+https://github.com/stephenturner/annotables
+
+https://bioconductor.org/packages/AnnotationDbi/
+
+https://bioconductor.org/packages/biomaRt/ ]
+
+---
+## BiomaRt basics
+
+Biomart R package, `biomaRt`, workflow:
+
+- Discover and select an organism-specific mart and dataset
+- Select filters, which IDs to convert from
+- Select attributes, which IDs to convert to
+- Run the query
+
+- For genomic coordinates, use database that corresponds to genome assembly version you are interested in 
+
+- Biomart has a web interface, operating on the same principles
+
+---
+## BiomaRt
+
+The `getBM()` function has three arguments that need to be introduced: **filters**, **attributes** and **values**. 
+
+- **Filters** define a restriction on the query. Tell BiomaRt what kind of IDs do you have, so it will look for it. The `listFilters()` function shows you all available filters in the selected dataset
+
+- **Attributes** define the values we are interested in to retrieve. Which IDs associated with your IDs you want to get. The `listAttributes()` function displays all available attributes in the selected dataset
+
+- **Values** is a vector of IDs you want to convert
+
+---
+class: middle, center
+
+# Annotation packages
+
+---
+## Annotation packages
+
+- _Bioconductor_ provides extensive access to 'annotation' resources, see the "AnnotationData" biocViews hierarchy.
+
+- `AnnotationDBI` - is a cornerstone of "AnnotationData" packages, provides user interface and database connection code for annotation data packages using SQLite data storage.
+
+.small[ http://bioconductor.org/packages/AnnotationDbi
+
+https://bioconductor.org/packages/release/BiocViews.html#___AnnotationData ]
+
+---
+## Annotation packages
+
+- **org** packages (e.g., `org.Hs.eg.db`) contain maps between different gene identifiers, e.g., ENTREZ and SYMBOL. The basic interface to these packages is described on the help page `?select`
+
+- **TxDb** packages (e.g., `TxDb.Hsapiens.UCSC.hg38.knownGene`) contain gene models (exon coordinates, exon / transcript relationships, etc) derived from common sources such as the hg38 `knownGene` track of the UCSC genome browser. These packages can be queried, e.g., as described on the `?exonsBy` page to retrieve all exons grouped by gene or transcript.
+
+.small[ https://bioconductor.org/packages/org.Hs.eg.db
+
+https://bioconductor.org/packages/TxDb.Hsapiens.UCSC.hg38.knownGene ]
+
+---
+## Annotation packages
+
+- **EnsDb** packages and databases (e.g. `EnsDb.Hsapiens.v86`) provide, similar to TxDb packages, gene models, but also protein annotations (protein sequences and protein domains within these) and additional annotation columns such as `"gene_biotype"` or `"tx_biotype"` defining the *biotype* of the features (e.g. lincRNA, protein_coding, miRNA etc). `EnsDb` databases are designed for Ensembl annotations and contain annotations for all genes (protein coding and non-coding) for a specific Ensembl release.
+
+- **BSgenome** packages (e.g., `BSgenome.Hsapiens.UCSC.hg19`) contain whole genomes of model organisms. See `available.genomes()` for pre-packaged genomes.
+    
+.small[ https://bioconductor.org/packages/EnsDb.Hsapiens.v86/
+
+https://bioconductor.org/packages/BSgenome/ ]
+
+---
+## Annotation methods
+
+- Annotation packages usually contain an object named after the package itself.  These objects are collectively called `AnnotationDb` objects with more specific classes named `OrgDb`, `ChipDb` or `TranscriptDb` objects.  
+
+- Methods that can be applied to these objects include `cols()`, `keys()`, `keytypes()` and `select()`.  
+
+---
+## Annotation methods
+
+| Category   | Function                              | Description                                                      |
+|------------|---------------------------------------|------------------------------------------------------------------|
+| Discover   | `columns()`                           | List the kinds of columns that can be returned                   |
+|            | `keytypes()`                          | List columns that can be used as keys                            |
+|            | `keys()`                              | List values that can be expected for a given keytype             |
+|            | `select()`                            | Retrieve annotations matching `keys`, `keytype` and `columns`    |
+
+---
+## Annotation methods
+
+| Category   | Function                              | Description                                                      |
+|------------|---------------------------------------|------------------------------------------------------------------|
+| Manipulate | `setdiff()`, `union()`, `intersect()` | Operations on sets                                               |
+|            | `duplicated()`, `unique()`            | Mark or remove duplicates                                        |
+|            | `%in%`,  `match()`                    | Find matches                                                     |
+|            | `any()`, `all()`                      | Are any `TRUE`?  Are all?                                        |
+|            | `merge()`                             | Combine two different data.frames based on shared keys           |
+
+---
+## Annotation methods
+
+| Category   | Function                              | Description                                                      |
+|------------|---------------------------------------|------------------------------------------------------------------|
+|  GRanges*  | `transcripts()`, `exons()`, `cds()`   | Features (transcripts, exons, coding sequence) as `GRanges`.     |
+|            | `transcriptsBy()` , `exonsBy()`       | Features group by  gene, transcript, etc., as `GRangesList`.     |
+|            | `cdsBy()`                             |                                                                  |
+
+---
+## KEGG
+
+- KEGG: Kyoto Encyclopedia of Genes and Genomes
+
+- KEGG API R package, `KEGGREST`
+    - Essential operations outlined in the vignette
+
+.small[ http://www.genome.jp/kegg/pathway.html
+
+https://bioconductor.org/packages/KEGGREST
+
+http://bioconductor.org/packages/release/bioc/vignettes/KEGGREST/inst/doc/KEGGREST-vignette.html ]
+
+---
+## AnnotationHub
+
+- `AnnotationHub` package - curated database of large-scale whole-genome resources, e.g., regulatory elements from the Roadmap Epigenomics project, Ensembl GTF and FASTA files for model and other organisms. Examples of use include:
+    - Easily access and import Roadmap Epigenomics files.
+    - `liftOver` genomic range-based annotations from one coordinate system (e.g, `hg19`) to another (e.g., `GRCh38`).
+    - Create `TranscriptDb` and `BSgenome`-style annotation resources 'on the fly' for a diverse set of organisms.
+    - Programmatically access the genomic coordiantes of clinically relevant variants cataloged in dbSNP.
+
+- Related packages: `ExperimentHub` - curated data sets
+
+.small[ https://bioconductor.org/packages/AnnotationHub ]
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

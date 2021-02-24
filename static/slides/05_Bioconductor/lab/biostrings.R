@@ -36,7 +36,7 @@ b
 methods(class="DNAStringSet")
 ?"DNAStringSet"
 browseVignettes(package="Biostrings")
-
+vignette(package="Biostrings")
 
 b
 a
@@ -61,7 +61,8 @@ reverseComplement(a)
 a = DNAString("ACGTACGTACGC")
 b = DNAString("ACCTACGTAGGG")
 c = DNAString("AAACCCTTTGGG")
-abc <- DNAStringSet(c(a, b, c), start = c(1, 13, 25), end = c(12, 24, 36))
+abc <- DNAStringSet(c(a, b, c), start = c(1,  13, 25), 
+                                end   = c(12, 24, 36))
 abc
 sdist <- stringDist(abc, method = "levenshtein")
 sdist
@@ -82,11 +83,14 @@ m
 start(m)
 end(m)
 length(m)
+
 countPattern("CGT", a, max.mismatch=1)
 
 ## multiple matching
 a = DNAString("ACGTACGTACGC")
+a
 dict0 = PDict(c("CGT", "ACG"))
+dict0
 mm = matchPDict(dict0, a)
 mm
 mm[[1]]
@@ -172,7 +176,7 @@ Hsapiens
 Hsapiens$chr1
 
 seqnames(Hsapiens)
-seqlengths(Hsapiens)[1:25]
+sum(seqlengths(Hsapiens)[1:25] )
 
 Hsapiens$chr1[100000000:100000010]
 alphabetFrequency(Hsapiens$chr1, baseOnly=TRUE)

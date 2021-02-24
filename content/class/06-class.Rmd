@@ -28,4 +28,26 @@ editor_options:
 knitr::include_url('../../slides/05_Bioconductor/01_Bioconductor_introduction.html#1')
 ```
 
+<a href="http://www.haowulab.org/teaching/bioc/biostrings.pdf" target="_blank">Lecture slides in PDF format</a>
+
+```{r echo=FALSE}
+knitr::include_url('../../slides/05_Bioconductor/biostrings.pdf')
+```
+
 <a href="../../slides/05_Bioconductor/lab/biostrings.R" target="_blank">biostrings.R</a> - BioStrings demo
+
+### Genomic ranges
+
+<a href="../../slides/05_Bioconductor/02_GRanges.html#1" target="_blank">Lecture slides in HTML format</a>
+
+```{r echo=FALSE}
+knitr::include_url('../../slides/05_Bioconductor/02_GRanges.html#1')
+```
+
+<a href="https://github.com/haowulab/haowulab.github.io/blob/master/teaching/bioc/genomicRanges.pdf" target="_blank">Lecture slides in PDF format</a>
+
+```{r echo=FALSE}
+knitr::include_url('../../slides/05_Bioconductor/genomicRanges.pdf')
+```
+
+<a href="../../slides/05_Bioconductor/lab/genomicRanges.R" target="_blank">genomicRanges.R</a> - GenomicRanges demo. Other demos: <a href="../../slides/05_Bioconductor/lab/ranges.Rmd" target="_blank">ranges.Rmd</a>, <a href="../../slides/05_Bioconductor/lab/GRL.Rmd" target="_blank">GRL.Rmd</a>

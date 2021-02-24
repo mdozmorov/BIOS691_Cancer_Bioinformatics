@@ -1,0 +1,255 @@
+---
+title: "BioConductor Overviewr"
+output:
+  html_document:
+    theme: united
+    toc: yes
+  pdf_document:
+    toc: yes
+date: '`r Sys.Date()`'
+---
+
+```{r setup, echo=FALSE, message=FALSE, warning=FALSE}
+# Set up the environment
+library(knitr)
+opts_chunk$set(cache.path='cache/', fig.path='img/', cache=F, tidy=T, fig.keep='high', echo=T, dpi=100, warnings=F, message=F, comment=NA, warning=F, results='as.is') #out.width=700, 
+library(pander)
+panderOptions('table.split.table', Inf)
+set.seed(1)
+library(dplyr)
+options(stringsAsFactors = FALSE)
+library(Biobase)
+```
+
+Software developed by the BioConductor project [http://www.bioconductor.org](http://www.bioconductor.org) is provided in the form of R packages. For each package, a vignette illustrating its usage is provided. There are three main package types, software, annotation data, and experimental data (see [http://www.bioconductor.org/packages/release/BiocViews.html](http://www.bioconductor.org/packages/release/BiocViews.html)). 
+
+Annotation data are packages that can be used to map mappings from probe identifiers used by the manufacturer to gene-related information, such as Entrez Gene ID, chromosome on which the gene is located, genomic coordinates of the gene, gene symbol, etc.
+
+# Installing Bioconductor
+
+Running the `biocLite.R` script will install a subset of the most frequently used Bioconductor packages. From the R prompt,
+
+```{r eval=FALSE}
+source("http://www.bioconductor.org/biocLite.R")
+biocLite()
+```
+
+To install additional Bioconductor packages, use `biocLite("package_name")`. Instead of sourcing `biocLite.R` all the time, install `BiocInstaller` package, load it in your `.Rprofile` file using `library(BiocInstaller)`, and have `biocLite()` always available. 
+
+# Bioconductor basics
+
+Once the base Bioconductor packages have been installed, you can access the vignettes for a specific package as follows:
+
+```{r eval=FALSE}
+library("Biobase")
+openVignette()
+```
+
+```
+Please select a vignette:  
+
+1: Biobase - An introduction to Biobase and ExpressionSets
+2: Biobase - esApply Introduction
+3: Biobase - Notes for eSet developers
+```
+
+Press "1" to read the first one - it is the foundation of genomics data formats used in R. Or, press "0" to quit.
+
+# ExressionSet
+
+Recall that objects in R can be either a `vector`, `factor`, `matrix`, `array`, `data.frame`, `list`, or `ts`. The Biobase package of the Bioconductor project is fundamental, and established new objects that can be used to store gene expression data. An `ExpressionSet` is an object that is a wrapper for the following associated with a microarray study:
+
+- `assayData` - Consists of expression data from a microarray experiment (the expression part hints at the methods used to access it, as we will see below);
+- `phenoData` - ‘meta-data’ describing samples in the experiment;
+- `featureData` - annotations and meta-data about the features on the chip or technology used for the experiment;
+- `protocolData` - information related to the protocol used for processing each sample (and usually extracted from manufacturer files); and
+- `experimentData` -  a flexible structure to describe the experiment.
+
+Let's look at one ExpressionSet object:
+
+```{r}
+?ExpressionSet
+data("sample.ExpressionSet")
+sample.ExpressionSet
+```
+
+For adventurous, let's peek under the hood to see the slots of the ExpressionSet object. Access them as `sample.ExpressionSet@experimentData`
+
+## assayData (gene expression)
+
+First, the most important part of the high-throughput genomic experiment is the matrix of expression values. The underlying structure of an expression matrix in Bioconductor is that the probes (i.e., genes) are in rows while the samples are in columns. Let’s read in an example expression matrix and then store it as an ExpressionSet. Once created, `exprs` is the extractor function that is used to access the expression values.
+
+Let's read in a gene expression matrix.
+
+```{r}
+expression <- read.csv("lab/data/genedata.csv")
+
+dim(expression)
+class(expression)
+names(expression)[1:4]
+colnames(expression)[1:4]
+head(expression)[1:3]
+expression[1:5, 1:3]
+rownames(expression)[1:4]
+```
+
+Having just expression values, we can construct minimal expression set.
+
+```{r}
+minimalSet <- ExpressionSet(assayData = as.matrix(expression))
+minimalSet1 <- new("ExpressionSet")
+minimalSet
+exprs(minimalSet)[1:5, 1:3] # This is how to get to the expression matrix !
+featureNames(minimalSet)[1:4]
+```
+
+## phenoData (sample annotations)
+
+Phenotypic data provides information about the samples, such as normal/abnormal, age, gender, etc. The phenotypic data is represented such that samples appear in rows while the variables appear in columns. Notice that when including phenotypic data in an ExpressionSet, the `row.names` in the `phenoData` must match the sample names in the expression matrix.
+
+```{r}
+characteristics <- read.csv("lab/data/phenodata.csv", row.names = 1)
+summary(characteristics)
+table(characteristics)
+all.equal(rownames(characteristics), colnames(expression))
+```
+
+You will get a warning if there is a mismatch. Before including the `phenoData` into the `ExpressionSet`, we may add some documentation describing information about each covariate (what does the variable name represent, what units the covariates are measure in, etc). This is done by creating a metadata table.
+
+```{r}
+metadata <- data.frame(labelDescription = c("Patient gender (Male or Female)", 
+                                            "Tissue type (cirrhotic or cirrhotic without HCC)"), 
+                       row.names = c("Gender", "Diagnosis"))
+metadata
+phenoChar <- new("AnnotatedDataFrame", data = characteristics, varMetadata = metadata)
+phenoChar
+pData(phenoChar)[1:5, ]
+pData(phenoChar)$Gender[1:5]
+```
+
+Once a phenoData set is created, it can be accessed using the pData accessor function. Adding phenoData to samples from your ExpressionSet but ensure the phenotypic characteristics stored with it are properly aligned.
+
+```{r}
+anotherSet <- ExpressionSet(assayData = as.matrix(expression), phenoData = phenoChar)
+anotherSet
+males <- anotherSet[, pData(anotherSet)$Gender == "Male"]
+pData(males)$Gender
+```
+
+The following code shows what happens when the phenotypic and expres- sion data do not include matching sample names (output suppressed).
+
+```{r eval=FALSE}
+phony.pheno <- characteristics
+rownames(phony.pheno)[1] <- "wrong.sample.name"
+phenoPhony <- new("AnnotatedDataFrame", data = phony.pheno, varMetadata = metadata)
+phony.pheno[1:3, ]
+pData(phenoPhony)[1:3, ]
+errorSet <- ExpressionSet(assayData = as.matrix(expression), phenoData = phenoPhony)
+```
+
+## Annotation (featureData, annotation)
+
+After an analysis, one is usually left with cryptic manufacturer labels of the probes that were significant in your data analysis. To provide meaning to these probes, annotations represent meta data about the probes. The annotation package provides some basic tools for annotation packages.
+
+```{r}
+library(annotate)
+library("GGHumanMethCancerPanelv1.db") 
+withannoSet <- ExpressionSet(assayData = as.matrix(expression), phenoData = phenoChar, annotation = "GGHumanMethCancerPanelv1.db")
+withannoSet
+```
+
+```{r}
+featureNames(withannoSet) <- gsub("_01", "", featureNames(withannoSet))
+symbol <- getSYMBOL(featureNames(withannoSet), annotation(withannoSet))
+entrez <- getEG(featureNames(withannoSet), annotation(withannoSet))
+entrez[1:10]
+CpG <- mget(featureNames(withannoSet), env = GGHumanMethCancerPanelv1ISCPGISLAND)
+CpG[1:5]
+symbols <- mget(featureNames(withannoSet), GGHumanMethCancerPanelv1SYMBOL)
+symbols[1:5]
+```
+
+## experimentData
+
+Data about the experiment can be stored in the `experimentData` slot.
+
+```{r}
+experimentData <- new("MIAME", 
+                      name      = "The Author", 
+                      lab       = "Biostat lab", 
+                      contact   = "theauthor@vcu.edu", 
+                      title     = "Liver tissue study of cirrhosis vs non-HCC cirrhosis", 
+                      abstract  = "Compare values between two liver tissue type", 
+                      url       = "www.vcu.edu", 
+                      pubMedIds = "PMC124", 
+                      other     = list(notes = "Further information"))
+experimentData
+abstract(experimentData)
+notes(experimentData)
+```
+
+### Putting it all together
+
+```{r}
+withexpSet <- ExpressionSet(assayData = as.matrix(expression), phenoData = phenoChar, annotation = "GGHumanMethCancerPanelv1.db", experimentData = experimentData)
+withexpSet
+experimentData(withexpSet)
+abstract(experimentData(withexpSet))
+
+exprs(withexpSet)[1:5, 1:5]
+pData(withexpSet)
+featureData(withexpSet)
+```
+
+# SummarizedExperiment
+
+The next generation of an object that can hold annotated 'omics' data is `SummarizedExperiment`. It is not limited to genes, but instead holds information about genomic regions of interest.
+
+```{r}
+library(SummarizedExperiment)
+?SummarizedExperiment
+```
+
+We'll look at an example of the `SummarizedExperiment` object in the `parathyroidSE` SummarizedExperiment library. The loaded data is a `SummarizedExperiment`, which summarizes counts of RNA sequencing reads in genes for an experiment on human cell culture. The `SummarizedExperiment` object has 63,000 rows, which are genes, and 27 columns, which are samples, and the matrix, in this case, is called counts. And we have the row names, which are ensemble genes, and metadata about the row data, and metadata about the column data.
+
+```{r}
+### SummarizedExperiment
+library(parathyroidSE)
+#RNA sequencing reads 
+data(parathyroidGenesSE)
+parathyroidGenesSE
+se <- parathyroidGenesSE
+```
+
+`assay` function can be used get access to the counts of RNA sequencing reads. `colData` function , the column data, is equivalent to the `pData` on the `ExpressionSet`. Each row in this data frame corresponds to a column in the `SummarizedExperiment`. We can see that there are indeed 27 rows here, which give information about the columns. Each sample in this case is treated with two treatments or control and we can see the number of replicates for each, using the as.numeric function again.
+
+```{r}
+#Dimension of the SummarizedExperiment
+dim(se)
+#Get access to the counts of RNA sequencing reads, using assay function.
+assay(se)[1:3,1:3]
+#Dimensions of this assay is a matrix, which has the same dimensions as the SummarizedExperiment.
+dim(assay(se))
+#Get information about samples
+colData(se)[1:3,1:6]
+#dimension of column data
+dim(colData(se))
+#characteristics of the samples
+names(colData(se))
+#Get access to treatment column of sample characteristics
+colData(se)$treatment
+```
+
+See [https://bioconductor.org/packages/devel/bioc/vignettes/SummarizedExperiment/inst/doc/SummarizedExperiment.html](https://bioconductor.org/packages/devel/bioc/vignettes/SummarizedExperiment/inst/doc/SummarizedExperiment.html) for the full description.
+
+# Diagnostics
+
+```{r session_info}
+diagnostics <- devtools::session_info()
+platform <- data.frame(diagnostics$platform %>% unlist, stringsAsFactors = FALSE)
+colnames(platform) <- c("description")
+pander(platform)
+
+packages <- as.data.frame(diagnostics$packages)
+pander(packages[ packages$`*` == "*", ])
+```
