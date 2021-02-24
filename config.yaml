@@ -71,4 +71,6 @@ ignoreFiles:
   - \.Rproj.user$
   - \.Rhistory$
   - WIP$
+  - lab/*
+
 
