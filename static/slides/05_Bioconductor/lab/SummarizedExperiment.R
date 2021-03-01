@@ -5,6 +5,7 @@ dataDir <- "/Users/mdozmorov/Documents/Work/Teaching/BIOS691_Cancer_Bioinformati
 counts <- read.csv(file.path(dataDir, "airway_counts.csv"), row.names=1)
 counts <- as.matrix(counts)
 counts[1:5, 1:5]
+dim(counts)
 
 colData <- read.csv(file.path(dataDir, "airway_colData.csv"), row.names=1)
 colData[, 1:4]
@@ -22,9 +23,12 @@ plot(
 # Making one object that will have all parts aligned with each other, and accessible
 library(SummarizedExperiment)
 
-se <- SummarizedExperiment(counts, rowRanges = rowRanges, colData = colData)
+se <- SummarizedExperiment(counts, 
+                           rowRanges = rowRanges, 
+                           colData = colData)
 se
 se$dex
+colData(se)[, "dex"]
 cidx <- se$dex == "trt"
 plot(
   rowMeans(1 + assay(se)[, cidx]) ~ rowMeans(1 + assay(se)[, !cidx]),

@@ -11,9 +11,15 @@ library(dplyr)
 # Annotation resources
 ?org.Hs.eg.db
 columns(org.Hs.eg.db)
-mapIds(org.Hs.eg.db, keys = c("BRCA1", "BRCA2"), column = "ENSEMBL", keytype = "SYMBOL")
+mapIds(org.Hs.eg.db, 
+       keys = c("BRCA1", "BRCA2"), 
+       column = c("ENSEMBL"), 
+       keytype = "SYMBOL")
 
 # Extract genomic features from an object
+?TxDb.Hsapiens.UCSC.hg38.knownGene
+TxDb.Hsapiens.UCSC.hg38.knownGene
+genes(TxDb.Hsapiens.UCSC.hg38.knownGene)
 exons(TxDb.Hsapiens.UCSC.hg38.knownGene)
 ?exonsBy
 exonsBy(TxDb.Hsapiens.UCSC.hg38.knownGene, by = "gene")
@@ -29,38 +35,48 @@ head(listFilters(ensembl), 7) ## filters
 listFilters(ensembl)[grep("entrez", listFilters(ensembl)[, "description"], ignore.case = TRUE), ]
 
 myFilter <- "chromosome_name"
-substr(filterOptions(myFilter, ensembl), 1, 50) ## return values
+# substr(filterOptions(myFilter, ensembl), 1, 50) ## return values
 myValues <- c("21", "22")
 head(listAttributes(ensembl), 3) ## attributes
-myAttributes <- c("ensembl_gene_id", "chromosome_name")
+listAttributes(ensembl)[grep("GO", listAttributes(ensembl)[, "description"], ignore.case = TRUE), ]
+myAttributes <- c("ensembl_gene_id", "ensembl_transcript_id", "chromosome_name")
 
 ## assemble and query the mart
 res <- getBM(
-  attributes = myAttributes, filters = myFilter,
-  values = myValues, mart = ensembl
+  values = myValues, 
+  filters = myFilter,
+  attributes = myAttributes, 
+  mart = ensembl
 )
 res
 
 # Get GO annotations for gene names
-getBM(attributes = c("hgnc_symbol", "go_id"), filters = "hgnc_symbol", values = c("MYCN"), mart = ensembl)
+mycn_data <- getBM(values = c("MYCN"), 
+      filters = "hgnc_symbol", 
+      attributes = c("hgnc_symbol", "go_id", "name_1006", "definition_1006"),       
+      mart = ensembl)
 
 
 # AnnotationHub
 ah <- AnnotationHub()
 ah
 unique(ah$dataprovider)
+unique(ah$species)
 # Subsetting
 ah <- subset(ah, species == "Homo sapiens")
 ah
-query(ah, "grasp2") # see library(grasp2db)
+# query(ah, "grasp2") # see library(grasp2db)
 # res <- ah[["AH21414"]] # download actual data
-ah_query <- query(ah, c("ucsc", "hg19"))
+ah_query <- query(ah, c("ucsc"))
 ah_query
+
+chrom_bands <- ah[["AH5012"]]
+chrom_bands
 # mcols(ah_query) %>% View()
 display(ah)
 # Quick look at the specific fields
 ah_query$title
-ah_query$genome
+ah_query$genome %>% unique()
 ah_query$tags
 # File types available
 ah_query$description %>%
