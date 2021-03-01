@@ -3,7 +3,7 @@ title: "Annotations"
 # subtitle: "subtitle"
 author: "Mikhail Dozmorov"
 institute: "Virginia Commonwealth University"
-date: "02-24-2021"
+date: "03-01-2021"
 output:
   xaringan::moon_reader:
     lib_dir: libs

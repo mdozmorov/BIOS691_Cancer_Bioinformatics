@@ -1,15 +1,15 @@
 # Summarized Experiments
-dataDir <- "/Users/mdozmorov/Documents/Work/Teaching/BIOS668.2018/assets/data"
+dataDir <- "/Users/mdozmorov/Documents/Work/Teaching/BIOS691_Cancer_Bioinformatics/static/slides/05_Bioconductor/lab/airway_data"
 
 # three components -- underlying 'matrix', 'row' annotations (genomic features), 'column' annotations (sample descriptions)
-counts <- read.csv(paste0(dataDir, "/airway_counts.csv"), row.names=1)
+counts <- read.csv(file.path(dataDir, "airway_counts.csv"), row.names=1)
 counts <- as.matrix(counts)
 counts[1:5, 1:5]
 
-colData <- read.csv(paste0(dataDir, "/airway_colData.csv"), row.names=1)
+colData <- read.csv(file.path(dataDir, "airway_colData.csv"), row.names=1)
 colData[, 1:4]
 
-rowRanges <- readRDS(paste0(dataDir, "/airway_rowRanges.rds"))
+rowRanges <- readRDS(file.path(dataDir, "airway_rowRanges.rds"))
 rowRanges
 
 # Plotting counts in treated vs. untreated groups - easy to make mistakes in ordering

@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Bioconductor</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Mikhail Dozmorov" />
+    <script src="libs/header-attrs-2.7/header-attrs.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+    <link rel="stylesheet" href="xaringan-my.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Bioconductor
+### Mikhail Dozmorov
+### Virginia Commonwealth University
+### 03-01-2021
+
+---
+
+
+
+
+## Summarized Experiments
+
+`SummarizedExperiment` - Rows are indexed by a dataframe of _features_. Accessible with `rowData()`
+
+.center[ &lt;img src="img/SummarizedExperiment1.png" height = 350&gt; ]
+
+.small[ https://bioconductor.org/packages/SummarizedExperiment/ ]
+
+&lt;!--SummarizedExperiment.png--&gt;
+
+---
+## RangedSummarizedExperiment
+
+- `RangedSummarizedExperiment` - Rows are indexed by _genomic ranges_. Accessble with `rowRanges()`
+
+
+---
+## SingleCellExperiment
+
+`SingleCellExperiment` - an extension of `RangedSummarizedExperiment` with several internal slots
+
+- Has a slot for spike-in measures
+
+- Can store reduced dimensionality representation of the data
+
+.small[ https://bioconductor.org/packages/SingleCellExperiment/ ]
+
+---
+## MultiAssayExperiment
+
+Bioconductor package for management of multi-assay data. Especially useful for integrating TCGA datasets.
+
+.center[ &lt;img src="img/multiassayexperiment.png" height = 350&gt; ]
+
+.small[ https://bioconductor.org/packages/MultiAssayExperiment/ ]
+
+&lt;!--(a) The MultiAssayExperiment object schematic shows the design of the infrastructure class. The colData provides data about the patients, cell lines, or other biological units, with one row per unit and one column per variable. The experiments are a list of assay datasets of arbitrary class, with one column per observation. The sampleMap links a single table of patient data (colData) to a list of experiments via a simple but powerful table of experiment:patient edges (relationships), that can be created automatically in simple cases or in a spreadsheet if assay-specific sample identifiers are used. sampleMap relates each column (observation) in the assays (experiments) to exactly one row (biological unit) in colData; however, one row of colData may map to zero, one, or more columns per assay, allowing for missing and replicate assays. Green stripes indicate a mapping of one subject to multiple observations across experiments. (b) The UpSetR graphic represents a complex Venn diagram of assay availability for patients in a MultiAssayExperiment. This Glioblastoma object has been subset to only four of its original 12 assays. The barplot on the left shows sample size of each experiment; links to its right indicate combinations of 1 to 4 experiments, with bars above showing the number of patients having exactly those data types. --&gt;
+
+---
+## MultiAssayExperiment
+
+.center[ &lt;img src="img/multiassayexperiment1.png" height = 400&gt; ]
+
+.small[ Ramos, Marcel, Lucas Schiffer, Angela Re, Rimsha Azhar, Azfar Basunia, Carmen Rodriguez Cabrera, Tiffany Chan, et al. “[Software For The Integration Of Multi-Omics Experiments In Bioconductor](https://doi.org/10.1158/0008-5472.CAN-17-0344),” Cancer Research, October 31, 2017 ]
+
+
+&lt;!--
+## Domain-specific packages
+
+- Important packages for analysis of **differential expression** include `edgeR` and `DESeq2`; both have excellent vignettes for exploration. 
+
+.small[ http://bioconductor.org/packages/edgeR
+
+http://bioconductor.org/packages/DESeq2 ]
+
+- Popular **ChIP-seq** packages include `DiffBind` and `csaw` for comparison of peaks across samples, `ChIPQC` for quality assessment, and `ChIPpeakAnno` and `ChIPseeker` for annotating results (e.g., discovering nearby genes).
+
+.small[  http://bioconductor.org/packages/ChIPpeakAnno
+
+http://bioconductor.org/packages/ChIPseeker
+
+http://bioconductor.org/packages/DiffBind
+
+http://bioconductor.org/packages/csaw
+
+http://bioconductor.org/packages/ChIPQC ]
+
+## Domain-specific packages
+
+- Working with called variants (VCF files) is facilitated by packages such as `VariantAnnotation`, `VariantFiltering` and `ensemblVEP`
+
+- Packages for calling variants include, e.g., `h5vc` and `VariantTools`.
+
+.small[ https://bioconductor.org/packages/release/bioc/html/VariantAnnotation.html
+
+http://bioconductor.org/packages/VariantFiltering.html
+
+https://bioconductor.org/packages/release/bioc/html/ensemblVEP.html
+
+https://bioconductor.org/packages/release/bioc/html/h5vc.html
+
+https://bioconductor.org/packages/release/bioc/html/VariantTools.html ]
+
+## Domain-specific packages
+
+- **Single-cell 'omics'** are increasingly important. From the `biocView` page, enter 'single cell' in the 'search table' field.
+- Several packages identify **copy number variants** from sequence data, including `cn.mops`. The `CNTools` package provides some useful facilities for comparison of segments across samples.
+- **Microbiome and metagenomic** analysis is facilitated by packages such as `phyloseq` and `metagenomeSeq`.
+- **Metabolomics, chemoinformatics, image analysis**, and many other high-throughput analysis domains are also represented in _Bioconductor_; explore these via `biocViews` and title searches.
+
+.small[ https://bioconductor.org/packages/release/BiocViews.html#___Software
+
+https://bioconductor.org/packages/release/bioc/html/cn.mops.html
+
+http://bioconductor.org/packages/CNTools
+
+http://bioconductor.org/packages/phyloseq
+
+http://bioconductor.org/packages/metagenomeSeq ]
+
+## Visiualization
+  
+A number of _Bioconductor_ packages help with visualization and reporting, in addition to functions provided by individual packages.
+
+- `Gviz` provides a track-like visualization of genomic regions.
+- `ComplexHeatmap` does an amazing job of all sorts of heatmaps, including OncoPrint-style summaries.
+- `ReportingTools` provides a flexible way to generate static and dynamic HTML-based reports.
+
+.small[ http://bioconductor.org/packages/Gviz
+
+http://bioconductor.org/packages/ComplexHeatmap
+
+http://bioconductor.org/packages/ReportingTools ]
+
+## Working with big data
+
+- Much Bioinformatic data is very large and often cannot fit into memory
+- Several general strategies for working with large data
+
+**Restriction to specific genomic regions**
+
+- e.g., `ScanBamParam()` limits input to desired data at specific genomic ranges
+
+**Iteration over pieces of genomic data**
+
+- e.g., `yieldSize` argument of `BamFile()`, or `FastqStreamer()` allows iteration through large files.
+
+## Working with big data
+
+**Compression**
+
+- Genomic vectors represented as `Rle` (run-length encoding) class
+- Lists e.g., `GRangesList` are efficiently maintain the illusion that vector elements are grouped.
+
+**Parallel processing**
+
+- e.g., via `BiocParallel` package
+
+.small[ https://bioconductor.org/packages/BiocParallel/
+
+Lawrence, M and Morgan, M. [Scalable Genomic Computing and Visualization with _R_ and _Bioconductor_]((http://arxiv.org/abs/1409.2864)). Statistical Science (2014) ]
+
+## Code optimization
+
+- `aprof` - Amdahl's Profiler, Directed Optimization Made Easy
+
+- `profvis` - Visualize R profiling data
+
+- `microbenchmark` - Accurate Timing Functions
+
+.small[ http://cran.r-project.org/web/packages/aprof/index.html
+
+https://rstudio.github.io/profvis. Examples: https://rpubs.com/wch/123888
+
+http://cran.r-project.org/web/packages/microbenchmark/index.html ]
+--&gt;
+
+---
+## Summary
+
+- _Bioconductor_ is a large collection of R packages for the analysis and comprehension of high-throughput genomic data
+
+- _Bioconductor_ relies on formal classes to represent genomic data, so it is important
+to develop a rudimentary comfort with classes, including seeking help
+for classes and methods
+
+- _Bioconductor_ uses vignettes to augment traditional help pages; these can be very valuable in illustrating overall package use
+
+
+
+
+
+
+
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

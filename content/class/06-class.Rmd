@@ -51,3 +51,25 @@ knitr::include_url('../../slides/05_Bioconductor/genomicRanges.pdf')
 ```
 
 <a href="../../slides/05_Bioconductor/lab/genomicRanges.R" target="_blank">genomicRanges.R</a> - GenomicRanges demo. Other demos: <a href="../../slides/05_Bioconductor/lab/ranges.Rmd" target="_blank">ranges.Rmd</a>, <a href="../../slides/05_Bioconductor/lab/GRL.Rmd" target="_blank">GRL.Rmd</a>
+
+### Annotations
+
+<a href="../../slides/05_Bioconductor/03_Annotation.html#1" target="_blank">Lecture slides in HTML format</a>
+
+```{r echo=FALSE}
+knitr::include_url('../../slides/05_Bioconductor/03_Annotation.html#1')
+```
+
+<a href="../../slides/05_Bioconductor/lab/annotation.R" target="_blank">annotation.R</a> - working with annotation packages. <a href="../../slides/05_Bioconductor/lab/biomaRt.R" target="_blank">biomaRt.R</a> - interacting with biomaRt databases.
+
+
+### Summarized Experiment
+
+<a href="../../slides/05_Bioconductor/04_SummarizedExperiment.html#1" target="_blank">Lecture slides in HTML format</a>
+
+```{r echo=FALSE}
+knitr::include_url('../../slides/05_Bioconductor/04_SummarizedExperiment.html#1')
+```
+
+<a href="../../slides/05_Bioconductor/lab/SummarizedExperiment.R" target="_blank">SummarizedExperiment.R</a> - Creating SummarizedExperiment. <a href="../../slides/05_Bioconductor/lab/airway_data.zip" target="_blank">airway_data.zip</a> - data for summarizedExperiment.
+
