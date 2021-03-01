@@ -77,6 +77,7 @@ x
 as.character(x)
 
 x <- Rle(c(1,1,2,2,2))
+as.character(x)
 length(x)
 start(x)
 end(x)
@@ -110,6 +111,7 @@ seqnames(gr)
 ranges(gr)
 strand(gr)
 elementMetadata(gr)
+mcols(gr)
 
 ## subsetting and combining
 gr[1:2]
@@ -127,9 +129,11 @@ gr1 <- GRanges(seqnames = Rle("chr1", 2),
                ranges=IRanges(start=c(1,10), end = c(5,15)))
 gr2 <- GRanges(seqnames = Rle("chr1", 1),
                ranges = IRanges(start=3, end = 12))
+gr1
+gr2
 autoplot(c(gr1, gr2))
 GenomicRanges::union(gr1, gr2)  %>% autoplot
-GenomicRanges::intersect(gr1, gr2)
+GenomicRanges::intersect(gr1, gr2) %>% autoplot()
 GenomicRanges::setdiff(gr1, gr2) %>% autoplot
 
 ## find overlaps
