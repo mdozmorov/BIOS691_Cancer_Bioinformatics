@@ -6,4 +6,4 @@ Garland
 static/slides/*/libs
 static/slides/*/misc
 static/slides/05_Bioconductor/lab/*data
-
+static/slides/06_RNA-seq/lab
