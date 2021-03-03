@@ -37,3 +37,9 @@ lessons:
     reading: "06-reading"
     # assignment: "01-problem-set"
     class: "06-class"
+
+  - title: '**RNA-seq**'
+    date: "March 3 - March 17"
+    reading: "07-reading"
+    # assignment: "01-problem-set"
+    class: "07-class"
