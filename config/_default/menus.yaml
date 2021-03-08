@@ -1,6 +1,6 @@
 main:
   - name: Syllabus
-    url: /syllabus/
+    url: /overview/
     weight: 1
   - name: Schedule
     url: /schedule/
