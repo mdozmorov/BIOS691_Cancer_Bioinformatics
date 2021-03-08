@@ -35,3 +35,19 @@ knitr::include_url('../../slides/06_RNA-seq/01_RNA-seq_overview.pdf')
 ```{r echo=FALSE}
 knitr::include_url('../../slides/06_RNA-seq/02_RNA-seq_expdesign.pdf')
 ```
+
+### RNA-seq QC and alignment
+
+<a href="../../slides/06_RNA-seq/03_RNA-seq_qc_alignment.pdf" target="_blank">Lecture slides in PDF format</a>
+
+```{r echo=FALSE}
+knitr::include_url('../../slides/06_RNA-seq/03_RNA-seq_qc_alignment.pdf')
+```
+
+### RNA-seq quantification
+
+<a href="../../slides/06_RNA-seq/04_RNA-seq_quantification.pdf" target="_blank">Lecture slides in PDF format</a>
+
+```{r echo=FALSE}
+knitr::include_url('../../slides/06_RNA-seq/04_RNA-seq_quantification.pdf')
+```
