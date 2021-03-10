@@ -80,4 +80,36 @@ editor_options:
 
 - Sahraeian, Sayed Mohammad Ebrahim, Marghoob Mohiyuddin, Robert Sebra, Hagen Tilgner, Pegah T. Afshar, Kin Fai Au, Narges Bani Asadi, et al. “[Gaining Comprehensive Biological Insight into the Transcriptome by Performing a Broad-Spectrum RNA-Seq Analysis](https://doi.org/10.1038/s41467-017-00050-4).” Nature Communications, (December 2017) - RNAcocktail - RNA-seq tools benchmarking. All aspects of RNA-seq analysis, structured, Fig 1. Recommended tools Fig 8. [RNACocktail - A comprehensive framework for accurate and efficient RNA-Seq analysis](https://bioinform.github.io/rnacocktail/), [RNA-seq blog: Unleash the power within RNA-seq](http://www.rna-seqblog.com/unleash-the-power-within-rna-seq/)
 
+- Law, Charity W., Monther Alhamdoosh, Shian Su, Gordon K. Smyth, and Matthew E. Ritchie. “[RNA-Seq Analysis Is Easy as 1-2-3 with Limma, Glimma and EdgeR](https://doi.org/10.12688/f1000research.9005.2).” F1000Research (2016) - [Latest Rsubread-limma plus pipeline](https://f1000research.com/articles/5-1408/v3). [The complete R code for RNA-seq analysis tutorial](https://bioconductor.org/packages/RNAseq123/)
+
+- Pertea, Mihaela, Daehwan Kim, Geo M. Pertea, Jeffrey T. Leek, and Steven L. Salzberg. “[Transcript-Level Expression Analysis of RNA-Seq Experiments with HISAT, StringTie and Ballgown](https://doi.org/10.1038/nprot.2016.095).” Nature Protocols, (September 2016) - New Tuxedo suite. Protocol.
+
+- "[RNA-Seq Methods and Algorithms](https://youtu.be/96yBPM8lEt8)" 7m video by Harold Pimentel, pseudoalignment, kallisto, sleuth, practical
+
+- Zhao, Qi, Yubin Xie, Peng Nie, Rucheng Diao, Licheng Sun, Zhixiang Zuo, and Jian Ren. “[IDEA: A Web Server for Interactive Differential Expression Analysis with R Packages](https://doi.org/10.1101/360461),” July 3, 2018. - Differential expression analysis from a matrix of FPKMs and a design matrix. Several methods to detect DEGs (DESeq2, edgeR, NOISeq, PoissonSeq, SAMseq), plots (MA, volcano, heatmap). [http://renlab.org:3838/IDEA/](http://renlab.org:3838/IDEA/)
+
+- TPMCalculator quantifies mRNA abundance directly from the alignments by parsing BAM files. The input parameters are the same GTF files used to generate the alignments, and one or multiple input BAM file(s) containing either single-end or paired-end sequencing reads. The TPMCalculator output is comprised of four files per sample reporting the TPM values and raw read counts for genes, transcripts, exons and introns respectively. [https://github.com/ncbi/TPMCalculator](https://github.com/ncbi/TPMCalculator)
+
+### RNA-seq resources
+
+- [Tools for RNA-seq data analysis](http://journals.plos.org/ploscompbiol/article/file?type=supplementary&id=info:doi/10.1371/journal.pcbi.1004393.s004)
+-[ RNAseq analysis notes by Tommy Tang](https://github.com/crazyhottommy/RNA-seq-analysis)
+- [University of Oregon's RNA-seqlopedia](http://rnaseq.uoregon.edu/), a comprehensive guide to RNA-seq starting with experimental design, going through library prep, sequencing, and data analysis.
+- RNA-seq blog, [http://www.rna-seqblog.com/](http://www.rna-seqblog.com/), Several blog posts per week on new methods and tools for RNA-seq analysis
+- [Informatics for RNA-seq, by Griffith lab](https://github.com/griffithlab/rnaseq_tutorial)
+
+### Practicals
+
+- [RNA-seq workflow: gene-level exploratory analysis and differential expression](https://bioconductor.org/packages/rnaseqGene/) R package
+
+- [RNA-seq analysis exercise using Galaxy](https://usegalaxy.org/u/jeremy/p/galaxy-rna-seq-analysis-exercise), an example analysis using the Tophat+Cufflinks workflow.
+
+- ["bcbio-nextgen" - Validated, scalable, community developed variant calling, RNA-seq and small RNA analysis](https://github.com/chapmanb/bcbio-nextgen)
+
+- [Getting started with HISAT, StringTie, and Ballgown](https://davetang.org/muse/2017/10/25/getting-started-hisat-stringtie-ballgown/)
+
+- ["enrichOmics" - Functional enrichment analysis of high-throughput omics data](https://github.com/waldronlab/enrichOmics). From basic ExpressionSet differential and functional enrichment analysis to genomic region enrichment analysis and MultiAssayExperiment demo
+
+- [ENCODE RNA-, ChIP-, DNAse-, ATAC- and other seq pipelines](https://github.com/ENCODE-DCC/)
+
 
