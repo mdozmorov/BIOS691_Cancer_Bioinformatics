@@ -51,3 +51,29 @@ knitr::include_url('../../slides/06_RNA-seq/03_RNA-seq_qc_alignment.pdf')
 ```{r echo=FALSE}
 knitr::include_url('../../slides/06_RNA-seq/04_RNA-seq_quantification.pdf')
 ```
+
+### RNA-seq normalization
+
+<a href="../../slides/06_RNA-seq/05_RNA-seq_normalization.pdf" target="_blank">Lecture slides in PDF format</a>
+
+```{r echo=FALSE}
+knitr::include_url('../../slides/06_RNA-seq/05_RNA-seq_normalization.pdf')
+```
+
+### RNA-seq normalization
+
+<a href="../../slides/06_RNA-seq/06_RNA-seq_batch.pdf" target="_blank">Lecture slides in PDF format</a>
+
+```{r echo=FALSE}
+knitr::include_url('../../slides/06_RNA-seq/06_RNA-seq_batch.pdf')
+```
+
+### RNA-seq normalization
+
+<a href="../../slides/06_RNA-seq/07_RNA-seq_diffexpression.pdf" target="_blank">Lecture slides in PDF format</a>
+
+```{r echo=FALSE}
+knitr::include_url('../../slides/06_RNA-seq/07_RNA-seq_diffexpression.pdf')
+```
+
+

@@ -70,6 +70,8 @@ editor_options:
 
 ### Workflows and tools
 
+- [Introduction to DGE](https://hbctraining.github.io/DGE_workshop/lessons/02_DGE_count_normalization.html) - differential expression analysis by DESeq2, by the teaching team at the Harvard Chan Bioinformatics Core (HBC)
+
 - He, Wen, Shanrong Zhao, Chi Zhang, Michael S. Vincent, and Baohong Zhang. “[QuickRNASeq: Guide for Pipeline Implementation and for Interactive Results Visualization](https://doi.org/10.1007/978-1-4939-7710-9_4).” Springer New York, 2018. - Practical RNA-seq tutorial based on QuickRNASeq publication.
 
 - Love, Michael I., Simon Anders, Vladislav Kim, and Wolfgang Huber. “[RNA-Seq Workflow: Gene-Level Exploratory Analysis and Differential Expression](https://doi.org/10.12688/f1000research.7035.2).” F1000Research (November 17, 2016) - RNA-seq workflow. From count import, including tximport, through EDA, DESeq2, batch removal, time course analysis, visualization.
@@ -77,3 +79,5 @@ editor_options:
 - Griffith, Malachi, Jason R. Walker, Nicholas C. Spies, Benjamin J. Ainscough, and Obi L. Griffith. “[Informatics for RNA Sequencing: A Web Resource for Analysis on the Cloud](https://doi.org/10.1371/journal.pcbi.1004393).” PLoS Computational Biology, (August 2015) - RNA-seq technology and analysis introduction. Very interesting are supplementary tables. [The full tutorials](https://rnabio.org/)
 
 - Sahraeian, Sayed Mohammad Ebrahim, Marghoob Mohiyuddin, Robert Sebra, Hagen Tilgner, Pegah T. Afshar, Kin Fai Au, Narges Bani Asadi, et al. “[Gaining Comprehensive Biological Insight into the Transcriptome by Performing a Broad-Spectrum RNA-Seq Analysis](https://doi.org/10.1038/s41467-017-00050-4).” Nature Communications, (December 2017) - RNAcocktail - RNA-seq tools benchmarking. All aspects of RNA-seq analysis, structured, Fig 1. Recommended tools Fig 8. [RNACocktail - A comprehensive framework for accurate and efficient RNA-Seq analysis](https://bioinform.github.io/rnacocktail/), [RNA-seq blog: Unleash the power within RNA-seq](http://www.rna-seqblog.com/unleash-the-power-within-rna-seq/)
+
+
