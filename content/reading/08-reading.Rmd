@@ -18,3 +18,27 @@ editor_options:
   chunk_output_type: console
 ---
 
+- Krzywinski, Martin, and Naomi Altman. “[Points of Significance: Comparing Samples—part I](https://doi.org/10.1038/nmeth.2858).” Nature Methods, (March 2014)
+
+- Krzywinski, Martin, and Naomi Altman. “[Points of Significance: Analysis of Variance and Blocking](https://doi.org/10.1038/nmeth.3005).” Nature Methods, (July 2014)
+
+- Krzywinski, Martin, and Naomi Altman. “[Points of Significance: Power and Sample Size](https://doi.org/10.1038/nmeth.2738).” Nature Methods, (November 26, 2013)
+
+- Tong, Tiejun, and Hongyu Zhao. “[Practical Guidelines for Assessing Power and False Discovery Rate for a Fixed Sample Size in Microarray Experiments](https://doi.org/10.1002/sim.3237).” Statistics in Medicine, (May 20, 2008) - Power analysis. t-statistics, FDR types and definitions, then derivation of power calculations. 
+
+- Chapter 4 "Matrix Algebra", Chapter 5 "Linear Models", from [PH525x series - Biomedical Data Science](https://genomicsclass.github.io/book/) course
+
+- [ANOVA, F-test explanation](https://youtu.be/DFJn0O0-AfU) 10m video
+- [Design matrices](https://youtu.be/2UYx-qjJGSs) 14m video
+
+- Jelle J. Goeman and Aldo Solari, “[Multiple Hypothesis Testing in Genomics](https://doi.org/10.1002/sim.6082),” Statistics in Medicine, (May 20, 2014)
+
+- [Statistics for Genomics: Advanced Differential Expression](https://youtu.be/QINX3cI7qgk) 24m video by Rafael Irizarry - limma statistics, Bayesian intro
+
+- Goeman, Jelle J., and Aldo Solari. “[Multiple Hypothesis Testing in Genomics](https://doi.org/10.1002/sim.6082).” Statistics in Medicine, (May 20, 2014) - multiple testing review
+
+- Benjamini, Yoav, and Yosef Hochberg. “[Controlling the False Discovery Rate: A Practical and Powerful Approach to Multiple Testing](https://www.jstor.org/stable/2346101).” Journal of the Royal Statistical Society, - FDR paper
+
+- Storey, John D., and Robert Tibshirani. “[Statistical Significance for Genomewide Studies](https://doi.org/10.1073/pnas.1530509100).” Proceedings of the National Academy of Sciences of the United States of America, (August 5, 2003) - q-value paper
+
+- Krzywinski, Martin, and Naomi Altman. “[Points of Significance: Comparing Samples—part II](https://doi.org/10.1038/nmeth.2900).” Nature Methods, (March 28, 2014)
