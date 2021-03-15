@@ -1,0 +1,173 @@
+---
+title: "Power analysis"
+author: "Mikhail Dozmorov"
+output:
+  pdf_document:
+    toc: yes
+  html_document:
+    theme: united
+    toc: yes
+---
+
+```{r setup, echo=FALSE, message=FALSE, warning=FALSE}
+# Set up the environment
+library(knitr)
+opts_chunk$set(cache.path='cache/', fig.path='img/', cache=F, tidy=T, fig.keep='high', echo=F, dpi=100, warnings=F, message=F, comment=NA, warning=F, results='as.is') #out.width=700, 
+library(pander)
+panderOptions('table.split.table', Inf)
+set.seed(1)
+library(dplyr)
+options(stringsAsFactors = FALSE)
+```
+
+```{r}
+# http://gastonsanchez.com/how-to/2015/05/15/normal-curve/
+# normal function 
+normal <- function(x, mu = 0, sigma = 1) {
+  # x: values on x-axis
+  # mu: mean value
+  # sigma: standard deviation
+  
+  # output
+  1 / (sigma * sqrt(2*pi)) * exp(-0.5 * ((x - mu)/ sigma)^2)
+}
+```
+
+
+# Example
+
+You are working on designing a new cancer drug and want to increase its half life in the body from currend standard of 20 hours (with a std. dev. of 4 hours) for cancer drugs.
+
+You believe your new design can increase the half-life by 2 hours to 22 hours. You have 44 random samples of your new drug for half life.
+
+Determine the power of your study (for $\alpha = 0.05$). If it is lacking power, what can you do to increase its power?
+
+## Components of power analysis
+
+- Model (test)
+- Test Effect (effect size and variability)
+- Sample size (n)
+- Test size (significance level, $\alpha$)
+- Power of test ($1-\beta$)
+
+## Hypotheses
+
+- $H_0: \; \mu = 20$
+- $H_A: \; \mu = 22$
+
+**Effect size** 22-20=2
+
+Two-tailed t-test
+
+## At what point on $H_0$ distribution does rejection region start (corresponds to $\alpha/2$)?
+
+T-table for df=43. $t_{critical}value=$ `r abs(qt(0.025, 43))`
+
+$$t_{stat} = \frac{\hat{x} - \mu}{\frac{s}{\sqrt{n}}}$$
+
+`r abs(qt(0.025, 43))` $= \frac{x_{critical} - 20}{4/\sqrt{44}}$
+
+$x_{critical}$ = 21.2161
+
+## $H_0$ distribution
+
+Area to the right corresponds to $\alpha / 2$
+
+```{r fig.height=3}
+# x-y coordinates for Standard normal curve
+x <- seq(15, 25, length.out = 500)
+y <- normal(x, mu = 20, sigma = 1)
+
+# standard normal curve plot
+op = par(mar = c(2.5,1,1,1))
+plot(x, y, type = 'l', col = '#00ABFF', lwd = 3,
+     axes = FALSE, xlab = '', ylab = '')
+axis(side = 1, at = seq(15, 25, by = 1))
+abline( v = 21.2161)
+```
+
+## $H_A$ distribution
+
+Area to the right corresponds to $AUC = \beta$ - probability of a Type II error. 
+
+To the right - $1 - \beta$ - power
+
+```{r fig.height=3}
+# x-y coordinates for Standard normal curve
+x <- seq(15, 25, length.out = 500)
+y <- normal(x, mu = 22, sigma = 1)
+
+# standard normal curve plot
+op = par(mar = c(2.5,1,1,1))
+plot(x, y, type = 'l', col = '#00ABFF', lwd = 3,
+     axes = FALSE, xlab = '', ylab = '')
+axis(side = 1, at = seq(15, 25, by = 1))
+abline( v = 21.2161)
+```
+
+## How to find $\beta$?
+
+What is the probability of having a value less than $t_{critical}$ (21.2161) in $H_A$ distribution?
+
+$t_{\beta} = (21.2161 - 22) / (4/\sqrt{44}) = -1.299$
+
+Plot this value on a t-distribution
+
+```{r fig.height=3}
+# x-y coordinates for Standard normal curve
+x <- seq(-5, 5, length.out = 500)
+y <- normal(x, mu = 0, sigma = 1)
+
+# standard normal curve plot
+op = par(mar = c(2.5,1,1,1))
+plot(x, y, type = 'l', col = '#00ABFF', lwd = 3,
+     axes = FALSE, xlab = '', ylab = '')
+axis(side = 1, at = seq(-5, 5, by = 1))
+abline( v = -1.299)
+```
+
+$\beta = P(t < -1.299) = P(t>1.299) =$ `r pnorm(-1.299, 0, 1)` (0.1003 in the video)
+
+$Power = 1 - \beta = 1 - 0.1003 = 0.8997$
+
+Power > 0.8, therefore experimental design is powerful. Should be able to detect effect size.
+
+## References
+
+See power analysis in action: "Power analysis example" video [https://www.youtube.com/watch?v=fRm2dEWSJrk](https://www.youtube.com/watch?v=fRm2dEWSJrk) by Matthew Novak.
+
+- https://www.bu.edu/orccommittees/iacuc/policies-and-guidelines/sample-size-calculations/
+
+- http://www.3rs-reduction.co.uk/html/6__power_and_sample_size.html
+
+- http://www.ats.ucla.edu/stat/seminars/Intro_power/
+
+- http://biostat.mc.vanderbilt.edu/wiki/Main/PowerSampleSize
+
+### Online tools
+
+- http://www.gpower.hhu.de/en.html
+
+- http://powerandsamplesize.com/
+
+- http://www.sample-size.net/sample-size-survival-analysis/
+
+- https://www.stat.ubc.ca/~rollin/stats/ssize/n2.html
+
+- http://scotty.genetics.utah.edu/
+
+### R packages
+
+- `ssize.fdr` - Sample Size Calculations for Microarray Experiments, https://cran.r-project.org/web/packages/ssize.fdr/index.html
+
+- `ssize` - Estimate Microarray Sample Size, https://bioconductor.org/packages/release/bioc/html/ssize.html
+
+- `sizepower` - Sample Size and Power Calculation in Micorarray Studies, https://bioconductor.org/packages/release/bioc/html/sizepower.html
+
+- `OCplus` - Operating characteristics plus sample size and local fdr for microarray experiments, https://bioconductor.org/packages/release/bioc/html/OCplus.html
+
+- `FDRsampsize` - Compute Sample Size that Meets Requirements for Average Power and FDR, https://cran.r-project.org/web/packages/FDRsampsize/index.html
+
+- `SSPA` - General Sample Size and Power Analysis for Microarray and Next-Generation Sequencing Data, https://bioconductor.org/packages/release/bioc/html/SSPA.html
+
+- `RNASeqPower` - Sample size for RNAseq studies, https://bioconductor.org/packages/release/bioc/html/RNASeqPower.html

@@ -1,0 +1,254 @@
+---
+title: "Design matrices"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE )
+```
+
+```{r}
+library(dplyr)
+```
+
+## Linear regression overview
+ 
+```{r}
+set.seed(1)
+x <- seq(1, 10) %>% jitter(amount = 1)
+y <- seq(5, 14) %>% jitter(amount = 1)
+plot(x, y, xlab = "Tumor grade", ylab = "Gene 1")
+```
+ 
+We measure tumor grade and expression of gene 1. We are interested in:
+
+1) How useful was expression of gene 1 for predicting tumor grade? $R^2$
+2) Was that relationship due to chance? $p-value$
+
+## T-test
+
+```{r}
+set.seed(1)
+gene1 <- rnorm(4, 5)
+gene2 <- rnorm(4, 10)
+x <- c(rep(1, 4), rep(2, 4))
+plot(x, c(gene1, gene2), xlim = c(0, 3), ylim = c(0, 15), xlab = ("Status: 1 - normal, 2 - tumor"), ylab = "Gene expression")
+```
+
+The goal of t-test is to compare meansand see if they are significantly different from each other.
+
+## T-test in terms of linear regression
+
+- Calculate the overall mean
+- Calculate the sum of squared residuals around the mean $SS_{mean}$
+
+```{r}
+set.seed(1)
+gene1 <- rnorm(4, 5)
+gene2 <- rnorm(4, 10)
+x <- c(rep(1, 4), rep(2, 4))
+plot(x, c(gene1, gene2), xlim = c(0, 3), ylim = c(0, 15), xlab = ("Status: 1 - normal, 2 - tumor"), ylab = "Gene expression")
+abline(h = mean(c(gene1, gene2)))
+```
+
+- Fit a line to the data, separately for each group (mean = the least squares fit to the group of data)
+- For each group, we can calculate $SS_{fit}$
+
+```{r}
+set.seed(1)
+gene1 <- rnorm(4, 5)
+gene2 <- rnorm(4, 10)
+x <- c(rep(1, 4), rep(2, 4))
+plot(x, c(gene1, gene2), xlim = c(0, 3), ylim = c(0, 15), xlab = ("Status: 1 - normal, 2 - tumor"), ylab = "Gene expression")
+lines(x = c(0.5, 1.5), y = c(mean(gene1), mean(gene1)) )
+lines(x = c(1.5, 2.5), y = c(mean(gene2), mean(gene2)) )
+text(x = 1.6, y = mean(gene1), "mu_1")
+text(x = 2.6, y = mean(gene2), "mu_2")
+```
+
+- Combine two lines into a single equation. This will make the steps for computing F-statistics exactly the same as for the regression
+
+```{r eval=FALSE, echo=TRUE}
+# Combines both lines for the first group
+y_11 = 1 * mu_1 + 0 * mu_2 + residual_11
+y_12 = 1 * mu_1 + 0 * mu_2 + residual_12
+y_13 = 1 * mu_1 + 0 * mu_2 + residual_13
+y_14 = 1 * mu_1 + 0 * mu_2 + residual_14
+# Combines both lines for the second group
+y_21 = 0 * mu_1 + 1 * mu_2 + residual_21
+y_22 = 0 * mu_1 + 1 * mu_2 + residual_22
+y_23 = 0 * mu_1 + 1 * mu_2 + residual_23
+y_24 = 0 * mu_1 + 1 * mu_2 + residual_24
+```
+
+- 1's and 0's serve as "switches" for each group. This is our design matrix $X$, one column per group.
+
+```
+1  0
+1  0
+1  0
+1  0
+0  1
+0  1
+0  1
+0  1
+```
+
+- Get mu's and y's in a vector form, and
+
+$$Y = X * MU + \epsilon$$
+
+- Now, can calculate $F = \frac{ (SS_{mean} - SS_{fit}) / (p_{fit} - p_{mean}) }{SS_{fit} / (n - p_{fit})}$ and the p-value
+- $p_{mean}$ - the number of parameters in the equation for the overall mean for gene expression ( = 1 )
+- $p_{fit}$ - the number of parameters in the line we fit for the data in individual groups ( = 2 )
+- Same technique extends for multiple groups - ANOVA
+
+# A more common design matrix
+
+```
+1  0
+1  0
+1  0
+1  0
+1  1
+1  1
+1  1
+1  1
+```
+
+- In this setup, all measurements contribute to the mean for the first group
+- But only the measurements from the second group contribute to the _difference_ between the first and the second group
+- So the second column serves as a switch for the offset from the mean for the second group
+
+```{r}
+set.seed(1)
+gene1 <- rnorm(4, 5)
+gene2 <- rnorm(4, 10)
+x <- c(rep(1, 4), rep(2, 4))
+plot(x, c(gene1, gene2), xlim = c(0, 3), ylim = c(0, 15), xlab = ("Status: 1 - normal, 2 - tumor"), ylab = "Gene expression")
+lines(x = c(0.5, 3.0), y = c(mean(gene1), mean(gene1)) )
+lines(x = c(1.5, 2.5), y = c(mean(gene2), mean(gene2)) )
+text(x = 0.6, y = mean(gene2), "difference = mu_2 - mu_1")
+```
+
+```{r eval=FALSE, echo=TRUE}
+# Combines both lines for the first group
+y_11 = 1 * mu_1 + 0 * difference_{mu_2 - mu_1} + residual_11
+y_12 = 1 * mu_1 + 0 * difference_{mu_2 - mu_1} + residual_12
+y_13 = 1 * mu_1 + 0 * difference_{mu_2 - mu_1} + residual_13
+y_14 = 1 * mu_1 + 0 * difference_{mu_2 - mu_1} + residual_14
+# Combines both lines for the second group
+y_21 = 1 * mu_1 + 1 * difference_{mu_2 - mu_1} + residual_21
+y_22 = 1 * mu_1 + 1 * difference_{mu_2 - mu_1} + residual_22
+y_23 = 1 * mu_1 + 1 * difference_{mu_2 - mu_1} + residual_23
+y_24 = 1 * mu_1 + 1 * difference_{mu_2 - mu_1} + residual_24
+```
+
+- Same way to calculate $SS_{mean}$ and $SS_{fit}$
+- Same number of equations
+- Same number of parameters
+
+# Power of design matrices
+
+- Say, in addition to group 1 and group 2, you have age variable.
+
+```{r}
+set.seed(1)
+x <- 1:4
+gene1 <- rnorm(4, 6) * x
+gene2 <- rnorm(4, 10) * x
+plot(x, gene1, col = "red", pch = 19, xlim = c(0, 5), ylim = c(0, 50), xlab = "Age", ylab = "Gene expression")
+legend("topleft", legend = c("Group 1", "Group 2"), pch = c(19, 19), col = c("red", "green"))
+points(x, gene2, col = "green", pch = 19)
+abline(-1, 7, col = "red")
+abline(7, 7, col = "green")
+```
+
+- We need to expand our model like $y = group1\_intercept + group2\_offset + slope$ - full model
+- So, in our design matrix, first columns of 1's mean that both lines intercept the Y-axis, and specify the intercept for group 1
+- The second column indicates the offset of group 2 measures
+- The third column is the Age variable for each group
+
+```
+1  0  1
+1  0  2
+1  0  3
+1  0  4
+1  1  1
+1  1  2
+1  1  3
+1  1  4
+```
+
+- Compare with the simple model $y = overall\_mean$
+- Calculate how much better is the full model: $F = \frac{ (SS_{simple} - SS_{full}) / (p_{full} - p_{simple}) }{SS_{full} / (n - p_{simple})}$ 
+
+# Batch effect
+
+- Suppose you have measurements from two labs
+
+```{r}
+set.seed(1)
+gene1 <- rnorm(4, 5)
+gene2 <- rnorm(4, 10)
+gene3 <- rnorm(4, 3)
+gene4 <- rnorm(4, 7)
+x <- c(rep(1, 4), rep(2, 4), rep(3, 4), rep(4, 4))
+plot(x, c(gene1, gene2, gene3, gene4), xlim = c(0, 5), ylim = c(0, 15), xlab = ("Status (\"/\" - different labs): 1/3 - normal, 2/4 - tumor"), ylab = "Gene expression")
+```
+
+- First, add a term for the first lab normal group mean
+
+```{r}
+plot(x, c(gene1, gene2, gene3, gene4), xlim = c(0, 5), ylim = c(0, 15), xlab = ("Status (\"/\" - different labs): 1/3 - normal, 2/4 - tumor"), ylab = "Gene expression")
+abline(h = mean(c(gene1, gene2, gene3, gene4)))
+```
+
+- Second, add a term for the offset in measurements by the second lab
+
+```{r}
+plot(x, c(gene1, gene2, gene3, gene4), xlim = c(0, 5), ylim = c(0, 15), xlab = ("Status (\"/\" - different labs): 1/3 - normal, 2/4 - tumor"), ylab = "Gene expression")
+abline(h = mean(c(gene1, gene2, gene3, gene4)))
+lines(x = c(2.5, 4.5), y = c(mean(c(gene3, gene4)), mean(c(gene3, gene4))))
+```
+
+- Third, add a term for the offset of the tumor measurements
+
+```{r}
+plot(x, c(gene1, gene2, gene3, gene4), xlim = c(0, 5), ylim = c(0, 15), xlab = ("Status (\"/\" - different labs): 1/3 - normal, 2/4 - tumor"), ylab = "Gene expression")
+abline(h = mean(c(gene1, gene2, gene3, gene4)))
+lines(x = c(2.5, 4.5), y = c(mean(c(gene3, gene4)), mean(c(gene3, gene4))))
+lines(x = c(1.5, 2.5), y = c(mean(c(gene2)), mean(c(gene2))))
+lines(x = c(3.5, 4.5), y = c(mean(c(gene4)), mean(c(gene4))))
+```
+
+- The final model $y = lab1\_normal\_mean + lab2\_offset + difference_{tumor - normal}$, and the design matrix
+
+```
+1  0  0
+1  0  0
+1  0  0
+1  0  0
+1  0  1
+1  0  1
+1  0  1
+1  0  1
+1  1  0
+1  1  0
+1  1  0
+1  1  0
+1  1  1
+1  1  1
+1  1  1
+1  1  1
+```
+
+- Does the lab effect matter? Compare the final model with a simpler one $y = lab1\_normal\_mean + difference_{tumor - normal}$
+
+# Learn more
+
+- Law, Charity W., Kathleen Zeglinski, Xueyi Dong, Monther Alhamdoosh, Gordon K. Smyth, and Matthew E. Ritchie. “[A Guide to Creating Design Matrices for Gene Expression Experiments.](https://doi.org/10.12688/f1000research.27893.1)” F1000Research (December 10, 2020) - Design matrices for various experimental designs. Means model or mean-reference model.
+
+- Soneson, C, F Marini, F Geier, MI Love, and MB Stadler. “[ExploreModelMatrix: Interactive Exploration for Improved Understanding of Design Matrices and Linear Models in R](https://doi.org/10.12688/f1000research.24187.2)” F1000Research, (June 4, 2020). 

@@ -76,4 +76,14 @@ knitr::include_url('../../slides/06_RNA-seq/06_RNA-seq_batch.pdf')
 knitr::include_url('../../slides/06_RNA-seq/07_RNA-seq_diffexpression.pdf')
 ```
 
+<a href="../../slides/06_RNA-seq/07a_Intro.pdf" target="_blank">Lecture slides in PDF format</a>
 
+```{r echo=FALSE}
+knitr::include_url('../../slides/06_RNA-seq/07a_Intro.pdf')
+```
+
+<a href="../../slides/06_RNA-seq/07b_limma.pdf" target="_blank">Lecture slides in PDF format</a>
+
+```{r echo=FALSE}
+knitr::include_url('../../slides/06_RNA-seq/07b_limma.pdf')
+```

@@ -1,0 +1,39 @@
+---
+title: "Methods for genomics data analysis"
+# linktitle: "1. Introduction to RStudio and Images"
+date: "2021-03-15"
+class_date: "2021-03-15"
+output:
+  blogdown::html_page:
+    toc: false
+menu:
+  class:
+    parent: Class sessions
+    weight: 9
+type: docs
+# weight: 1 
+# pdf: 
+# thumb: 
+editor_options: 
+  chunk_output_type: console
+---
+
+## Slides
+
+### Differential expression methods
+
+<a href="../../slides/07a_DiffExpr/07a_Intro.pdf" target="_blank">Lecture slides in PDF format</a>
+
+```{r echo=FALSE}
+knitr::include_url('../../slides/07a_DiffExpr/07a_Intro.pdf')
+```
+
+[Power_analysis.pdf](../../slides/07a_DiffExpr/Power_analysis.pdf)
+
+<a href="../../slides/07a_DiffExpr/07b_limma.pdf" target="_blank">Lecture slides in PDF format</a>
+
+```{r echo=FALSE}
+knitr::include_url('../../slides/07a_DiffExpr/07b_limma.pdf')
+```
+
+[Design_matrices.pdf](../../slides/07a_DiffExpr/07b_design_matrices.pdf), [DEG_ttest.R](../../slides/07a_DiffExpr/lab/DEG_ttest.R), [expression.csv.gz](../../slides/07a_DiffExpr/lab/data/expression.csv.gz)
