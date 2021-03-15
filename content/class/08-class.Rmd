@@ -28,7 +28,7 @@ editor_options:
 knitr::include_url('../../slides/07a_DiffExpr/07a_Intro.pdf')
 ```
 
-[Power_analysis.pdf](../../slides/07a_DiffExpr/Power_analysis.pdf)
+[Power_analysis.pdf](../../slides/07a_DiffExpr/Power_analysis.pdf), 
 
 <a href="../../slides/07a_DiffExpr/07b_limma.pdf" target="_blank">Lecture slides in PDF format</a>
 
@@ -36,4 +36,4 @@ knitr::include_url('../../slides/07a_DiffExpr/07a_Intro.pdf')
 knitr::include_url('../../slides/07a_DiffExpr/07b_limma.pdf')
 ```
 
-[Design_matrices.pdf](../../slides/07a_DiffExpr/07b_design_matrices.pdf), [DEG_ttest.R](../../slides/07a_DiffExpr/lab/DEG_ttest.R), [expression.csv.gz](../../slides/07a_DiffExpr/lab/data/expression.csv.gz)
+[Design_matrices.pdf](../../slides/07a_DiffExpr/07b_design_matrices.pdf), [DEG_ttest.R](../../slides/07a_DiffExpr/lab/DEG_ttest.R), [expression.csv.gz](../../slides/07a_DiffExpr/lab/data/expression.csv.gz), [volcano.R](../../slides/07a_DiffExpr/lab/volcano.R)
