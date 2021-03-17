@@ -43,7 +43,7 @@ knitr::include_url('../../slides/07a_DiffExpr/07b_limma.pdf')
 <a href="../../slides/07a_DiffExpr/07d_multipletesting.pdf" target="_blank">Lecture slides in PDF format</a>
 
 ```{r echo=FALSE}
-knitr::include_url('../../slides/07d_multipletesting.pdf')
+knitr::include_url('../../slides/07a_DiffExpr/07d_multipletesting.pdf')
 ```
 
 [Multiple_Testing.R](../../slides/07a_DiffExpr/lab/Multiple_Testing.R), [Filtering.Rmd](../../slides/07a_DiffExpr/lab/Filtering.Rmd)
