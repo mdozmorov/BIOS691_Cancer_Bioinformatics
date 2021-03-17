@@ -37,3 +37,13 @@ knitr::include_url('../../slides/07a_DiffExpr/07b_limma.pdf')
 ```
 
 [Design_matrices.pdf](../../slides/07a_DiffExpr/07b_design_matrices.pdf), [DEG_ttest.R](../../slides/07a_DiffExpr/lab/DEG_ttest.R), [expression.csv.gz](../../slides/07a_DiffExpr/lab/data/expression.csv.gz), [volcano.R](../../slides/07a_DiffExpr/lab/volcano.R)
+
+## Multiple testing correction
+
+<a href="../../slides/07a_DiffExpr/07d_multipletesting.pdf" target="_blank">Lecture slides in PDF format</a>
+
+```{r echo=FALSE}
+knitr::include_url('../../slides/07d_multipletesting.pdf')
+```
+
+[Multiple_Testing.R](../../slides/07a_DiffExpr/lab/Multiple_Testing.R)
