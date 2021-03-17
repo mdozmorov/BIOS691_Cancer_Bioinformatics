@@ -46,4 +46,14 @@ knitr::include_url('../../slides/07a_DiffExpr/07b_limma.pdf')
 knitr::include_url('../../slides/07d_multipletesting.pdf')
 ```
 
-[Multiple_Testing.R](../../slides/07a_DiffExpr/lab/Multiple_Testing.R)
+[Multiple_Testing.R](../../slides/07a_DiffExpr/lab/Multiple_Testing.R), [Filtering.Rmd](../../slides/07a_DiffExpr/lab/Filtering.Rmd)
+
+# Code examples
+
+[batch_sva_combat.R](../../slides/07a_DiffExpr/lab/batch_sva_combat.R) - "Batch effects and confounders", by Jeff Leek, [Source](http://jtleek.com/genstats/inst/doc/02_13_batch-effects.html)
+
+[adjusting_with_linear_models.Rmd](../../slides/07a_DiffExpr/lab/adjusting_with_linear_models.Rmd) - another batch removal demo, [Source](https://genomicsclass.github.io/book/pages/adjusting_with_linear_models.html), with added `limma::removeBatchEffect`, see [paper](https://www.ncbi.nlm.nih.gov/pubmed/17206142) for data details
+
+[heatmaps.R](../../slides/07a_DiffExpr/lab/heatmaps.R) - demo of scatterplots and heatmaps
+
+[permutations.R](../../slides/07a_DiffExpr/lab/batch_sva_combat.R) - permutation test
