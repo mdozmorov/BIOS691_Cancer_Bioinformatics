@@ -1,0 +1,132 @@
+---
+title: "Differential Expression Analysis: Limma"
+# author: "Mikhail Dozmorov"
+output:
+  html_document:
+    toc: false
+    theme: united
+date: "`r Sys.Date()`"
+---
+
+```{r setup, echo=FALSE}
+# Set up the environment
+library(knitr) 
+opts_chunk$set(cache.path='cache/', fig.path='img/', cache=T, tidy=T, fig.keep='high', echo=T, dpi=100, out.width=700)
+options(replace.assign=TRUE, width=220)
+options(stringsAsFactors = FALSE)
+set.seed(1)
+```
+
+```{r}
+library(DT)
+library(limma)
+# source("http://bioconductor.org/biocLite.R") # Import biocLite() function into R environment
+# biocLite("limma")
+library(limma)
+limmaUsersGuide() # Opens pdf manual for limma
+# biocLite("samr")
+library(samr) # Load the library
+library(affy) # Load affy package 
+library(GEOquery)
+# Use biomaRt for annotation
+# biocLite("biomaRt") 
+library(biomaRt)
+```
+
+Limma
+===
+Limma is a software package for the analysis of gene expression microarray data, especially the use of linear models for analyzing designed experiments and the assessment of differential expression. The package includes pre-processing capabilities for two-color spotted arrays. The differential expression methods apply to all array platforms and treat Affymetrix, single channel and two channel experiments in a unified way. The methods are described in [Smyth 2004](https://www.ncbi.nlm.nih.gov/pubmed/15297296) and in the [limma manual](http://bioconductor.org/packages/release/bioc/vignettes/limma/inst/doc/usersguide.pdf). An illustrated introduction for the GUI packages can be found at Walter+Eliza Hall Bioinformatics Institute of Medical Research [(WEHI)](http://bioinf.wehi.edu.au/limma/index.html).
+
+We will be analyzing tissue-specific differences from [Su et al., 2002](http://www.ncbi.nlm.nih.gov/pubmed/11904358). Datasets for [human](https://www.ncbi.nlm.nih.gov/sites/GDSbrowser?acc=GDS181) and [mouse](https://www.ncbi.nlm.nih.gov/sites/GDSbrowser?acc=GDS182) transcriptomes in all tissues are available from Gene Expression Omnibus. We will be analyzing a subset of brain-liver samples, [download here](http://jura.wi.mit.edu/bio/education/bioinfo2007/arrays/Su_CELs.zip).
+
+Prepare the data:
+
+```{r, warning=FALSE}
+eset.rma <- justRMA(celfile.path = "/Users/mdozmorov/Documents/Work/Teaching/ci-workshop/data/Su_CELs") # RMA summarization of the CEL files
+pData(eset.rma) # Check what samples we have
+```
+
+There are two different ways to form the design matrix. We can either
+
+1. create a design matrix that includes a contrast coefficient for the treated vs. wild type difference, or
+2. create a design matrix that includes separate coefficients for wild type and mutant mice and then extract the differences we are interested in as contrasts.
+
+For the first approach, the treatment-contrasts parametrization, the design matrix should be as follows:
+
+```{r}
+# Design matrix: Treatment-constrast parametrization
+a <- rep(0, length(pData(eset.rma)$sample)) # Create a vector of 0
+a[grep("liver", rownames(pData(eset.rma)), ignore.case=T)] <-1 # Mark "liver" conditions as "1"
+a # Check your work
+design <- cbind(Brain = 1, LiverVsBrain = a) # Columnwise bind
+design # Check your work
+```
+
+Here, the first coefficient estimates the mean log-expression for brain tissue and plays a role of an intercept. The second coefficient estimates the difference between brain and liver cells. Differentially expressed genes can be found by:
+
+```{r}
+# Identifying differentially expressed genes
+fit <- lmFit(eset.rma, design)
+fit <- eBayes(fit)
+result <- topTable(fit, number = 100, adjust = "BH", p.value = 0.05, lfc = 1, coef = "LiverVsBrain") # Get top 100 differentially expressed genes
+datatable(result) # Check your work
+```
+
+For the second approach, the group-means parametrization, the design matrix can be computed by:
+
+```{r}
+# Design matrix: separate group coefficients
+design <- cbind(Brain = c(rep(1, 4), rep(0, 4)), 
+                Liver = c(rep(0, 4), rep(1, 4))) # Manually create design matrix
+design # Check
+design <- model.matrix(~0 + factor(a)) # Another way - factor makes two levels, one for each group
+colnames(design) <- c("Brain", "Liver") # Label columns properly
+design # Check your work
+```
+
+To find differentially expressed genes, group-means parametrization should be converted into contrast matrix:
+
+```{r}
+fit <- lmFit(eset.rma, design)
+cont.matrix <- makeContrasts(LivervsBrain = Liver - Brain, levels = design) # Make matrix of contrasts
+cont.matrix # See what's inside
+fit2 <- contrasts.fit(fit, cont.matrix)
+fit2 <- eBayes(fit2)
+result2 <- topTable(fit2, number = 100, adjust="BH", p.value = 0.05, lfc = 1, coef = "LivervsBrain")
+datatable(result2)
+```
+
+The above approaches for two groups extend easily to any number of groups. Suppose that we want to pairwise compare all four conditions. An appropriate design matrix can be created using:
+
+```{r}
+# Several groups
+a <- c(1, 1, 2, 2, 3, 3, 4, 4) # Four conditions, two replicates per condition
+design <- model.matrix(~0 + factor(a)) # Now we have four levels for design matrix
+colnames(design) <- c("B", "fB", "fL", "L") # label columns
+design # Check your work
+```
+
+We create contrast matrix for three pairwise comparisons, for the sake of visualizing the results in a form of Venn diagram (3 comparisons at a time). Finding differentially expressed genes are the same:
+
+```{r}
+contrast.matrix <- makeContrasts(B-fB, L-fL, B-L, levels=design) # Make three contrasts
+contrast.matrix # Check your work
+fit <- lmFit(eset.rma, design)
+fit2 <- contrasts.fit(fit, contrast.matrix)
+fit2 <- eBayes(fit2)
+result3 <- decideTests(fit2, adjust = "BH", p.value = 0.05, lfc = log2(2))
+```
+
+Use decideTests function to have a summary of the results for Venn diagram, and visualize it:
+
+```{r}
+vennDiagram(result3) # How genes differentially expressed in different conditions
+vennDiagram(result3, include="up") # Only upregulated
+vennDiagram(result3, include="down") # Or downregulated
+```
+
+We can save our results into a file:
+
+```{r}
+write.table(topTable(fit2, coef = "B - L", number=Inf, adjust.method="BH"), "results/filename.txt", sep="\t", quote = FALSE) # vary coefficient to write corresponding results to a tab-separated file
+```

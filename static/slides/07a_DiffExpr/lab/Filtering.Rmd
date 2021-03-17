@@ -1,0 +1,92 @@
+---
+title: "Filtering"
+# author: "Mikhail Dozmorov"
+date: '`r Sys.Date()`'
+output:
+  pdf_document:
+    toc: no
+  html_document:
+    theme: united
+    toc: yes
+---
+
+```{r setup, echo=FALSE}
+# Set up the environment
+library(knitr) 
+opts_chunk$set(cache.path='cache/', fig.path='img/', cache=T, tidy=T, fig.keep='high', echo=T, dpi=100, out.width=700)
+options(replace.assign=TRUE, width=220)
+options(stringsAsFactors = FALSE)
+set.seed(1)
+```
+
+### genefilter & collapseRows - removing genes with certain properties before DE analysis
+
+Filtering any unimportant genes before differential expression (DE) analysis is quite desirable because it increases the statistical power of your differential expression analysis. In other words, a smaller gene set suffers less of a hit from multiple testing correction. 
+
+Another potential use for filtering is reducing the feature space for prediction analysis. This will cause models to be trained faster and probably to have less variance.
+
+Of course, the tradeoff in both cases is that the genes you filter may be false negatives: that they may be truly differentially expressed or may carry unique predictive power. Filtering also reduces variability needed for proper functionality of the `limma` package [https://www.ncbi.nlm.nih.gov/pubmed/20460310](https://www.ncbi.nlm.nih.gov/pubmed/20460310).
+
+```{r}
+library(ALL)
+library(genefilter)
+data(ALL)
+```
+
+Looks like log2-transformed, not normalized
+
+```{r}
+summary(exprs(ALL)[,1:3])
+```
+
+`kOverA` filters out probes which do not have at least "k" experiments in which they are over expression level "A". The idea here is that  the variability of low-expressed genes is harder to distinguish from the baseline noise level.
+
+```{r}
+ka.filter <- filterfun(kOverA(5, 4.0))
+ix.ka <- genefilter(exprs(ALL), ka.filter)
+nrow(exprs(ALL))
+sum(ix.ka)
+```
+
+you could now alter the original ALL structure by
+
+```{r}
+filtered <- exprs(ALL)[ix.ka ,]
+```
+
+`nsFilter` stands for "non-specific filter". Its main purpose is to remove probes which do not map to genes or probes which do not have GO categories.
+
+```{r}
+filtered <- nsFilter(ALL, require.entrez=T)
+filtered$filter.log
+filtered$eset # The new ExpressionSet
+```
+
+Lots of other filters exist. For example, you can  filter by Anova or T-tests with "Anova" or "colttests" filters. See some more options:
+
+```{r}
+ls("package:genefilter")
+```
+
+`collapseRows` from the WGCNA package serves a similar purpose. It takes an expression matrix, a vector of probe IDs, and a vector of corresponding category IDs (usually Entrez Gene or Ensembl IDs) and collapses all the probes mapping to a given gene into one row.
+
+It has many possible methods for collapsing the rows (in fact, an entire [paper](http://www.biomedcentral.com/1471-2105/12/322) was written just about this one function. By default, rows are collapsed by max mean. 
+
+```{r}
+library(WGCNA)
+library(hgu95av2.db)
+
+M <- exprs(ALL)
+probes <- rownames(M)
+xx <- as.list(hgu95av2SYMBOL)
+symbols <- unlist(xx[probes])
+
+clr <- collapseRows(M, symbols, probes, method="MaxMean")
+names(clr)
+M.genes <- clr$datETcollapsed
+dim(M)
+dim(M.genes)
+M[1:5, 1:5]
+M.genes[1:5, 1:5]
+```
+
