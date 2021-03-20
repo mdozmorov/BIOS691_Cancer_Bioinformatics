@@ -32,6 +32,11 @@ blogdown::serve_site()
 blogdown::stop_server()
 ```
 
+If `Error: fatal error: pipe failed`, see [this post](https://discourse.gohugo.io/t/hugo-is-crashing-upon-start-of-hugo-server-d-when-serving-a-lot-of-images/28540/3) and run:
+```
+hugo server --bind 127.0.0.1 -p 4321 --themesDir themes -hugo-academic -D -F --navigateToChanged --watch=false
+```
+
 ## Theme
 
 This site uses the [Academic Hugo theme](https://sourcethemes.com/academic/), with some slight template modifications found in `/assets/` and `layouts/`. The theme is included as a submodule, so when when cloning for the first time, use this command to get the theme too:
