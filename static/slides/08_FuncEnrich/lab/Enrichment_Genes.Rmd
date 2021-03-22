@@ -1,0 +1,242 @@
+---
+dtitle: "Annotation_and_Enrichment_GENES"
+author: "Mikhail Dozmorov"
+# date: "October 26, 2014"
+output: html_document
+---
+```{r setup, echo=FALSE}
+# Set up the environment
+library(knitr) 
+opts_chunk$set(cache.path='cache/', fig.path='img/', cache=T, tidy=T, fig.keep='high', echo=T, dpi=100, out.width=700)
+options(replace.assign=TRUE, width=220)
+options(stringsAsFactors = FALSE)
+set.seed(1)
+```
+
+```{r}
+library(DT)
+library(ALL)
+library(limma)
+library(hgu95av2.db) # Load an annotation package for this platform
+# biocLite("topGO")
+library(topGO)
+```
+
+# Differential expression review with limma
+
+Before proceeding into GOEA and other enrichment analyses, we need a list of probes and differential expression p-values. Here, we review limma usage with the ALL dataset. 
+
+The ALL dataset has many covariates, which you can view with
+
+```{r}
+data(ALL) # Load actual dataset
+datatable(pData(ALL))
+colnames(pData(ALL)) # Which phenotype data we have
+```
+
+The ALL dataset contains either B-cell or T-cell leukemias, and  various cytogenetic abnormalities. Here, we compare expression in B-cell leukemia patients which have undergone BCR/ABL transition with B-cell leukemia patients which have no assigned molecular biology.
+
+Probably 90% of all differential expression analyses have been done with two-group design, like "healthy controls" vs. "disease". Here, we are looking at a multifactorial design.
+
+```{r}
+pd <- pData(ALL)
+# limma disallows special characters in factor names
+mol.biol <- make.names(pd$mol.biol) # Convenient wrapper to make names compatible with R internals
+groups <- factor(mol.biol, levels = unique(mol.biol))
+design <- model.matrix(~0 + groups) # Multifactorial design matrix
+colnames(design) <- levels(groups)
+datatable(design) # Check your work
+(contrast <- makeContrasts(BCR.ABLvsNEG = BCR.ABL-NEG, levels=design)) # Define what to compare with what
+M <- normalizeQuantiles(exprs(ALL)) # Normalize gene expression matrix before differential expression
+fit <- lmFit(M, design)
+fit.c <- contrasts.fit(fit, contrast)
+fit.c <- eBayes(fit.c)
+tt <- topTable(fit.c, number=Inf, coef = "BCR.ABLvsNEG", adjust.method = "fdr", p.value = 0.05) # All results of differential expression analysis
+# For the enrichment analysis, we extract a vector of adjusted p-values, named by probe IDs
+p.values <- tt$adj.P.Val
+names(p.values) <- rownames(tt)
+datatable(as.matrix(p.values))
+```
+
+Optionally, we check which gene NAMEs are differentially expressed
+
+```{r}
+result <- decideTests(fit.c) # Correct the results for multiple testing
+sig.probes <- rownames(result)[result!=0] # Pull up the probe names 
+
+ALL@annotation # Check which microarray platform was used. Or, annotattion(ALL)
+xx <- as.list(hgu95av2SYMBOL) # Get full mapping table for probes to gene names
+sig.symbols <- unlist(xx[sig.probes]) # Extract gene names from the significant probes
+head(sig.symbols) # Check your work
+length(unique(sig.symbols)) # How many significant genes are there?
+```
+
+# Gene Ontology Enrichment Analysis
+
+The *topGO* package is a gold standard for microarray differential expression analysis. We need to create a topGOdata object from pieces we obtained from limma analysis.
+
+```{r}
+sel.fn <- function(p.vals) { p.vals < 0.01 } # Returns a subset of most significant probes
+affyLib <- paste(annotation(ALL), "db", sep=".")
+go.data <- new("topGOdata",
+               ontology = "BP", allGenes = p.values, geneSel = sel.fn,
+               nodeSize = 10, # search GO terms with >= 10 genes
+               annot = annFUN.db, affyLib = 'hgu95av2.db')
+```
+
+A variety of algorithms and ranking statistics are available for running the actual enrichment step. A list of algorithms and tests can be found by calling:
+
+```{r}
+whichAlgorithms()
+whichTests()
+```
+
+We try a couple:
+
+```{r, message=FALSE}
+result <- runTest(go.data, algorithm="classic", statistic="fisher")
+result.01 <- runTest(go.data, algorithm="elim", statistic="fisher")
+result
+```
+
+We can compare the results by plotting the two sets of p-values against each other. The `elim` algorithm was designed to be more conservative - everything is less significant
+
+```{r}
+pValue.classic <- score(result)
+pValue.elim <- score(result.01)[names(pValue.classic)]
+gstat <- termStat(go.data, names(pValue.classic))
+gSize <- gstat$Annotated / max(gstat$Annotated) * 4
+plot(pValue.classic, pValue.elim, xlab = "p-value classic", ylab = "p-value elim", pch = 19, cex = gSize)
+```
+
+View the top results from multiple methods in tabular format
+
+```{r}
+datatable(GenTable(go.data, result, result.01))
+```
+
+Let's have a look at the results in the context of the GO DAG.
+
+```{r}
+showSigOfNodes(go.data, score(result), firstSigNodes = 3, useInfo = "all")
+```
+
+Very small text. This can be easier to read if you save into an external file with pdf() and dev.off(). 
+
+# Using mroast
+
+We can also use the `mroast` function to perform multiple roast tests. Check http://web.mit.edu/~r/current/arch/i386_linux26/lib/R/library/limma/html/roast.html for more information.
+
+First we need to create a list, which contains the indices of genes in the ExpressionSet for each of a number of gene sets. We will use the `org.Hs.eg.db` package to gather the gene set information.
+
+```{r}
+# biocLite("org.Hs.eg.db")
+library(org.Hs.eg.db)
+org.Hs.egGO2EG
+go2eg <- as.list(org.Hs.egGO2EG)
+head(go2eg)
+
+library(hgu95av2.db)
+probe2entrez <- as.list(hgu95av2ENTREZID)
+probe2entrez[1:5]
+entrez <- unlist(probe2entrez[rownames(exprs(ALL))])
+```
+
+The following code unlists the list, then gets matches for each Entrez gene ID to the index in the ExpressionSet. Finally, we rebuild the list.
+
+```{r}
+govector <- unlist(go2eg)
+golengths <- sapply(go2eg, length)
+head(entrez)
+idxvector <- match(govector, entrez)
+table(is.na(idxvector))
+idx <- split(idxvector, rep(names(go2eg), golengths))
+go2eg[[1]]
+entrez[idx[[1]]]
+```
+
+We need to clean this list such that there are no `NA` values. We also clean it to remove gene sets which have less than 10 genes.
+
+```{r}
+idxclean <- lapply(idx, function(x) x[!is.na(x)])
+idxlengths <- sapply(idxclean, length)
+idxsub <- idxclean[idxlengths > 10]
+length(idxsub)
+```
+
+The following line of code runs the multiple ROAST test. This can take about 3 minutes.
+
+```{r}
+r2 <- mroast(ALL, idxsub, design)
+r2 <- r2[order(r2$PValue.Mixed),]
+head(r2)
+r3 <- fry(ALL, idxsub, design)
+head(r3)
+```
+
+We can use the `GO.db` annotation package to extract the GO terms for the top results, by the *mixed* test.
+
+```{r}
+# biocLite("GO.db")
+library(GO.db)
+columns(GO.db)
+keytypes(GO.db)
+GOTERM[[rownames(r2)[1]]]
+r2tab <- AnnotationDbi::select(GO.db, keys=rownames(r3)[1:10],
+                columns=c("GOID","TERM","DEFINITION"), 
+                keytype="GOID")
+r2tab[,1:2]
+```
+
+We can also look for the top results using the standard p-value and in the *up* direction.
+
+```{r}
+r2 <- r2[order(r2$PValue),]
+r2tab <- AnnotationDbi::select(GO.db, keys=rownames(r2)[r2$Direction == "Up"][1:10],
+                columns=c("GOID","TERM","DEFINITION"), 
+                keytype="GOID")
+r2tab[,1:2]
+```
+
+# Using clusterProfiler
+
+The tutorial will tell you all what you need to know about `clusterProfiler`, https://bioconductor.org/packages/release/bioc/vignettes/clusterProfiler/inst/doc/clusterProfiler.html
+
+Here, we perform GSEA analysis on KEGG pathways
+
+```{r}
+library(clusterProfiler)
+geneList <- p.values
+names(geneList) <- unlist(probe2entrez[names(p.values)])
+geneList <- sort(geneList, decreasing = TRUE)
+kk2 <- gseKEGG(geneList     = geneList,
+               organism     = "hsa",
+               nPerm        = 1000,
+               minGSSize    = 10,
+               pvalueCutoff = 1,
+               verbose      = FALSE)
+
+head(kk2@result)
+```
+
+
+# Creating a custom enrichment analysis
+
+At its core, enrichment analysis is very simple. You have a list of genes, a list of categories, and a list of gene-category associations.
+
+The question is, given a list of genes (for example, the top differentially expressed genes from an experiment), what categories are these genes statistically enriched for? The standard test for this is Fisher Exact.
+
+This simplicity means enrichment analysis is very broadly applicable. Any time you have a data source that annotates genes with categories, you can use enrichment analysis.
+
+Back to our example with genes enrched in angiogenesis.
+
+* Out of 12,350 genes, 185 are involved in “Angiogenesis”. 
+* In our experiment, out of 200 differentially expressed genes 35 are annotated with “Angiogenesis” function
+
+```{r}
+# Fisher Exact test with contingency table
+ct <- matrix(c(35, 165, 150, 12000), byrow = T, nrow = 2)
+ct
+fisher.test(ct, alternative = "greater")$p.value
+```
+

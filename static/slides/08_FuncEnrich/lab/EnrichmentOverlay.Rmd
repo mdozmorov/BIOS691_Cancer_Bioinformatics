@@ -1,0 +1,160 @@
+---
+title: "Demo Document"
+output:
+  html_document:
+    toc: true
+    theme: united
+date: "`r Sys.Date()`"
+author: "Author's Name"
+---
+
+```{r setup, echo=FALSE, message=FALSE, warning=FALSE}
+# Set up the environment
+library(knitr)
+opts_chunk$set(cache.path='cache/', fig.path='img/', cache=F, tidy=T, fig.keep='high', echo=F, dpi=100, warnings=F, message=F, comment=NA, warning=F, results='as.is') #out.width=700, 
+library(pander)
+panderOptions('table.split.table', Inf)
+set.seed(1)
+library(dplyr)
+options(stringsAsFactors = FALSE)
+```
+
+Visualization of KEGG Pathway Enrichment
+========================================================
+![](http://pathview.r-forge.r-project.org/images/hsa01100.sim.cpd.png)
+The [KEGG](http://www.genome.jp/kegg/) database is a useful repository of biochemical domain knowledge.
+The following is an example of how to map changes in genes, proteins and metabolites on an organism specific basis to KEGG defined [biochemical pathways](http://www.genome.jp/kegg/pathway.html).
+For this example we will use the R packages [pathview](http://bioconductor.org/packages/release/bioc/html/pathview.html), [KEGGREST](http://bioconductor.org/packages/2.12/bioc/html/KEGGREST.html) and [KEGGgraph](http://www.bioconductor.org/packages/release/bioc/html/KEGGgraph.html).
+
+
+To generate a pathway enrichment visualization we minimally need a list of fold changes in biochemical components of interest (e.g. genes, proteins, metabolites). 
+We need to supply gene/protein and metabolite/compound fold changes separately as data.frames with rownames specifying database identifiers (see [pathview](http://pathview.r-forge.r-project.org/) for possible options). 
+This can be generated based on the output from statistical analysis used to identify any significantly differentially expressed species. 
+
+Lets create gene and metabolite data for a demonstration.
+
+```{r}
+library(pathview)
+metabolite.data <- data.frame(FC = sim.mol.data(mol.type = "cpd", nmol = 3000))
+```
+
+Lets take a look at the format of the metabolite inputs. 
+
+```{r}
+head(metabolite.data)
+```
+
+Notice we have a single column data frame containing log fold changes with KEGG identifiers for the rownames. Next lets load the example gene data. For genes we can specify the organism of interest using the ``species`` argument. We can check for available organisms using the commands below.
+
+```{r}
+data(korg)
+head(korg)
+```
+
+We can use the columns ``scientific.name`` or ``common.name`` to search for the ``kegg.code`` for our organism of interest. Here is an example of how we can do this for *arabidopsis thaliana*.
+
+```{r}
+organism <- "arabidopsis thaliana"
+matches <- unlist(sapply(1:ncol(korg), function(i) {
+    agrep(organism, korg[, i])
+}))
+(kegg.code <- korg[matches, 1, drop = F])
+```
+
+```{r}
+# load gene data
+gene.data <- data.frame(FC = sim.mol.data(mol.type = "gene", nmol = 3000, species = kegg.code))
+```
+
+Lets take a look at the gene data.
+
+```{r}
+head(gene.data)
+```
+
+Looking at the rownames we can see that the identifiers are specific for arabidopsis thaliana. Using real data it is possible that we will need to translate identifiers to match the type used in pathview. Here are the different identifiers which can be supplied for metabolites.
+
+```{r}
+data(cpd.simtypes)
+cpd.simtypes
+```
+
+Here are some possible options for gene identifiers.
+
+```{r}
+data(gene.idtype.list)
+gene.idtype.list
+```
+
+We can optionally simulate data with with other identifiers by selecting the appropriate identifier type for the argument `id.type` in the function ``sim.mol.data`` .
+ 
+In the example data above we have the the logarithm of fold changes for 3000 metabolites and 3000 genes. Now that we have the data we can select some pathway of interest to map the fold changes to. 
+We could get this information from a pathway enrichment analysis. We would do this by testing if the significantly differential expressed metabolites or genes are enriched for some specific KEGG pathways of interest. Here are some tools to conduct enrichment analysis for genes and metabolites.
+
+* [MBrole](http://csbg.cnb.csic.es/mbrole/) (metabolites)
+* [MetaboAnalyst](http://www.metaboanalyst.ca/MetaboAnalyst/faces/Home.jsp) (metabolites)
+* [David](http://david.abcc.ncifcrf.gov/) (genes)
+* [IMPaLA](http://impala.molgen.mpg.de/) (genes and metabolites) 
+
+For the example below we will randomly select some KEGG pathways. 
+We can use the R package [KEGGREST](http://bioconductor.org/packages/2.12/bioc/html/KEGGREST.html) to get all KEGG pathway identifiers for ``arabidopsis thaliana``.
+
+
+```{r}
+# get names of pathways to visualize
+library(KEGGREST)
+pathways <- keggList("pathway", kegg.code)
+head(pathways)
+```
+
+Lets visualize changes in our genes and metabolites for ``Citrate cycle (TCA cycle) - Arabidopsis thaliana (thale cress)`` which has the KEGG id ``path:ath00020`` .
+
+```{r}
+library(pathview)
+map <- gsub("path:", "", names(pathways)[2])  # remove 'path:'
+pv.out <- pathview(gene.data = gene.data, cpd.data = metabolite.data, gene.idtype = "KEGG", 
+    pathway.id = map, species = kegg.code, out.suffix = map, keys.align = "y", 
+    kegg.native = T, match.data = T, key.pos = "topright")
+plot.name <- paste(map, map, "png", sep = ".")
+```
+
+If everything went as planned this generated a file named ``ath00020.ath00020.png`` mapped KEGG pathway.
+<!--![ath00020.ath00020.png](ath00020.ath00020.png)-->
+We can take a look at the mappings made to this pathway.
+
+```{r}
+head(pv.out)
+```
+
+<!---![``ath00020.ath00020.png``](``ath00020.ath00020.png``) -->
+
+We can also display changes in genes/proteins and metabolites for multiple comparisons. To do this lets create some more artificial data and this time lets get protein information. 
+
+```{r}
+metabolite.data2 <- sim.mol.data(mol.type = "cpd", nmol = 3000, nexp = 2)
+head(metabolite.data2)
+```
+
+
+```{r}
+gene.data2 <- sim.mol.data(mol.type = "gene", nmol = 3000, nexp = 2, id.type = "UNIPROT")
+head(gene.data2)
+```
+
+Notice UNIPROT IDs do not map to ``arabidopsis thaliana``. We can check the available mappings by looking at the database of identifiers for ``arabidopsis thaliana`` org.At.tair.db. Lets instead map changes to a human pathway or KEGG code "hsa". 
+To do this we need to make sure we supply the correct ``species`` and ``gene.idtype`` arguments. Next lets map changes in proteins and metabolites for the two comparisons to the pathway .
+org.At.tairUNIPROT
+
+```{r}
+map <- gsub("path:ath", "", names(pathways)[1])  # remove 'path:ath'
+pv.out <- pathview(gene.data = gene.data2, cpd.data = metabolite.data2, gene.idtype = "UNIPROT", 
+    pathway.id = map, species = "hsa", out.suffix = map, keys.align = "y", kegg.native = T, 
+    match.data = T, key.pos = "topright")
+plot.name <- paste(map, map, "multi", "png", sep = ".")
+```
+
+This should have generated an image file named ``00010.00010.multi.png``.
+<!--![hsa00010.00010.multi.png](hsa00010.00010.multi.png)-->
+
+We could also map metabolites on a large scale using `pathway.id= 01100`.
+<!--![metabolic pathways](http://pathview.r-forge.r-project.org/images/hsa01100.sim.cpd.png)-->

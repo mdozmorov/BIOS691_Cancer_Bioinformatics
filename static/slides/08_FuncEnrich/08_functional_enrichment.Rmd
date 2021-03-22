@@ -1,0 +1,528 @@
+---
+title: "Pathway and Functional Enrichment Analysis Methods"
+author: "Mikhail Dozmorov"
+date: ""
+output:
+  beamer_presentation:
+    # colortheme: seahorse
+    colortheme: dolphin
+    fig_caption: no
+    fig_height: 6
+    fig_width: 7
+    fonttheme: structurebold
+    # theme: boxes
+    theme: AnnArbor
+---
+
+## Overview
+
+- Why enrichment analysis?
+- What is enrichment analysis?
+- Gene ontology and pathways enrichment
+- Tools and references
+
+## Why enrichment analysis? 
+
+- Human genome contains ~20,000-25,000 genes
+- Each gene has multiple functions
+- If 1,000 genes have changed in an experimental condition, it may be difficult to understand what they do
+
+\begin{center}
+\includegraphics[height=120px]{img/why_enrichment1.png}
+\end{center}
+
+## Birds of a feather flock together
+
+- Genes with similar expression patterns share similar functions
+- Similar (common) functions characterize a group of genes
+
+\begin{center}
+\includegraphics[height=80px]{img/genefriends.png}
+\end{center}
+
+https://genefriends.org/
+
+- People with similar genetic patterns are likely friends
+
+\tiny Christakis NA, Fowler JH. "Friendship and natural selection." PNAS 2014 [https://www.ncbi.nlm.nih.gov/pubmed/25024208](https://www.ncbi.nlm.nih.gov/pubmed/25024208)
+
+## Why enrichment analysis? 
+
+- Translating changes of **hundreds/thousands of differentially expressed genes** into a few biological processes (reducing dimensionality)
+- High level understanding of the biology behind gene expression – **Interpretation!**
+
+\begin{center}
+\includegraphics[height=90px]{img/why_enrichment2.png}
+\end{center}
+
+## What is enrichment analysis
+
+- **Enrichment analysis** - summarizing common functions associated with a group of objects
+
+\begin{center}
+\includegraphics[height=120px]{img/enrichment_analysis.png}
+\end{center}
+
+## What is enrichment analysis? – statistical definition
+
+**Enrichment analysis** – detection whether a group of objects has certain properties more (or less) frequent than can be expected by chance
+
+\begin{center}
+\includegraphics[height=120px]{img/jars.png}
+\end{center}
+
+## Classification of genes
+
+**Gene set** - _a priori_ classification of genes into biologically relevant groups (sets)
+
+- Members of the same biochemical pathways
+- Genes annotated with the same molecular function (gene signatures)
+- Transcripts expressed in the same cellular compartments
+- Co-regulated/co-expressed genes
+- Genes located on the same cytogenetic band
+- ...
+
+## Annotation databases and ontologies
+
+- An annotation database annotates genes with functions or properties - sets of genes with shared functions
+- Structured prior knowledge about genes
+
+\begin{center}
+\includegraphics[height=140px]{img/GO_db.png}
+\end{center}
+
+## Gene ontology
+
+- An ontology is a formal (hierarchical) representation of concepts and the relationships between them.
+- The objective of GO is to provide controlled vocabularies of terms for the description of gene products.
+- These terms are to be used as attributes of gene products, facilitating uniform queries across them.
+
+## Gene ontology hierarchy
+
+- Terms are related using "is-a", "part-of" and other connectors
+
+\begin{center}
+\includegraphics[height=160px]{img/GO_1.png}
+\end{center}
+
+http://geneontology.org/docs/ontology-relations/
+
+## Gene ontology structure
+
+Gene ontology describes multiple levels of detail of gene function.
+
+- **Molecular Function** - the tasks performed by individual gene products; examples are _transcription factor_ and _DNA helicase_ 
+- **Biological Process** - broad biological goals, such as _mitosis_ or _purine metabolism_, that are accomplished by ordered assemblies of molecular functions 
+- **Cellular Component** - subcellular structures, locations, and macromolecular complexes; examples include _nucleus_, _telomere_, and _origin recognition complex_
+
+## Gene ontology database
+
+\begin{center}
+\includegraphics[height=150px]{img/GO_2.png}
+\end{center}
+
+\tiny http://geneontology.org/
+
+https://www.ebi.ac.uk/QuickGO/
+
+## Gene ontologies are not created equal
+
+- Different levels of evidence: 
+    - Experimental
+    - Computational analysis
+    - Author Statement
+    - Curator Statement
+    - Inferred from electronic annotation
+
+\begin{center}
+\includegraphics[height=80px]{img/GO_3.png}
+\end{center}
+
+\tiny http://geneontology.org/docs/guide-go-evidence-codes/
+
+## Gene ontologies are not created equal
+
+\begin{center}
+\includegraphics[height=200px]{img/GO_4.png}
+\end{center}
+
+\tiny http://amigo.geneontology.org/amigo/base_statistics
+
+<!--
+## User-friendly Gene Ontology annotations
+
+\begin{center}
+\includegraphics[height=170px]{img/go_dhimmel.png}
+\end{center}
+
+\tiny http://git.dhimmel.com/gene-ontology/
+-->
+
+## Gene ontologies for model organisms
+
+\small
+
+- **Mouse Genome Database** (MGD) and Gene Expression Database (GXD) (Mus musculus) <http://www.informatics.jax.org/>
+- **Rat Genome Database** (RGD) (Rattus norvegicus) <http://rgd.mcw.edu/>
+- **FlyBase** (Drosophila melanogaster) <http://flybase.org/>
+- **Berkeley Drosophila Genome Project** (BDGP) <http://www.fruitfly.org/>
+- **WormBase** (Caenorhabditis elegans) <http://www.wormbase.org/>
+- **Zebrafish Information Network** (ZFIN) (Danio rerio)  <http://zfin.org/>
+- **Saccharomyces Genome Database** (SGD) (Saccharomyces cerevisiae) <http://www.yeastgenome.org/>
+- **The Arabidopsis Information Resource** (TAIR) (Arabidopsis thaliana) <https://www.arabidopsis.org/>
+- **Gramene** (grains, including rice, Oryza) <http://www.gramene.org/>
+- **dictyBase** (Dictyostelium discoideum)  <http://dictybase.org/>
+- **GeneDB** (Schizosaccharomyces pombe, Plasmodium falciparum, Leishmania major and Trypanosoma brucei) <http://www.genedb.org/>
+
+## MSigDb - Molecular Signatures Database
+
+\begin{center}
+\includegraphics[height=190px]{img/msigdb.png}
+\end{center}
+
+\tiny http://software.broadinstitute.org/gsea/msigdb/
+
+<!--
+## MSigDb - Molecular Signatures Database
+
+- **H**, **hallmark gene sets** are coherently expressed signatures derived by aggregating many MSigDB gene sets to represent well-defined biological states or processes.
+- **C1**, **positional gene sets** for each human chromosome and cytogenetic band.
+- **C2**, **curated gene sets** from online pathway databases, publications in PubMed, and knowledge of domain experts.
+- **C3**, **motif gene sets**  based on conserved _cis_-regulatory motifs from a comparative analysis of the human, mouse, rat, and dog genomes.
+- **C4**, **computational gene sets** defined by mining large collections of cancer-oriented microarray data.
+- **C5**, **GO gene sets**  consist of genes annotated by the same GO terms.
+- **C6**, **oncogenic signatures** defined directly from microarray gene expression data from cancer gene perturbations.
+- **C7**, **immunologic signatures** defined directly from microarray gene expression data from immunologic studies.
+
+\tiny https://github.com/stephenturner/msigdf
+-->
+
+## Pathways
+
+- An ordered series of molecular events that leads to the creation new molecular product, or a change in a cellular state or process. 
+- Genes often participate in multiple pathways – think about genes having multiple functions
+
+\begin{center}
+\includegraphics[height=130px]{img/pathways_roche.png}
+\end{center}
+
+\tiny http://biochemical-pathways.com/#/map/1
+
+## KEGG pathway database 
+
+- **KEGG: Kyoto Encyclopedia of Genes and Genomes** is a collection of biological information compiled from published material = curated database. 
+- Includes information on genes, proteins, metabolic pathways, molecular interactions, and biochemical reactions associated with specific organisms
+- Provides a relationship (map) for how these components are organized in a cellular structure or reaction pathway. 
+
+\tiny http://www.genome.jp/kegg/
+
+## KEGG pathway diagram
+
+\begin{center}
+\includegraphics[height=210px]{img/pathway_KEGG.png}
+\end{center}
+
+## Reactome
+
+- Curated human pathways encompassing metabolism, signaling, and other biological processes.
+- Every pathway is traceable to primary literature.
+
+\begin{center}
+\includegraphics[height=50px]{img/ReactomeLogo.png}
+\end{center}
+
+\tiny http://www.reactome.org/
+
+## Reactome pathway diagram
+
+\begin{center}
+\includegraphics[height=170px]{img/pathway_Reactome.png}
+\end{center}
+
+## Other pathway databases
+
+- **PathwayCommons**, version 12 has over 5,770 pathways from 22 data sources, http://www.pathwaycommons.org/
+- **PathGuide**, lists over 700 pathway related databases, http://www.pathguide.org/
+- **WikiPathways**, community-curated pathways, http://wikipathways.org/
+- **Consensus-PathDB**, pathway interactions, enrichment, data, http://www.consensuspathdb.org/
+
+## Gene annotation databases in R
+
+- **annotables** (https://github.com/stephenturner/annotables) - R data package for annotating/converting Gene IDs
+- **msigdf** (https://github.com/stephenturner/msigdf) - Molecular Signatures Database (MSigDB) in a data frame
+- **pathview** (https://bioconductor.org/packages/pathview/) - a tool set for pathway based data integration and visualization
+
+\begin{center}
+\includegraphics[height=150px]{img/hsa00190_CRISPR_common.png}
+\end{center}
+
+## Genes to networks
+
+- **GeneMania**, networks based on different properties, http://genemania.org
+- **STRING**, protein-protein interaction networks, http://string-db.org
+- **Genes2Networks**, protein-protein interaction networks, http://amp.pharm.mssm.edu/X2K/#g2n
+- **IntAct**, protein-protein interaction data and networks, https://www.ebi.ac.uk/intact/
+- **HPRD**, protein-protein interaction database, http://www.hprd.org/
+
+# Enrichment analysis
+
+## Types of enrichment analyses
+
+- **First generation** - traditional overrepresentation analyses, hypergeometric distribution-based test whether genes of interest (i.e., differentially expressed) are overrepresented in functional gene sets.
+- **Second generation** - tests the tendency of gene set members to appear rather at the top or bottom of the ranked list of all measured genes.
+- **Third generation** - network- or topology-based tests, consider relationships among genes.
+
+## First generation enrichment analysis: Null hypothesis
+
+- **Self-contained $H_0$**: genes in the gene set do not have any association with the pheontype
+
+- Problem: restrictive, use information only from a gene set
+                  
+\begin{center}
+\includegraphics[height=150px]{img/self_vs_competitive.png}
+\end{center}
+
+## First generation enrichment analysis: Null hypothesis
+
+- **Competitive $H_0$**: genes in the gene set have the same level of association with a given phenotype as genes in the complement gene set
+
+- Problem: wrong assumption of independent gene sampling
+
+\begin{center}
+\includegraphics[height=150px]{img/self_vs_competitive.png}
+\end{center}
+
+## Hypergeometric test
+
+- $m$ is the total number of genes
+- $j$ is the number of genes are in the functional category
+- $n$ is the number of differentially expressed genes
+- $k$ is the number of differentially expressed genes in the category
+
+\begin{center}
+\includegraphics[height=120px]{img/hypergeometric.png}
+\end{center}
+
+## Hypergeometric test
+
+- $m$ is the total number of genes
+- $j$ is the number of genes are in the functional category
+- $n$ is the number of differentially expressed genes
+- $k$ is the number of differentially expressed genes in the category
+
+The expected value of $k$ would be $k_e=(n/m)*j$. 
+
+If $k > k_e$, functional category is said to be enriched, with a ratio of enrichment $r=k/k_e$
+
+## Hypergeometric test
+
+- $m$ is the total number of genes
+- $j$ is the number of genes are in the functional category
+- $n$ is the number of differentially expressed genes
+- $k$ is the number of differentially expressed genes in the category
+
+|                    | Diff. exp. genes | Not Diff. exp. genes | Total |
+|--------------------|:----------------:|:--------------------:|:------|
+| In gene set        |        k         |           j-k        | j     |
+| Not in gene set    |       n-k        |         m-n-j+k      | m-j   |
+| Total              |       n          |           m-n        |  m    |
+
+## Hypergeometric test
+
+- $m$ is the total number of genes
+- $j$ is the number of genes are in the functional category
+- $n$ is the number of differentially expressed genes
+- $k$ is the number of differentially expressed genes in the category
+
+What is the probability of having $k$ or more genes from the category in the selected $n$ genes?
+
+$$P = \sum_{i=k}^n{\frac{\binom{m-j}{n-i}\binom{j}{i}}{{m \choose n}}}$$
+
+## Hypergeometric test
+
+- $m$ is the total number of genes
+- $j$ is the number of genes are in the functional category
+- $n$ is the number of differentially expressed genes
+- $k$ is the number of differentially expressed genes in the category
+
+$k < (n/m)*j$ - underrepresentation. Probability of $k$ or less genes from the category in the selected $n$ genes?
+
+$$P = \sum_{i=0}^k{\frac{\binom{m-j}{n-i}\binom{j}{i}}{{m \choose n}}}$$
+
+## Hypergeometric test
+
+1. Find a set of differentially expressed genes (DEGs)
+2. Are _DEGs in a set_ more common than _DEGs not in a set_?
+
+- Fisher test `stats::fisher.test()`
+- Conditional hypergeometric test, to account for directed hierachy of GO `GOstats::hyperGTest()`
+
+\tiny Example: https://github.com/mdozmorov/MDmisc/blob/master/R/gene_enrichment.R
+
+## Problems with Hypergeometric test
+
+- The outcome of the overrepresentation test depends on the significance threshold used to declare genes differentially expressed. 
+- Functional categories in which many genes exhibit small changes may go undetected. 
+- Genes are not independent, so a key assumption of the Fisher’s exact tests is violated.
+- Pathways overlap
+
+<!--
+## Correcting for pathway overlap
+
+\begin{center}
+\includegraphics[height=110px]{img/overlap_correction.png}
+\end{center}
+
+\tiny https://www.ncbi.nlm.nih.gov/pubmed/23934932
+-->
+
+## Secong generation: Gene set enrichment analysis (GSEA)
+
+- **Gene set analysis (GSA)**. Mootha et al., 2003; modified by Subramanian, et al. "**Gene set enrichment analysis: A knowledge-based approach for interpreting genome-wide expression profiles.**" PNAS 2005 http://www.pnas.org/content/102/43/15545.abstract
+- Main rationale – functionally related genes often display a coordinated expression to accomplish their roles in the cells
+- Aims to identify gene sets with "subtle but coordinated"  expression changes that would be missed by DEGs threshold selection
+
+## GSEA: Gene set enrichment analysis
+
+- The null hypothesis is that the **rank ordering** of the genes in a given comparison is **random** with regard to the case-control assignment.
+- The alternative hypothesis is that the **rank ordering** of genes sharing functional/pathway membership is **associated** with the case-control assignment.
+
+## GSEA: Gene set enrichment analysis
+
+1. Sort genes by log fold change
+2. Calculate running sum - increment when gene in a set, decrement when not
+3. Maximum of the runnig sum is the enrichment score - larger means genes in a set are toward top of the sorted list
+4. Permute subject labels to calculate significance p-value
+
+\begin{center}
+\includegraphics[height=120px]{img/gsea.png}
+\end{center}
+
+## GSEA: Gene set enrichment analysis
+
+- Compute a statistic (difference between 2 clinical groups) for each gene that measures the degree of differential expression between treatments. 
+- Create a list $L$ of all genes ordered according to these statistics. 
+- Given a set of genes $S$ we can see if these genes are non-randomly distributed in our list $L$ 
+- If the experiment produced random results, we don’t expect gene order to have biological coherence 
+
+## GSEA: Gene set enrichment analysis
+
+- Calculate an enrichment score ($ES$) that reflects the degree to which a set $S$ is overrepresented at the extremes (top or bottom) of the entire ranked list $L$. 
+- The score is calculated by walking down the list $L$ and ... 
+    - Increase a running-sum statistic when we encounter a gene in $S$
+    - Decrease it when we encounter genes not in $S$. 
+
+- The magnitude of the increment depends on the correlation of the gene with the phenotype.
+- The final enrichment score is the maximum deviation from zero encountered in the random walk 
+    - Corresponds to a weighted Kolmogorov–Smirnov-like statistics
+
+## GSEA: Gene set enrichment analysis
+
+**Enrichment Score**
+
+- Consider genes $R_1, ..., R_N$ ordered by the difference metric
+- Consider a gene set $S$ of size $G$, containing functionally similar genes or pathway members.
+- If $R_i$ is not a member of $S$, define
+
+$$X_{Ri}=-\sqrt{\frac{G}{N-G}}$$
+
+- If $R_i$ is a member of $S$, define
+
+$$X_{Ri}=\sqrt{\frac{N-G}{G}}$$
+
+## GSEA: Gene set enrichment analysis
+
+**Enrichment Score**
+
+- Compute running sum across all $N$ genes. The $ES$ is defined as 
+
+$$\max_{1 \le j \le N} \sum_{i=1}^j{X_{Ri}}$$
+
+- or the maximum observed positive deviation of the running sum. 
+- $ES$ is measured for every gene set considered. To determine whether any of the given gene sets shows association with the class phenotype distinction, permute the class labels 1,000 times, each time recording the maximum $ES$ over all gene sets. 
+
+---
+
+\begin{center}
+\includegraphics[height=200px]{img/gsea1.png}
+\end{center}
+
+\tiny "Using the fast preranked gene set enrichment analysis (fgsea) package", https://davetang.org/muse/2018/01/10/using-fast-preranked-gene-set-enrichment-analysis-fgsea-package/
+
+## Other approaches
+
+**Linear model-based**
+
+- **CAMERA** (Wu and Smyth 2012)
+- **C**orrelation-**A**djusted **ME**an **RA**nk gene set test
+- Estimating the variance inflation factor associated with inter-gene correlation, and incorporating this into parametric or rank-based test procedures
+
+## Other approaches
+
+**Linear model-based**
+
+- **ROAST** (Wu et.al. 2010)
+- Under the null hypothesis (and assuming a linear model) the residuals are independent and identically distributed $N(0,\sigma_g^2)$.
+- We can _rotate_ the residual vector for each gene in a gene set, such that gene-gene expression correlations are preserved.
+
+## Third generation: network- or topology-based analyses
+
+**Impact analysis** - incorporates topology of the pathway.
+
+- Gene's fold change 
+- Classical enrichment statistics
+- The topology of the signaling pathway
+
+\begin{center}
+\includegraphics[height=140px]{img/insulin.png}
+\end{center}
+
+## Third generation: network- or topology-based analyses
+
+- **Pathway-Express**
+
+Sorin Draghici et al., “A Systems Biology Approach for Pathway Level Analysis,” _Genome Research_. 2007. https://www.ncbi.nlm.nih.gov/pubmed/17785539
+
+&nbsp;
+
+- **SPIA**: Signaling Pathway Impact Analysis, 	https://bioconductor.org/packages/SPIA/
+
+Adi Laurentiu Tarca et al., “A Novel Signaling Pathway Impact Analysis,” _Bioinformatics_.  2009
+
+## Tools for Gene set enrichment analysis
+
+- **GSEA** (https://www.broadinstitute.org/gsea/index.jsp) - Better way of doing enrichment analysis
+- **g:Profiler** (http://biit.cs.ut.ee/gprofiler/) - gene ID converter, GO and pathway enrichment, and more
+- **ToppGene** (https://toppgene.cchmc.org) - Quick gene enrichment analysis in multiple categories
+- **Metascape** (http://metascape.org/) - Enrichment analysis of multiple gene sets
+- **DAVID** (https://david.ncifcrf.gov/) - Newly updated gene enrichment analysis
+
+<!-- - **FRY** (http://shiny.bioinf.wehi.edu.au/giner.g/FRY_GeneSetExplorerApp/) - Fast Interactive Biological Pathway Miner, from WEHI group -->
+
+## Tools for Gene set enrichment analysis
+
+- **clusterProfiler** (https://bioconductor.org/packages/clusterProfiler/) - statistical analysis and visualization of functional profiles for genes and gene clusters
+- **limma** (https://bioconductor.org/packages/limma/) - Linear Models for Microarray Data, includes functional enrichment functions `goana`, `camera`, `roast`, `romer`
+- **GOstats** (https://bioconductor.org/packages/GOstats/) - tools for manimpuating GO and pathway enrichment analyses.
+
+<!--
+## Tools for Gene set enrichment analysis
+
+\scriptsize
+
+**EnrichmentBrowser** - R package for microarray/RNA-seq normalization, differential analysis, overrepresentation-, enrichment- and network analyses and visualization
+
+- **Functional enrichment methods** - **ORA**: Overrepresentation Analysis, **SAFE**: Significance Analysis of Function and Expression, **GSEA**: Gene Set Enrichment Analysis, **PADOG**: Pathway Analysis with Down-weighting of Overlapping Genes, **ROAST**: ROtAtion gene Set Test, **CAMERA**: Correlation Adjusted MEan RAnk gene set test, **GSA**: Gene Set Analysis, **GSVA**: Gene Set Variation Analysis, **GLOBALTEST**: Global testing of groups of genes, **SAMGS**: Significance Analysis of Microarrays on Gene Sets, **EBM**: Empirical Brown’s Method, **MGSA**: Model-based Gene Set Analysis.
+
+- **Network-based enrichment methods** - **GGEA**: Gene Graph Enrichment Analysis, **SPIA**: Signaling Pathway Impact Analysis, **PathNet**: Pathway Analysis using Network Information, **DEGraph**: Differential expression testing for gene graphs, **TopologyGSA**: Topology-based Gene Set Analysis, **GANPA**: Gene Association Network-based Pathway Analysis, **CePa**: Centrality-based Pathway enrichment.
+    
+\tiny https://bioconductor.org/packages/release/bioc/html/EnrichmentBrowser.html
+
+Geistlinger, Ludwig, Gergely Csaba, and Ralf Zimmer. “Bioconductor’s EnrichmentBrowser: Seamless Navigation through Combined Results of Set- & Network-Based Enrichment Analysis.” BMC Bioinformatics 17 (January 20, 2016): 45. https://doi.org/10.1186/s12859-016-0884-1.
+-->
+
+<!-- ## Genomic regions enrichment analysis -->
+
+<!-- - **GREAT** predicts functions of cis-regulatory regions, http://bejerano.stanford.edu/great/public/html/ -->
+<!-- - **Enrichr**, gene- and genomic regions enrichment analysis tool, http://amp.pharm.mssm.edu/Enrichr/# -->
+<!-- - **GenomeRunner**, Functional interpretation of SNPs (any genomic regions) within regulatory/epigenomic context, http://integrativegenomics.org/ -->

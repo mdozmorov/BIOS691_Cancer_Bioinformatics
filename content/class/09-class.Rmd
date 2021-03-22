@@ -1,0 +1,38 @@
+---
+title: "Functional enrichment analysis"
+# linktitle: "1. Introduction to RStudio and Images"
+date: "2021-03-22"
+class_date: "2021-03-22"
+output:
+  blogdown::html_page:
+    toc: false
+menu:
+  class:
+    parent: Class sessions
+    weight: 10
+type: docs
+# weight: 1 
+# pdf: 
+# thumb: 
+editor_options: 
+  chunk_output_type: console
+---
+
+## Slides
+
+### Functional enrichment analysis overview
+
+<a href="../../slides/08_FuncEnrich/08_functional_enrichment.pdf" target="_blank">Lecture slides in PDF format</a>
+
+```{r echo=FALSE}
+knitr::include_url('../../slides/08_FuncEnrich/08_functional_enrichment.pdf')
+```
+
+### Enrichment statistics
+
+<a href="../../slides/08_FuncEnrich/08b_enrichment_stats.pdf" target="_blank">Lecture slides in PDF format</a>
+
+```{r echo=FALSE}
+knitr::include_url('../../slides/08_FuncEnrich/08b_enrichment_stats.pdf')
+```
+
