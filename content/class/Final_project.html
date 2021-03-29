@@ -49,10 +49,10 @@ editor_options:
 <li>Perform adapter trimming using <code>Trimgalore</code> and <code>Trimmomatic</code>.</li>
 <li>Align the data using <code>bowtie2</code> and <code>STAR</code> aligners.</li>
 <li>Obtain gene counts using <code>featureCounts</code> and <code>HTSeq-count</code>.</li>
-<li>Exploratory data analysis: Number of samples per condition, gene expression distribution per sample, correlogram, PCA.</li>
-<li>Differential expression analysis using <code>edgeR</code> and <code>DESeq2</code>. Make the heatmap and the volcano plot of differentially expressed genes.</li>
+<li>Exploratory data analysis: Number of samples per condition, gene expression distribution per sample (boxplots), correlogram (<code>ComplexHeatmap</code>), PCA.</li>
+<li>Differential expression analysis using <code>edgeR</code> and <code>DESeq2</code>. Make the heatmap (<code>ComplexHeatmap</code>) and the volcano plot (<code>EnhancedVolcano</code>) of differentially expressed genes.</li>
 <li>Perform functional enrichment analysis (hypergeometric test and GSEA) of differentially expressed genes using Gene Ontology, KEGG, and MSigDb (<code>clusterProfiler</code>). Visualize two top KEGG pathways (<code>pathviewer</code>) and overlay differentially expressed genes.</li>
-<li>Compare lists of differentially expressed genes obtained after two different pipelines and the functional enrichment analysis results. Use a Venn diagram and consider the up- and downregulated directionality of changes. Describe the discrepancies.</li>
+<li>Compare lists of differentially expressed genes obtained after two different pipelines and the functional enrichment analysis results. Use a Venn diagram (<code>VennDetail</code>) and consider the up- and downregulated directionality of changes. Describe the discrepancies.</li>
 <li>Compare lists of differentially expressed genes obtained after two different pipelines and the functional enrichment analysis results with those reported in the original paper. Describe the discrepancies.</li>
 </ul>
 <p><strong>Teamwork:</strong> One team will use the same dataset. One team member will use one sequence of tools (e.g., Trimgalore-bowtie2-featureCounts), nonoverlapping with tools used by another. Both team members should explore and understand the functionality of all tools. Each team member will submit their own report. If working individually, use one sequence of tools only and perform a comparison with published results.</p>

@@ -50,10 +50,10 @@ Perform the following analyses, explain your observations in each.
 - Perform adapter trimming using `Trimgalore` and `Trimmomatic`.
 - Align the data using `bowtie2` and `STAR` aligners.
 - Obtain gene counts using `featureCounts` and `HTSeq-count`.
-- Exploratory data analysis: Number of samples per condition, gene expression distribution per sample, correlogram, PCA.
-- Differential expression analysis using `edgeR` and `DESeq2`. Make the heatmap and the volcano plot of differentially expressed genes.
+- Exploratory data analysis: Number of samples per condition, gene expression distribution per sample (boxplots), correlogram (`ComplexHeatmap`), PCA.
+- Differential expression analysis using `edgeR` and `DESeq2`. Make the heatmap (`ComplexHeatmap`) and the volcano plot (`EnhancedVolcano`) of differentially expressed genes.
 - Perform functional enrichment analysis (hypergeometric test and GSEA) of differentially expressed genes using Gene Ontology, KEGG, and MSigDb (`clusterProfiler`). Visualize two top KEGG pathways (`pathviewer`) and overlay differentially expressed genes.
-- Compare lists of differentially expressed genes obtained after two different pipelines and the functional enrichment analysis results. Use a Venn diagram and consider the up- and downregulated directionality of changes. Describe the discrepancies. 
+- Compare lists of differentially expressed genes obtained after two different pipelines and the functional enrichment analysis results. Use a Venn diagram (`VennDetail`) and consider the up- and downregulated directionality of changes. Describe the discrepancies. 
 - Compare lists of differentially expressed genes obtained after two different pipelines and the functional enrichment analysis results with those reported in the original paper. Describe the discrepancies.
 
 **Teamwork:** One team will use the same dataset. One team member will use one sequence of tools (e.g., Trimgalore-bowtie2-featureCounts), nonoverlapping with tools used by another. Both team members should explore and understand the functionality of all tools. Each team member will submit their own report. If working individually, use one sequence of tools only and perform a comparison with published results.
