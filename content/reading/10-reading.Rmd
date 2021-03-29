@@ -1,0 +1,34 @@
+---
+title: "Clustering"
+# linktitle: "1. Introduction to RStudio and Images"
+date: "2021-03-29"
+# class_date: "2021-01-25"
+output:
+  blogdown::html_page:
+    toc: false
+menu:
+  reading:
+    parent: Reading
+    weight: 12
+type: docs
+# weight: 1 
+# pdf: 
+# thumb: 
+editor_options: 
+  chunk_output_type: console
+---
+
+# Hierarchical clustering
+
+- Daxin Jiang, Chun Tang, and Aidong Zhang. “[Cluster Analysis for Gene Expression Data: A Survey](https://doi.org/10.1109/TKDE.2004.68).” IEEE Transactions on Knowledge and Data Engineering, (November 2004) - Clustering overview for gene expression studies. Definitions, proximity measures (Euclidean, Pearson), clustering (K-means, SOM, hierarchical, graph-theoretical, model-based, density, the use of PCA), biclustering. Metrics for clustering QC (homogeneity, separation, Rand, Jaccard, reliability)
+
+- Patrik D’haeseleer, “[How Does Gene Expression Clustering Work?](https://doi.org/10.1038/nbt1205-1499),” Nature Biotechnology, (December 2005) - Clustering distances. Recommendations for gene expression choices of clustering
+
+- Satagopan, Jaya M., and Katherine S. Panageas. “[A Statistical Perspective on Gene Expression Data Analysis](https://doi.org/10.1002/sim.1350).” Statistics in Medicine, (February 15, 2003) - Intro into microarray technology, statistical questions. Hierarchical clustering - clustering metrics. MDS algorithm. Class prediction - linear discriminant analysis algorithm and cross-validation. SAS and S examples
+
+- Altman, Naomi, and Martin Krzywinski. “[Points of Significance: Clustering](https://doi.org/10.1038/nmeth.4299).” Nature Methods, (May 30, 2017) - Clustering depends on gene scaling, clustering method, number of simulations in k-means clustering.
+
+- Krzywinski, Martin, and Naomi Altman. “[Points of Significance: Importance of Being Uncertain](https://doi.org/10.1038/nmeth.2613).” Nature Methods 10, no. 9 (September 2013)
+
+- Altman, Naomi, and Martin Krzywinski. “[Points of Significance: Association, Correlation and Causation](https://doi.org/10.1038/nmeth.3587).” Nature Methods, (September 29, 2015)
+
