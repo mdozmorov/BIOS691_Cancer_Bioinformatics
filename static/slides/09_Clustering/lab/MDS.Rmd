@@ -1,0 +1,61 @@
+---
+title: "MDS"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+[Source](https://personality-project.org/r/mds.html)
+
+Given a set of distances (dis-similarities) between objects, is it possible to recreate a dimensional representation of those objects?
+
+**Model**: Distance = square root of sum of squared distances on k dimensions dxy = √∑(xi-yi)2
+
+**Data**: a matrix of distances
+
+Find the dimensional values in k = 1, 2, ... dimensions for the objects that best reproduces the original data.
+
+**Example**: Consider the distances between nine American cities. Can we represent these cities in a two dimensional space.
+
+```{r}
+library(psych)
+data(cities)
+cities
+```
+
+The output gives us the the original distance matrix (just to make sure we put it in correctly, the x,y coordinates for each city, and then the following graph.
+
+```{r}
+city.location <- cmdscale(cities, k=2)    #ask for a 2 dimensional solution
+round(city.location,0)        #print the locations to the screen
+```
+
+This solution can be represented graphically:
+
+```{r}
+plot(city.location,type="n", xlab="Dimension 1", ylab="Dimension 2",main ="cmdscale(cities)")    #put up a graphics window
+text(city.location,labels=names(cities))     #put the cities into the map
+```
+
+Note that the solution is not quite what we expected (it is giving us a mirrored Australian orientation to American cities.) However, by reversing the signs in city.location, we get the more conventional representation:
+
+```{r}
+city.location <- -city.location
+plot(city.location,type="n", xlab="Dimension 1", ylab="Dimension 2",main ="cmdscale(cities)")    #put up a graphics window
+text(city.location,labels=names(cities))     #put the cities into the map
+```
+
+A useful feature is R is most commands have an extensive help file. Asking for help(cmdscale) shows that R includes a distance matrix for 20 European cities. The following commands (taken from the help file) produce a nice two dimensional solution. (Note that since dimensions are arbitrary, the second dimension needs to be flipped to produce the conventional map of Europe.)
+
+```{r}
+loc <- cmdscale(eurodist, k = 2)
+x <- loc[,1]
+y <- -loc[,2]
+plot(x, y, type="n", xlab="", ylab="", main="cmdscale(eurodist)")
+text(x, y, colnames(as.matrix(eurodist)), cex=0.8)
+```
+
+For gene expression matrices, use `limma::plotMDS` function, [http://web.mit.edu/~r/current/arch/i386_linux26/lib/R/library/limma/html/plotMDS.html](http://web.mit.edu/~r/current/arch/i386_linux26/lib/R/library/limma/html/plotMDS.html)
+

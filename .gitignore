@@ -8,4 +8,6 @@ static/slides/*/misc
 static/slides/05_Bioconductor/lab/*data
 static/slides/06_RNA-seq/lab
 *Exam*
+static/slides/09_Clustering/others
+static/slides/09_Clustering/data
 
