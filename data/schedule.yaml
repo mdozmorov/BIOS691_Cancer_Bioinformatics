@@ -49,3 +49,15 @@ lessons:
     reading: "08-reading"
     # assignment: "01-problem-set"
     class: "08-class"
+
+  - title: '**Enrichment**'
+    date: "March 22  - March 24"
+    reading: "09-reading"
+    # assignment: "01-problem-set"
+    class: "09-class"
+
+  - title: '**Clustering**'
+    date: "March 29  - March 31"
+    reading: "10-reading"
+    # assignment: "01-problem-set"
+    class: "10-class"
