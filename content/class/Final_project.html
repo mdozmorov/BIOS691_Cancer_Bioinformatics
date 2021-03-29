@@ -1,0 +1,100 @@
+---
+title: "Final project"
+# linktitle: "1. Introduction to RStudio and Images"
+date: "2021-05-03"
+due_date: "2021-05-03"
+due_time: "5:00 AM"
+output:
+  blogdown::html_page:
+    toc: false
+menu:
+  class:
+    parent: Class sessions
+    weight: 99
+type: docs
+# weight: 1 
+# pdf: 
+# thumb: 
+editor_options: 
+  chunk_output_type: console
+---
+
+
+
+<p><strong>General description</strong>: The purpose of the final project is for you to gain familiarity with the main methods learned in class, applied to experimental sequencing data. Additionally, the project should help solidify your statistical and practical understanding of such methods.</p>
+<!--For your project, you are required to complete two parts - 1) processing and analysis of raw RNA-seq data and 2) performing integrative analysis of two types of processed TCGA data, e.g., gene expression and methylation, or gene expression and ATAC-seq.-->
+<div id="processing-and-analysis-of-rna-seq-data" class="section level2">
+<h2>Processing and analysis of RNA-seq data</h2>
+<div id="dataset-selection-due-april-12-2021-500pm-edt" class="section level3">
+<h3>Dataset selection (due April 12, 2021, 5:00pm EDT)</h3>
+<p>You must select an RNA-seq dataset to analyze. Prerequisites for a dataset:</p>
+<ul>
+<li>at least two experimental conditions.</li>
+<li>at least three samples per condition.</li>
+<li>human data, but model organism data are acceptable.</li>
+<li>cancer-specific data is preferred, but other diseases are acceptable.</li>
+<li>mRNA (gene expression) is preferred, but different data types (e.g., methylation) may be acceptable after discussion with the instructor.
+<!--- your own data permitted after discussion with the instructor.--></li>
+</ul>
+<!--Choose experimental condition of interest (e.g., a particular cancer type, environmental exposure, immunologic or neurologic disease). -->
+<p>Search the <a href="http://www.ncbi.nlm.nih.gov/geo/">NCBI Gene Expression Omnibus (GEO) database</a>, using keywords of interest, e.g., “prostate cancer RNA-seq.”</p>
+<p>Find and read the associated paper describing the dataset - it should report differentially expressed genes and functional enrichment analysis results. Aim to re-create the published results. Submit the description of the data (“Introduction/Background” section, see “Reporting requirements” section).</p>
+</div>
+<div id="analysis-due-may-3-2021-500pm-edt" class="section level3">
+<h3>Analysis (due May 3, 2021, 5:00pm EDT)</h3>
+<p>Perform the following analyses, explain your observations in each.</p>
+<ul>
+<li>Download raw FASTQ files, describe the process.</li>
+<li>Perform data quality control using <code>FASTQC</code> followed by <code>multiqc</code>.</li>
+<li>Perform adapter trimming using <code>Trimgalore</code> and <code>Trimmomatic</code>.</li>
+<li>Align the data using <code>bowtie2</code> and <code>STAR</code> aligners.</li>
+<li>Obtain gene counts using <code>featureCounts</code> and <code>HTSeq-count</code>.</li>
+<li>Exploratory data analysis: Number of samples per condition, gene expression distribution per sample, correlogram, PCA.</li>
+<li>Differential expression analysis using <code>edgeR</code> and <code>DESeq2</code>. Make the heatmap and the volcano plot of differentially expressed genes.</li>
+<li>Perform functional enrichment analysis (hypergeometric test and GSEA) of differentially expressed genes using Gene Ontology, KEGG, and MSigDb (<code>clusterProfiler</code>). Visualize two top KEGG pathways (<code>pathviewer</code>) and overlay differentially expressed genes.</li>
+<li>Compare lists of differentially expressed genes obtained after two different pipelines and the functional enrichment analysis results. Use a Venn diagram and consider the up- and downregulated directionality of changes. Describe the discrepancies.</li>
+<li>Compare lists of differentially expressed genes obtained after two different pipelines and the functional enrichment analysis results with those reported in the original paper. Describe the discrepancies.</li>
+</ul>
+<p><strong>Teamwork:</strong> One team will use the same dataset. One team member will use one sequence of tools (e.g., Trimgalore-bowtie2-featureCounts), nonoverlapping with tools used by another. Both team members should explore and understand the functionality of all tools. Each team member will submit their own report. If working individually, use one sequence of tools only and perform a comparison with published results.</p>
+<!--
+## 2. Integrative analysis of two types of processed TCGA data
+
+Use Breast Cancer (BRCA) TCGA data. Select two data types, one should be RNA-seq and another may be ATAC-seq, DNA methylation, or other. Note that the additional data type should be considered in the context of genes, e.g., ATAC-seq peaks should be mapped to the nearby genes. Explore [GDC TCGA Breast Cancer (BRCA)](https://xenabrowser.net/datapages/?cohort=GDC%20TCGA%20Breast%20Cancer%20(BRCA)&removeHub=https%3A%2F%2Fxena.treehouse.gi.ucsc.edu%3A443) or [curatedTCGAData](    https://bioconductor.org/packages/curatedTCGAData/) data access options.
+
+Perform the following analyses, explain your observations in each.
+
+- Perform exploratory data analysis on gene expression - number of samples (total, and in each PAM50 subtype), number of genes, gene expression type (counts, RPKM/FPKM, TPM) and scale (raw or $log_2$), was the data normalized. Make a PCA plot (and/or, MDS, tSNE plots) colored by PAM50 subtypes.
+    - Repeat for another data type.
+- Select samples for two breast cancer subtypes from the "PAM50Call_RNAseq" annotation, e.g., "Basal" and "LumA." Perform differential expression analysis between the two conditions using `edgeR` and `DESeq2`. Compare the results, explain the discrepancies.
+    - Repeat for another data type.
+- Plot gene expression (X-axis) vs. another data type (Y-axis) levels for the differentially expressed genes. Select groups of genes with concordant changes, i.e., upregulated genes with decreased methylation level.
+- Perform functional enrichment analysis of concordant and discordant groups of differentially expressed genes.
+-->
+</div>
+</div>
+<div id="reporting-requirements" class="section level1">
+<h1>Reporting requirements</h1>
+<p>Your project reports should be written in R/Markdown format and compiled as a PDF document. Follow <a href="https://writingcenter.gmu.edu/guides/writing-an-imrad-report">the IMRaD format</a> when describing your project and results. Be concise when describing the results. Embed figures, small tables, and references in the report. Make supplementary figures/tables for large results output, if needed. For each part, address the following points:</p>
+<ul>
+<li>A simple and clear description of the datasets and the research question you are addressing. This should be written in the form of an <strong>Introduction/Background</strong> section(s).</li>
+<li>A <strong>Methods</strong> section</li>
+<li>A <strong>Results</strong> section providing a description of your results. Tables and figures should be numbered and captioned.
+<ul>
+<li><strong>Data component:</strong> Include description/code for obtaining and processing raw data; do not include raw data files. Include processed data/results as text or CSV files that your code chunks will process/generate. Gzip text files.</li>
+<li><strong>Computational component</strong>: code chunks analyzing the data in the Rmd file. Make sure your code is readable (use <code>formatR::tidy_app()</code> or the <code>styler</code> R packages), and commented.</li>
+</ul></li>
+<li>A <strong>Discussion/Conclusion</strong> section.</li>
+<li><strong>References</strong>.</li>
+</ul>
+</div>
+<div id="submitting-guidelines" class="section level1">
+<h1>Submitting guidelines</h1>
+<ul>
+<li>Submit Rmds and PDFs of the reports to the blackboard, <a href="https://blackboard.vcu.edu" class="uri">https://blackboard.vcu.edu</a></li>
+<li>Include a compressed project folder with your code, processed data/results in text/CSV format. Do not include raw data; instead, provide description/code for data downloading. The total size of the submission should not exceed 10Mb.</li>
+</ul>
+</div>
+<div id="due-date" class="section level1">
+<h1>Due date</h1>
+<p><strong>May 3, 2021, at 5:00pm EDT.</strong></p>
+</div>
