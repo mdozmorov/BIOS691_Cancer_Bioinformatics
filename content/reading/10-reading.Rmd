@@ -18,7 +18,7 @@ editor_options:
   chunk_output_type: console
 ---
 
-# Hierarchical clustering
+## Hierarchical clustering
 
 - Daxin Jiang, Chun Tang, and Aidong Zhang. “[Cluster Analysis for Gene Expression Data: A Survey](https://doi.org/10.1109/TKDE.2004.68).” IEEE Transactions on Knowledge and Data Engineering, (November 2004) - Clustering overview for gene expression studies. Definitions, proximity measures (Euclidean, Pearson), clustering (K-means, SOM, hierarchical, graph-theoretical, model-based, density, the use of PCA), biclustering. Metrics for clustering QC (homogeneity, separation, Rand, Jaccard, reliability)
 
@@ -32,3 +32,48 @@ editor_options:
 
 - Altman, Naomi, and Martin Krzywinski. “[Points of Significance: Association, Correlation and Causation](https://doi.org/10.1038/nmeth.3587).” Nature Methods, (September 29, 2015)
 
+## Dimensionality reduction
+
+- Abdi, Hervé, and Lynne J. Williams. “[Principal Component Analysis](https://doi.org/10.1002/wics.101).” Wiley Interdisciplinary Reviews: Computational Statistics, (July 2010) - PCA in-depth review. Mathematical formulations, terminology, examples, interpretation. Figures showing PC axes, rotations, projections, circle of correlation. Rules for selecting number of components. Rotation - varimax, promax, illustrated. Correspondence analysis for nominal variables, Multiple Factor Analysis for a set of observations described by several groups (tables) of variables. Appendices - eigenvalues and eigenvectors, positive semidefinite matrices, SVD
+
+- Wall, Michael. “[Singular Value Decomposition and Principal Component Analysis](https://link.springer.com/chapter/10.1007/0-306-47815-3_5),” - SVD and PCA statistical intro. Relation of SVD to PCA, Fourier transform. Examples of applications, including genomics. 
+
+- Lever, Jake, Martin Krzywinski, and Naomi Altman. “[Points of Significance: Principal Component Analysis](https://doi.org/10.1038/nmeth.4346).” Nature Methods, (June 29, 2017) PCA explanation, the effect of scale. Limitations
+
+- Lee, D. D., and H. S. Seung. “[Learning the Parts of Objects by Non-Negative Matrix Factorization](https://doi.org/10.1038/44565).” Nature, (October 21, 1999) - Non-negative matrix factorization (NMF) principles, compared with vector quantization (VQ) and PCA. Intuition behind NMF learning parts and PCA learning the whole.
+
+- Lee, Daniel D., and H. Sebastian Seung. “[Algorithms for Non-Negative Matrix Factorization](http://papers.nips.cc/paper/1861-algorithms-for-non-negative-matrix-factorization.pdf).” In Advances in Neural Information Processing Systems, MIT Press, 2001 - Two algorithms for solving NMF - Euclidean distance and Kullback-Leibler divergence, with proofs.
+
+- Meng, Chen, Oana A. Zeleznik, Gerhard G. Thallinger, Bernhard Kuster, Amin M. Gholami, and Aedín C. Culhane. “[Dimension Reduction Techniques for the Integrative Analysis of Multi-Omics Data](https://doi.org/10.1093/bib/bbv108).” Briefings in Bioinformatics, (July 2016) - Dimensionality reduction techniques - PCA and its derivatives, NMF. Table 1 - Terminology. Table 2 - methods, tools, visualization packages. Methods for integrative data analysis of multi-omics data.
+
+- Lee, Su-In, and Serafim Batzoglou. “[Application of Independent Component Analysis to Microarrays](https://doi.org/10.1186/gb-2003-4-11-r76).” Genome Biology 4, no. 11 (2003) - Independent Components Analysis theory and applications.
+
+- Stein-O’Brien, Genevieve L., Raman Arora, Aedin C. Culhane, Alexander V. Favorov, Lana X. Garmire, Casey S. Greene, Loyal A. Goff et al. "[Enter the matrix: factorization uncovers knowledge from omics](https://doi.org/10.1016/j.tig.2018.07.003)." Trends in Genetics, (2018) - Matrix factorization and visualization. Refs to various types of MF methods. Terminology, Fig 1 explanation of MF in terms of gene expression and biological processes. References to biological examples.
+
+- Yeung, K. Y., and W. L. Ruzzo. “[Principal Component Analysis for Clustering Gene Expression Data](https://doi.org/10.1093/bioinformatics/17.9.763).” Bioinformatics, (September 1, 2001) - PCA is not always good for denoising data before clustering, clustering of PCs often worse than the original data. Simulated and real-life data. Data used for benchmarks: http://faculty.washington.edu/kayee/pca/
+
+- Libbrecht, Maxwell W., and William Stafford Noble. “[Machine Learning Applications in Genetics and Genomics](https://doi.org/10.1038/nrg3920).” Nature Reviews. Genetics, (June 2015) - Machine learning in genomics. Supervised/unsupervised learning, semi-supervised, bayesian (incorporating prior knowledge), feature selection, imbalanced class sizes, missing data, networks. 
+
+- Meng, Chen, Bernhard Kuster, Aedín C. Culhane, and Amin Moghaddas Gholami. “[A Multivariate Approach to the Integration of Multi-Omics Datasets](https://doi.org/10.1186/1471-2105-15-162).” BMC Bioinformatics (May 29, 2014) - MCIA - multiple correspondence analysis for integrating multiple datasets. Statistics and implementation in [omicade4](https://bioconductor.org/packages/omicade4/) - Multiple co-inertia analysis of omics datasets.
+
+- [Singular Value Decomposition (SVD) Tutorial: Applications, Examples, Exercises](https://blog.statsbot.co/singular-value-decomposition-tutorial-52c695315254) blog post
+
+- Liu, Yanchi, Zhongmou Li, Hui Xiong, Xuedong Gao, and Junjie Wu. “[Understanding of Internal Clustering Validation Measures](https://doi.org/10.1109/ICDM.2010.35),” IEEE, 2010 - Internal clustering validation metrics, table, concise description of each.
+
+- Guido Kraemer, Markus Reichstein, and Miguel D. Mahecha, “[DimRed and CoRanking Unifying Dimensionality Reduction in R](https://doi.org/10.32614/RJ-2018-039),” The R Journal, 2018 - R packages implementing 15 methods for dimensionality reduction, from PCA, ICA, MDS to Laplasian eigenmaps. Brief but very good overview of each method, its complexity. Quality metrics to judge the quality of embedding. [GitHub](https://github.com/gdkrmr/dimRed)
+
+- Amir, El-ad David, Kara L Davis, Michelle D Tadmor, Erin F Simonds, Jacob H Levine, Sean C Bendall, Daniel K Shenfeld, Smita Krishnaswamy, Garry P Nolan, and Dana Pe’er. “[ViSNE Enables Visualization of High Dimensional Single-Cell Data and Reveals Phenotypic Heterogeneity of Leukemia](https://doi.org/10.1038/nbt.2594).” Nature Biotechnology, (June 2013) - viSNE paper - tSNE (Barnes-Hut) implementation for single-cell data, and the `cyt` tool for visualization. [Supplementary methods](https://media.nature.com/original/nature-assets/nbt/journal/v31/n6/extref/nbt.2594-S1.pdf) - details of t-SNE algorithm, [Details of usage](https://www.denovosoftware.com/site/manual/visne.htm) 
+
+- Belacel, Nabil, Qian Wang, and Miroslava Cuperlovic-Culf. “[Clustering Methods for Microarray Gene Expression Data](https://doi.org/10.1089/omi.2006.10.507).” Omics: A Journal of Integrative Biology, (2006) - Clustering methods overview. Hierarchical (agglomerative, divisive), partitional clustering (K-means, K-medoids, SOM). DBSCAN and other density-based algorithms. Graph-theoretical cllustering. Fuzzy clustering, expectation-maximization methods. Table with software.
+
+- Kossenkov, Andrew V., and Michael F. Ochs. “[Matrix Factorisation Methods Applied in Microarray Data Analysis](https://doi.org/10.1504/IJDMB.2010.030968).” International Journal of Data Mining and Bioinformatics, (2010) - Matrix factorization methods for genomics data. SVD, PCA, ICA, NCA, NMF (sparse and least squares NMF), Bayesian decomposition
+
+- Chavent, Marie, Vanessa Kuentz-Simonet, Amaury Labenne, and Jérôme Saracco. “[Multivariate Analysis of Mixed Data: The R Package PCAmixdata](http://arxiv.org/abs/1411.4911).” ArXiv, December 8, 2017 - PCAmixdata - R package for PCA on a mixture of numerical and categorical variables. Other packages - ade4, FactoMineR. Theory, statistics, code examples with interpretation. [PCAmixdata](https://CRAN.R-project.org/package=PCAmixdata)
+
+## Tools
+
+- [NbClust](https://CRAN.R-project.org/package=NbClust) - Determining the Best Number of Clusters in a Data Set. It provides 30 indexes for determining the optimal number of clusters in a data set and offers the best clustering scheme from different results to the user.
+
+- [philentropy](https://CRAN.R-project.org/package=philentropy) - Similarity and Distance Quantification Between Probability Functions. Computes 46 optimized distance and similarity measures for comparing probability functions.
+
+- [fpc](https://CRAN.R-project.org/package=fpc) - Flexible Procedures for Clustering R package. `prediction.strength` - function to calculate the optimal number of clusters.
