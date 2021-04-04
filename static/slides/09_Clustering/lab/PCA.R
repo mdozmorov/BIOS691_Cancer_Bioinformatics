@@ -6,9 +6,9 @@ library(pander)
 library(scatterplot3d)
 library(limma)
 
-setwd("~/Documents/Work/Teaching/BIOS567.2017/assets/09_Clustering/lab")
+setwd("~/Documents/Work/Teaching/BIOS691_Cancer_Bioinformatics/static/slides/09_Clustering/lab")
 # Get the data from http://odin.mdacc.tmc.edu/~kdo/TeachBioinf/Projects%20&%20Data%20Sets/nci60.tsv
-mtx <- read.delim("nci60.tsv", sep = "\t", row.names = 1)
+mtx <- read.delim("../data/nci60.tsv", sep = "\t", row.names = 1)
 dim(mtx)
 colnames(mtx)
 boxplot(mtx)
@@ -41,20 +41,20 @@ plot(pt)
 # ggsave(filename = "Figure.pdf", plot = pt, height = 8, width = 11)
 
 # devtools::install_github("fawda123/ggord")
-library(ggord)
-ggord(pca, groups, arrow = NULL)
+# library(ggord)
+# ggord(pca, groups, arrow = NULL)
 
 #install.packages("ggfortify")
 library(ggfortify)
 autoplot(prcomp(mtx %>% t %>% scale), data = data.frame(groups = groups), colour = "groups")
 
-library(MDmisc)
-library(pcaGoPromoter)
+# library(MDmisc)
+# library(pcaGoPromoter)
 library(ellipse)
 library(gridExtra)
 library(grid)
 library(ggplot2)
-pca_func(mtx, groups, title = "PCA")
+# pca_func(mtx, groups, title = "PCA")
 
 # Let's introduce batch into a half of the matrix - raise it to the power of 2
 mtx_with_batch <- cbind(mtx[, 1:round(ncol(mtx) / 2)], mtx[, (round(ncol(mtx) / 2) + 1):ncol(mtx)]^2)
@@ -115,15 +115,13 @@ pt <- ggplot(data=scores, aes(x=Comp.1, y=Comp.2, label=groups, color = groups))
   #  labs(x = "PC1 (23.06%)", y = "PC2 (7.95%)") +
   theme(plot.title = element_text(lineheight = 0.8, face="bold")) +
   theme(legend.position = c(0.1, 0.12)) +
-  theme(legend.text = element_text(size = 2)) +
+  theme(legend.text = element_text(size = 6)) +
   theme(legend.key.size = unit(10, "mm")) +
-  geom_point(aes(shape = groups), size = 2) +
+  geom_point(aes(shape = groups), size = 3) +
   geom_hline(yintercept = 0, colour = "gray65") +
   geom_vline(xintercept = 0, colour = "gray65") +
-  geom_text_repel(colour = "black", size = 2)
+  geom_text_repel(colour = "black", size = 3)
 plot(pt)
-
-
 
 # PCD 3D
 # http://davetang.org/muse/2015/02/12/animated-plots-using-r/
