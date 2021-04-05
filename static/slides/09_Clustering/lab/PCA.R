@@ -12,7 +12,17 @@ mtx <- read.delim("../data/nci60.tsv", sep = "\t", row.names = 1)
 dim(mtx)
 colnames(mtx)
 boxplot(mtx)
-# Create annotations 
+
+### Filtering 
+library(genefilter)
+tmp <- sapply(mtx, summary)
+
+gene_expr <- apply(mtx, 1, function(x) {sum(x <= 0) } )
+
+mtx_filtered <- mtx[ gene_expr <= 0.5 * ncol(mtx), ]
+boxplot(mtx_filtered)
+
+### Create annotations 
 groups <- sapply(colnames(mtx), function(x) { obj <- strsplit(x, ".", fixed = TRUE); unlist(obj)[[1]][1]}) %>% as.character()
 groups[ groups == "K562A" ] <- "K562" # A couple of manual tweaks
 groups[ groups == "K562B" ] <- "K562"
@@ -20,9 +30,28 @@ groups[ groups == "MCF7A" ] <- "MCF7" # A couple more
 groups[ groups == "MCF7D" ] <- "MCF7"
 groups %>% table
 
-# PCA: Check for batch effects. Select one batch, to color points by its assignment
+### Clustering
+?dist
+dist_mtx <- mtx %>% t %>% dist(x = ., diag = TRUE)
+class(dist_mtx)
+
+?hclust
+hclust_mtx <- hclust(dist_mtx, method = "average")
+plot(hclust_mtx)
+
+# Correlation as distance
+cor_mtx <- mtx %>% cor(x = ., method = "pearson")
+dist_cor_mtx <- (1 - cor_mtx) / 2
+hclust_cor_mtx <- hclust(as.dist(dist_cor_mtx), method = "ward.D")
+plot(hclust_cor_mtx)
+
+# Heatmap
+library(pheatmap)
+pheatmap(cor_mtx, clustering_distance_rows = "correlation", clustering_distance_cols = "correlation", clustering_method = "ward.D")
+
+### PCA: Check for batch effects. Select one batch, to color points by its assignment
 pca <- mtx %>% t %>% scale %>% prcomp 
-pca <- prcomp(t(scale(mtx)))
+# pca <- prcomp(t(scale(mtx)))
 data.frame(summary(pca)$importance)[, 1:5] %>% pander # Percent of variance explained
 
 colorby <- "cells"
@@ -40,22 +69,13 @@ pt <- ggplot(data = data.frame(pca$x, cells = groups, samples = groups, stringsA
 plot(pt)
 # ggsave(filename = "Figure.pdf", plot = pt, height = 8, width = 11)
 
-# devtools::install_github("fawda123/ggord")
-# library(ggord)
-# ggord(pca, groups, arrow = NULL)
+### Multi-Dimensional Scaling
+?cmdscale
+cmdscale_mtx <- cmdscale(dist_mtx)
+plot(cmdscale_mtx)
 
-#install.packages("ggfortify")
-library(ggfortify)
-autoplot(prcomp(mtx %>% t %>% scale), data = data.frame(groups = groups), colour = "groups")
 
-# library(MDmisc)
-# library(pcaGoPromoter)
-library(ellipse)
-library(gridExtra)
-library(grid)
-library(ggplot2)
-# pca_func(mtx, groups, title = "PCA")
-
+### Batch effect
 # Let's introduce batch into a half of the matrix - raise it to the power of 2
 mtx_with_batch <- cbind(mtx[, 1:round(ncol(mtx) / 2)], mtx[, (round(ncol(mtx) / 2) + 1):ncol(mtx)]^2)
 boxplot(mtx_with_batch)
@@ -95,9 +115,15 @@ for (covariate in covariates){
 # How does it compare with MDS?
 plotMDS(mtx_with_batch , col = ifelse(batch == 1, "red", "blue"), main = "Before batch removal")
 
-# t-SNE
-library(Rtsne)
+# Removing batch
+library(sva)
+?ComBat
+mtx_without_batch <- ComBat(mtx_with_batch, batch = batch)
+mtx_without_batch %>% t %>%  dist %>% hclust(., method = "ward.D") %>% plot
 
+### t-SNE
+library(Rtsne)
+set.seed(1)
 tsne <- Rtsne(mtx %>% t %>% scale, dims = 2, perplexity=20, verbose=TRUE, max_iter = 500)
 
 ## Plotting
@@ -122,6 +148,19 @@ pt <- ggplot(data=scores, aes(x=Comp.1, y=Comp.2, label=groups, color = groups))
   geom_vline(xintercept = 0, colour = "gray65") +
   geom_text_repel(colour = "black", size = 3)
 plot(pt)
+
+### Differential expression analysis
+library(limma)
+index <- groups == "BREAST" | groups == "COLON"
+mtx_subset <- mtx[, index]
+group_subset <- groups[index]
+
+design <- model.matrix(~group_subset)
+fit <- lmFit(mtx_subset, design)
+fit <- eBayes(fit)
+topTable(fit, coef=2, adjust="BH")
+
+
 
 # PCD 3D
 # http://davetang.org/muse/2015/02/12/animated-plots-using-r/

@@ -7,7 +7,17 @@
 
 ## `lab` - in-class lab material
 
-- `PCA.R` - uses `nci60.tsv` to demo PCA, batch, MDS, t-SNE, 3D PCA. 
+- `PCA.R` - uses `nci60.tsv` to demo PCA, batch, MDS, t-SNE, 3D PCA.
+    - dist()
+    - hclust()
+    - distribution boxplots, filtering
+    - PCA, with batch
+    - MDS
+    - t-SNE
+    - UMAP
+    - Differential expression with limma, heatmap
+    - Noise - differential expression and clustering
+    
 
 - `NCI60Example` - PCA on NCI60 subset, accompanying Chen Meng et al., “Dimension Reduction Techniques for the Integrative Analysis of Multi-Omics Data,” Briefings in Bioinformatics 17, no. 4 (July 2016): 628–41, doi:10.1093/bib/bbv108. https://github.com/aedin/NCI60Example
 - [nci60.tsv](http://odin.mdacc.tmc.edu/~kdo/TeachBioinf/Projects%20&%20Data%20Sets/nci60.tsv) - cell types can be clustered
