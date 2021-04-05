@@ -41,7 +41,7 @@ You must select an RNA-seq dataset to analyze. Prerequisites for a dataset:
 
 <!--Choose experimental condition of interest (e.g., a particular cancer type, environmental exposure, immunologic or neurologic disease). -->Search the [NCBI Gene Expression Omnibus (GEO) database](http://www.ncbi.nlm.nih.gov/geo/), using keywords of interest, e.g., "prostate cancer RNA-seq." 
 
-Find and read the associated paper describing the dataset - it should report differentially expressed genes and functional enrichment analysis results. Aim to re-create the published results. Submit the description of the data ("Introduction/Background" section, see "Reporting requirements" section).  Include brief methods for obtaining the data.
+Find and read the associated paper describing the dataset - it should report differentially expressed genes and functional enrichment analysis results. Aim to re-create the published results. Submit the description of the data ("Introduction/Background" section, see "Reporting requirements" section).  Include brief methods for obtaining the data. If working in a team, each team member submits the same data description.
 
 ### Analysis (due May 3, 2021, 5:00pm EDT)
 
