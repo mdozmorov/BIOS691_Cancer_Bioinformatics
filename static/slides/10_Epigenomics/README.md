@@ -26,25 +26,25 @@
 
 - McLean, Cory Y., Dave Bristor, Michael Hiller, Shoa L. Clarke, Bruce T. Schaar, Craig B. Lowe, Aaron M. Wenger, and Gill Bejerano. “[GREAT Improves Functional Interpretation of Cis-Regulatory Regions](https://doi.org/10.1038/nbt.1630).” Nature Biotechnology 28, no. 5 (May 2010) - Hypergeometric and binomial enrichment of regulatory regions in relation to genesgenomic regions and their ontologies.
 
+- Dozmorov, Mikhail G. “[Epigenomic Annotation-Based Interpretation of Genomic Data: From Enrichment Analysis to Machine Learning](https://doi.org/10.1093/bioinformatics/btx414).” Bioinformatics (Oxford, England) 33, no. 20 (October 15, 2017)
 
-- Dozmorov, Mikhail G. “Epigenomic Annotation-Based Interpretation of Genomic Data: From Enrichment Analysis to Machine Learning.” Bioinformatics (Oxford, England) 33, no. 20 (October 15, 2017): 3323–30. [https://doi.org/10.1093/bioinformatics/btx414](https://doi.org/10.1093/bioinformatics/btx414)
+### Hidden Markov Models, genome segmentation overview
 
-- Eddy, Sean R. “What Is a Hidden Markov Model?” Nature Biotechnology 22, no. 10 (October 2004): 1315–16. [https://doi.org/10.1038/nbt1004-1315](https://doi.org/10.1038/nbt1004-1315)
+- Eddy, Sean R. “[What Is a Hidden Markov Model?](https://doi.org/10.1038/nbt1004-1315)” Nature Biotechnology, (October 2004)
 
-- Eddy, S. R. “Multiple Alignment Using Hidden Markov Models.” Proceedings. International Conference on Intelligent Systems for Molecular Biology 3 (1995): 114–20. [https://pdfs.semanticscholar.org/bc1e/ffe17026c1396697e4ea2b399f7a049202fc.pdf](https://pdfs.semanticscholar.org/bc1e/ffe17026c1396697e4ea2b399f7a049202fc.pdf) - HMMER hidden markov models for protein sequence alignment. First paper
+- Eddy, S. R. “[Multiple Alignment Using Hidden Markov Models](https://pdfs.semanticscholar.org/bc1e/ffe17026c1396697e4ea2b399f7a049202fc.pdf).” Proceedings. International Conference on Intelligent Systems for Molecular Biology (1995) - HMMER hidden markov models for protein sequence alignment. First paper
 
-- Schuster-Böckler, Benjamin, and Alex Bateman. “An Introduction to Hidden Markov Models.” In Current Protocols in Bioinformatics, edited by Andreas D. Baxevanis, Daniel B. Davison, Roderic D.M. Page, Gregory A. Petsko, Lincoln D. Stein, and Gary D. Stormo. Hoboken, NJ, USA: John Wiley & Sons, Inc., 2007. [https://doi.org/10.1002/0471250953.bia03as18](https://doi.org/10.1002/0471250953.bia03as18) - Hidden Markov Models primer
+- Schuster-Böckler, Benjamin, and Alex Bateman. “[An Introduction to Hidden Markov Models](https://doi.org/10.1002/0471250953.bia03as18).” 2007 - Hidden Markov Models primer
 
-- L.R. Rabiner, “A Tutorial on Hidden Markov Models and Selected Applications in Speech Recognition,” Proceedings of the IEEE 77, no. 2 (February 1989): 257–86, [https://doi.org/10.1109/5.18626](https://doi.org/10.1109/5.18626) - Theory and statistics of Hidden Markov Models. Very detailed, thorough
+- L.R. Rabiner, “[A Tutorial on Hidden Markov Models and Selected Applications in Speech Recognition](https://doi.org/10.1109/5.18626),” Proceedings of the IEEE, (February 1989) - Theory and statistics of Hidden Markov Models. Very detailed, thorough
 
-- "Hidden Markov Models" by bioinformaticsalgorithms.com. [https://www.youtube.com/watch?list=PLQ-85lQlPqFPnk31Uut2ajVkBvlFmMtdx&v=cnvYujS9Rlk](https://www.youtube.com/watch?list=PLQ-85lQlPqFPnk31Uut2ajVkBvlFmMtdx&v=cnvYujS9Rlk)
+- Ernst, Jason, and Manolis Kellis. “[Chromatin-State Discovery and Genome Annotation with ChromHMM](https://doi.org/10.1038/nprot.2017.124).” Nature Protocols, (December 2017) - ChromHMM protocol. Intro about ChromHMM, other methods. Links to genome annotation models.
 
-- Ernst, Jason, and Manolis Kellis. “Chromatin-State Discovery and Genome Annotation with ChromHMM.” Nature Protocols 12, no. 12 (December 2017): 2478–92. [https://doi.org/10.1038/nprot.2017.124](https://doi.org/10.1038/nprot.2017.124) - ChromHMM protocol. Intro about ChromHMM, other methods. Links to genome annotation models.
+- Hoffman, Michael M., Orion J. Buske, Jie Wang, Zhiping Weng, Jeff A. Bilmes, and William Stafford Noble. “[Unsupervised Pattern Discovery in Human Chromatin Structure through Genomic Segmentation](https://doi.org/10.1038/nmeth.1937).” Nature Methods 9, no. 5 (May 2012) - Segway - segmentation and prediction of genomic states. Using dynamic Bayesian network
 
-- Hoffman, Michael M., Orion J. Buske, Jie Wang, Zhiping Weng, Jeff A. Bilmes, and William Stafford Noble. “Unsupervised Pattern Discovery in Human Chromatin Structure through Genomic Segmentation.” Nature Methods 9, no. 5 (May 2012): 473–76. [https://doi.org/10.1038/nmeth.1937](https://doi.org/10.1038/nmeth.1937) - Segway - segmentation and prediction of genomic states. Using dynamic Bayesian network
-
+<!--
 - Rojano, Elena, Pedro Seoane, Juan A G Ranea, and James R Perkins. “Regulatory Variants: From Detection to Predicting Impact.” Briefings in Bioinformatics, June 8, 2018. [https://doi.org/10.1093/bib/bby039](https://doi.org/10.1093/bib/bby039) - Regulatory SNPs methods of analysis review. Key regulatory elements (promoters, enhancers, silencers, insulators). Clustering and redundancy of regulatory elements. Post-transcriptional regulation (miRNA, lincRNA). How to call SNPs. Table 1 - databases of regulatory elements. Annotations for predicting pathogenicity (CADD, DANN, GWAVA, FATHMM-MKL, LINSIGHT, others, Table 3). Table 2 - annotation tools. Table 4 - current experimental techniques, including Hi-C. Example diseases having regulatory variants.
-
+-->
 
 ## `misc` - misc presentations and materials
 

@@ -37,3 +37,21 @@ editor_options:
 ## Epigenomic enrichment
 
 - McLean, Cory Y., Dave Bristor, Michael Hiller, Shoa L. Clarke, Bruce T. Schaar, Craig B. Lowe, Aaron M. Wenger, and Gill Bejerano. “[GREAT Improves Functional Interpretation of Cis-Regulatory Regions](https://doi.org/10.1038/nbt.1630).” Nature Biotechnology 28, no. 5 (May 2010) - Hypergeometric and binomial enrichment of regulatory regions in relation to genesgenomic regions and their ontologies.
+
+- De, Subhajyoti, Brent S. Pedersen, and Katerina Kechris. “[The Dilemma of Choosing the Ideal Permutation Strategy While Estimating Statistical Significance of Genome-Wide Enrichment](https://doi.org/10.1093/bib/bbt053).” Briefings in Bioinformatics 15, no. 6 (November 2014)
+
+- Dozmorov, Mikhail G. “[Epigenomic Annotation-Based Interpretation of Genomic Data: From Enrichment Analysis to Machine Learning](https://doi.org/10.1093/bioinformatics/btx414).” Bioinformatics (Oxford, England) 33, no. 20 (October 15, 2017)
+
+### Hidden Markov Models, genome segmentation overview
+
+- Eddy, Sean R. “[What Is a Hidden Markov Model?](https://doi.org/10.1038/nbt1004-1315)” Nature Biotechnology, (October 2004)
+
+- Eddy, S. R. “[Multiple Alignment Using Hidden Markov Models](https://pdfs.semanticscholar.org/bc1e/ffe17026c1396697e4ea2b399f7a049202fc.pdf).” Proceedings. International Conference on Intelligent Systems for Molecular Biology (1995) - HMMER hidden markov models for protein sequence alignment. First paper
+
+- Schuster-Böckler, Benjamin, and Alex Bateman. “[An Introduction to Hidden Markov Models](https://doi.org/10.1002/0471250953.bia03as18).” 2007 - Hidden Markov Models primer
+
+- L.R. Rabiner, “[A Tutorial on Hidden Markov Models and Selected Applications in Speech Recognition](https://doi.org/10.1109/5.18626),” Proceedings of the IEEE, (February 1989) - Theory and statistics of Hidden Markov Models. Very detailed, thorough
+
+- Ernst, Jason, and Manolis Kellis. “[Chromatin-State Discovery and Genome Annotation with ChromHMM](https://doi.org/10.1038/nprot.2017.124).” Nature Protocols, (December 2017) - ChromHMM protocol. Intro about ChromHMM, other methods. Links to genome annotation models.
+
+- Hoffman, Michael M., Orion J. Buske, Jie Wang, Zhiping Weng, Jeff A. Bilmes, and William Stafford Noble. “[Unsupervised Pattern Discovery in Human Chromatin Structure through Genomic Segmentation](https://doi.org/10.1038/nmeth.1937).” Nature Methods 9, no. 5 (May 2012) - Segway - segmentation and prediction of genomic states. Using dynamic Bayesian network
