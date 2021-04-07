@@ -1,7 +1,7 @@
 ---
 title: "Annotation_and_Enrichment_REGIONS"
 author: "Mikhail Dozmorov"
-date: "October 25, 2014"
+date: "Spring 2021"
 output: html_document
 ---
 ```{r setup, echo=FALSE}
@@ -12,22 +12,28 @@ options(replace.assign=TRUE, width=220)
 suppressMessages(library(pander))
 panderOptions('table.split.table', Inf)
 set.seed(1)
-setwd("/Users/mdozmorov/Documents/Work/Teaching/WIP/08_Epigenomics")
+# Change to your working folder
+setwd("/Users/mdozmorov/Documents/Work/Teaching/BIOS691_Cancer_Bioinformatics/static/slides/10_Epigenomics")
 ```
 
-We load coordinates of age-associated CpG sites from BED file, and convert them to RangedData
+We load coordinates of age-associated CpG sites from BED file as GenomicRanges. See Steve Horvath, "[DNA methylation age of human tissues and cell types](https://doi.org/10.1186/gb-2013-14-10-r115)" 10 December 2013 for more details about the data.
+
 ```{r}
-suppressMessages(library(ChIPpeakAnno))
+library(ChIPpeakAnno)
 library(rtracklayer)
 
 peaks <- import("data/Horvath_cpg_all.bed", format = "BED") # Convert to RangedData
 ```
+
+Gene annotation data
 
 ```{r}
 library(EnsDb.Hsapiens.v75)
 annoData <- toGRanges(EnsDb.Hsapiens.v75)
 annoData[1:2]
 ```
+
+Annotate CpG sites by nearest/overlapping gene
 
 ```{r}
 ## keep the seqnames in the same style
@@ -39,6 +45,8 @@ anno[1:2]
 pie1(table(anno$insideFeature))
 ```
 
+Add gene symbol
+
 ```{r}
 library(org.Hs.eg.db)
 anno <- addGeneIDs(anno, orgAnn="org.Hs.eg.db", 
@@ -47,7 +55,11 @@ anno <- addGeneIDs(anno, orgAnn="org.Hs.eg.db",
 head(anno)
 ```
 
+From here, you can already perform gene set enrichment analysis on the identified genes, using, for example, [clusterProfiler](https://bioconductor.org/packages/clusterProfiler/). Try to do, and compare the results with what [GREAT](https://bioconductor.org/packages/rGREAT/) will return
+
 # GREAT
+
+Another approach for peak-to-gene enrichment analysis, directly on peaks.
 
 ```{r}
 library(rGREAT)
