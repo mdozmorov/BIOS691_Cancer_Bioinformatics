@@ -1,0 +1,61 @@
+---
+title: "Annotation_and_Enrichment_REGIONS"
+author: "Mikhail Dozmorov"
+date: "October 25, 2014"
+output: html_document
+---
+```{r setup, echo=FALSE}
+# Set up the environment
+library(knitr) 
+opts_chunk$set(cache.path='cache/', fig.path='img/', cache=F, tidy=T, fig.keep='high', echo=T, dpi=300, out.width=700)
+options(replace.assign=TRUE, width=220)
+suppressMessages(library(pander))
+panderOptions('table.split.table', Inf)
+set.seed(1)
+setwd("/Users/mdozmorov/Documents/Work/Teaching/WIP/08_Epigenomics")
+```
+
+We load coordinates of age-associated CpG sites from BED file, and convert them to RangedData
+```{r}
+suppressMessages(library(ChIPpeakAnno))
+library(rtracklayer)
+
+peaks <- import("data/Horvath_cpg_all.bed", format = "BED") # Convert to RangedData
+```
+
+```{r}
+library(EnsDb.Hsapiens.v75)
+annoData <- toGRanges(EnsDb.Hsapiens.v75)
+annoData[1:2]
+```
+
+```{r}
+## keep the seqnames in the same style
+seqlevelsStyle(peaks) <- seqlevelsStyle(annoData)
+## do annotation by nearest TSS
+anno <- annotatePeakInBatch(peaks, AnnotationData=annoData)
+anno[1:2]
+# A pie chart can be used to demonstrate the overlap features of the peaks.
+pie1(table(anno$insideFeature))
+```
+
+```{r}
+library(org.Hs.eg.db)
+anno <- addGeneIDs(anno, orgAnn="org.Hs.eg.db", 
+                   feature_id_type="ensembl_gene_id",
+                   IDs2Add=c("symbol"))
+head(anno)
+```
+
+# GREAT
+
+```{r}
+library(rGREAT)
+job <- submitGreatJob(peaks)
+tb = getEnrichmentTables(job)
+names(tb)
+tb[["GO Molecular Function"]]
+res = plotRegionGeneAssociationGraphs(job)
+```
+
+

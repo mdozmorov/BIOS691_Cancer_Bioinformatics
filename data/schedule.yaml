@@ -57,7 +57,13 @@ lessons:
     class: "09-class"
 
   - title: '**Clustering**'
-    date: "March 29  - March 31"
+    date: "March 29  - April 5"
     reading: "10-reading"
     # assignment: "01-problem-set"
     class: "10-class"
+
+  - title: '**Epigenomics, methylation**'
+    date: "April 7 - April 12"
+    reading: "11-reading"
+    # assignment: "01-problem-set"
+    class: "11-class"

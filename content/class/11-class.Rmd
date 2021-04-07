@@ -1,0 +1,52 @@
+---
+title: "Epigenomics, methylation"
+# linktitle: "1. Introduction to RStudio and Images"
+date: "2021-04-07"
+class_date: "2021-04-07"
+output:
+  blogdown::html_page:
+    toc: false
+menu:
+  class:
+    parent: Class sessions
+    weight: 12
+type: docs
+# weight: 1 
+# pdf: 
+# thumb: 
+editor_options: 
+  chunk_output_type: console
+---
+
+## Slides
+
+### Epigenomics intro
+
+<a href="../../slides/10_Epigenomics/01_Epigenomics_intro.pdf" target="_blank">Lecture slides in PDF format</a>
+
+```{r echo=FALSE}
+knitr::include_url('../../slides/10_Epigenomics/01_Epigenomics_intro.pdf')
+```
+
+### Epigenomic enrichment
+
+<a href="../../slides/10_Epigenomics/02_Epigenomics_enrichment.pdf" target="_blank">Lecture slides in PDF format</a>
+
+```{r echo=FALSE}
+knitr::include_url('../../slides/10_Epigenomics/02_Epigenomics_enrichment.pdf')
+```
+
+<a href="../../slides/10_Epigenomics/lab/Enrichment_Regions.Rmd" target="_blank">Enrichment_Regions.Rmd</a> (<a href="../../slides/10_Epigenomics/data/Horvath_cpg_all.bed" target="_blank">Data</a>),
+
+### Hidden Markov Models, genome segmentation overview
+
+<a href="../../slides/10_Epigenomics/03_HMM.pdf" target="_blank">Lecture slides in PDF format</a>
+
+```{r echo=FALSE}
+knitr::include_url('../../slides/10_Epigenomics/03_HMM.pdf')
+```
+
+<a href="../../slides/10_Epigenomics/lab/Segmentation_demo.R" target="_blank">Segmentation_demo.R</a>
+
+
+
