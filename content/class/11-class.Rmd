@@ -48,5 +48,36 @@ knitr::include_url('../../slides/10_Epigenomics/03_HMM.pdf')
 
 <a href="../../slides/10_Epigenomics/lab/Segmentation_demo.R" target="_blank">Segmentation_demo.R</a>
 
+### Array-based methylation technologies and analysis
+
+<a href="../../slides/11_Methylation/02_Methylation_arrays.pdf" target="_blank">Lecture slides in PDF format</a>
+
+```{r echo=FALSE}
+knitr::include_url('../../slides/11_Methylation/02_Methylation_arrays.pdf')
+```
+
+<a href="../../slides/11_Methylation/03_Methylation_minfi.pdf.pdf" target="_blank">Additional: minfi methylation pipeline, PDF</a>
+
+### Sequencing-based methylation technologies and analysis
+
+<a href="../../slides/11_Methylation/04_Methylation_sequencing.pdf" target="_blank">Lecture slides in PDF format</a>
+
+```{r echo=FALSE}
+knitr::include_url('../../slides/11_Methylation/04_Methylation_sequencing.pdf')
+```
+
+### Cell type deconvolution
+
+<a href="../../slides/11_Methylation/05_Methylation_deconvolution.pdf" target="_blank">Lecture slides in PDF format</a>
+
+```{r echo=FALSE}
+knitr::include_url('../../slides/11_Methylation/05_Methylation_deconvolution.pdf')
+```
+
+
+
+
+
+
 
 
