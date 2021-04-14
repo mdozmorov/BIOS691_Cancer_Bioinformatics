@@ -1,0 +1,31 @@
+---
+title: "ChIP-seq"
+# linktitle: "1. Introduction to RStudio and Images"
+date: "2021-04-04"
+# class_date: "2021-01-25"
+output:
+  blogdown::html_page:
+    toc: false
+menu:
+  reading:
+    parent: Reading
+    weight: 14
+type: docs
+# weight: 1 
+# pdf: 
+# thumb: 
+editor_options: 
+  chunk_output_type: console
+---
+
+## ChIP-seq
+
+### Technology
+
+- Park, Peter J. “[ChIP–seq: Advantages and Challenges of a Maturing Technology](https://doi.org/10.1038/nrg2641).” Nature Reviews Genetics 10, no. 10 (October 2009) - ChIP-seq review, basics of technology, alignment, peak calling, downstream analysis.
+
+- Bailey, Timothy, Pawel Krajewski, Istvan Ladunga, Celine Lefebvre, Qunhua Li, Tao Liu, Pedro Madrigal, Cenny Taslim, and Jie Zhang. “[Practical Guidelines for the Comprehensive Analysis of ChIP-Seq Data](http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1003326).” Edited by Fran Lewitter. PLoS Computational Biology 9, no. 11 (November 14, 2013) - ChIP-seq computational workflow - sequencing depth, alignment, QC, peak calling, reproducibility (IDR), narrow/broad peaks, differential binding analysis, annotation, normalization.
+
+- Furey, Terrence S. “[ChIP–seq and beyond: New and Improved Methodologies to Detect and Characterize Protein–DNA Interactions](https://www.nature.com/articles/nrg3306).” Nature Reviews Genetics, (October 23, 2012) - ChIP-seq technologies, narrow and broad peaks, DNAse- and FAIRE-seq, cromatin conformation capture, Gentle technology and terms introduction. 
+
+- Buenrostro, Jason D, Paul G Giresi, Lisa C Zaba, Howard Y Chang, and William J Greenleaf. “[Transposition of Native Chromatin for Fast and Sensitive Epigenomic Profiling of Open Chromatin, DNA-Binding Proteins and Nucleosome Position](https://doi.org/10.1038/nmeth.2688).” Nature Methods 10, no. 12 (December 2013) - ATAC-seq technology, corespondence to DNAse-seq.
