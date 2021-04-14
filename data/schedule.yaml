@@ -67,3 +67,9 @@ lessons:
     reading: "11-reading"
     # assignment: "01-problem-set"
     class: "11-class"
+
+  - title: '**ChIP-seq**'
+    date: "April 14 - April 19"
+    reading: "12-reading"
+    # assignment: "01-problem-set"
+    class: "12-class"
