@@ -1,0 +1,29 @@
+---
+title: "ChIP=seq"
+# linktitle: "1. Introduction to RStudio and Images"
+date: "2021-04-14"
+class_date: "2021-04-14"
+output:
+  blogdown::html_page:
+    toc: false
+menu:
+  class:
+    parent: Class sessions
+    weight: 13
+type: docs
+# weight: 1 
+# pdf: 
+# thumb: 
+editor_options: 
+  chunk_output_type: console
+---
+
+## Slides
+
+### ChIP-seq
+
+<a href="../../slides/12_ChIP-seq/01_ChIP-seq.pdf" target="_blank">Lecture slides in PDF format</a>
+
+```{r echo=FALSE}
+knitr::include_url('../../slides/12_ChIP-seq/01_ChIP-seq.pdf')
+```
