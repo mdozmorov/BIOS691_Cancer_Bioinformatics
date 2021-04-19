@@ -32,4 +32,51 @@ editor_options:
 <li><p>Buenrostro, Jason D, Paul G Giresi, Lisa C Zaba, Howard Y Chang, and William J Greenleaf. “<a href="https://doi.org/10.1038/nmeth.2688">Transposition of Native Chromatin for Fast and Sensitive Epigenomic Profiling of Open Chromatin, DNA-Binding Proteins and Nucleosome Position</a>.” Nature Methods 10, no. 12 (December 2013) - ATAC-seq technology, corespondence to DNAse-seq.</p></li>
 </ul>
 </div>
+<div id="peak-calling" class="section level3">
+<h3>Peak calling</h3>
+<ul>
+<li><p>Zhang, Yong, Tao Liu, Clifford A. Meyer, Jérôme Eeckhoute, David S. Johnson, Bradley E. Bernstein, Chad Nusbaum, et al. “<a href="https://doi.org/10.1186/gb-2008-9-9-r137">Model-Based Analysis of ChIP-Seq (MACS)</a>.” Genome Biology, (2008) - MACS paper</p></li>
+<li><p>Kharchenko, Peter V, Michael Y Tolstorukov, and Peter J Park. “<a href="https://doi.org/10.1038/nbt.1508">Design and Analysis of ChIP-Seq Experiments for DNA-Binding Proteins</a>.” Nature Biotechnology, (December 2008) - SPP - R package for analysis of ChIP-seq and other functional sequencing data. ChIP-seq technology, picture of strand-specific tag distribution. Strand cross-correlation as a method to decide whether tags should be included. Three types of anomalous tags. <a href="https://github.com/hms-dbmi/spp">hms-dbmi/spp</a>. <a href="http://compbio.med.harvard.edu/Supplements/ChIP-seq/">Supplements/ChIP-seq/</a></p></li>
+<li><p>Rozowsky, Joel, Ghia Euskirchen, Raymond K Auerbach, Zhengdong D Zhang, Theodore Gibson, Robert Bjornson, Nicholas Carriero, Michael Snyder, and Mark B Gerstein. “<a href="https://doi.org/10.1038/nbt.1518">PeakSeq Enables Systematic Scoring of ChIP-Seq Experiments Relative to Controls</a>.” Nature Biotechnology, (January 2009) - PeakSeq paper. <a href="https://github.com/gersteinlab/PeakSeq">gersteinlab/PeakSeq</a></p></li>
+<li><p>Zhang, Xuekui, Gordon Robertson, Martin Krzywinski, Kaida Ning, Arnaud Droit, Steven Jones, and Raphael Gottardo. “<a href="https://doi.org/10.1111/j.1541-0420.2010.01441.x">PICS: Probabilistic Inference for ChIP-Seq</a>.” Biometrics, (March 2011) - PICS paper. <a href="https://bioconductor.org/packages/PICS/">https://bioconductor.org/packages/release/bioc/html/PICS.html</a></p></li>
+<li><p>Zang, Chongzhi, Dustin E. Schones, Chen Zeng, Kairong Cui, Keji Zhao, and Weiqun Peng. “<a href="https://doi.org/10.1093/bioinformatics/btp340">A Clustering Approach for Identification of Enriched Domains from Histone Modification ChIP-Seq Data</a>.” Bioinformatics, (August 1, 2009) - SICER paper. Cut genome into non-overlapping windows and compute a score for each window based on a Poisson model. Identify “islands” vs “non-islands” by thresholding the scores and clustering windows with significant scores. For each island, compute the probability of observing the island with a given score. Constructing score distribution is involved. Excellent statistical description.</p></li>
+</ul>
+</div>
+<div id="motif-detection" class="section level3">
+<h3>Motif detection</h3>
+<ul>
+<li><p>D’haeseleer, Patrik. “<a href="https://doi.org/10.1038/nbt0406-423">What Are DNA Sequence Motifs?</a>” Nature Biotechnology, (April 2006)</p></li>
+<li><p>D’haeseleer, Patrik. “<a href="https://doi.org/10.1038/nbt0806-959">How Does DNA Sequence Motif Discovery Work?</a>” Nature Biotechnology, (August 2006)</p></li>
+<li><p>Lawrence, C. E., S. F. Altschul, M. S. Boguski, J. S. Liu, A. F. Neuwald, and J. C. Wootton. “<a href="http://science.sciencemag.org/content/262/5131/208.long">Detecting Subtle Sequence Signals: A Gibbs Sampling Strategy for Multiple Alignment</a>.” Science, (October 8, 1993) - Gibbs sampling for alignment of multiple sequences. Statistical definitions.</p></li>
+<li><p>Bailey, T. L., and C. Elkan. “<a href="https://www.sdsc.edu/~tbailey/papers/memeplus.tech.pdf">Fitting a Mixture Model by Expectation Maximization to Discover Motifs in Biopolymers</a>.” ISMB Proceedings (1994) - MM MEME algorithm to find multiple motifs of width W in a set of sequences. Background and motif models of position frequencies of letters. EM algorithm to learn motifs that maximize likelihood of the data. After the first model is found, the procedure is repeated to find other motifs.</p></li>
+</ul>
+</div>
+<div id="chip-seq-statistics" class="section level3">
+<h3>ChIP-seq statistics</h3>
+<ul>
+<li><p>Pei Fen Kuan et al., “<a href="https://doi.org/10.1198/jasa.2011.ap09706">A Statistical Framework for the Analysis of ChIP-Seq Data</a>,” Journal of the American Statistical Association, (September 2011) - <a href="https://bioconductor.org/packages/mosaics/">MOSAiCS R package</a> (MOdel-based one and two Sample Analysis and Inference for ChIP-Seq) - regression framework that explicitly models mappability and GC biases for one- and two-sample. Evaluated on non-crosslinked, non-IP DNA. Negative Binomial is better fit for tag counts.</p></li>
+<li><p>Li, Qunhua, James B. Brown, Haiyan Huang, and Peter J. Bickel. “<a href="https://doi.org/10.1214/11-AOAS466">Measuring Reproducibility of High-Throughput Experiments</a>.” The Annals of Applied Statistics, (September 2011) - IDR - irreproducible discovery rate theoretical paper.</p></li>
+</ul>
+</div>
+<div id="chip-seq-resources" class="section level3">
+<h3>ChIP-seq resources</h3>
+<ul>
+<li><a href="https://github.com/crazyhottommy/ChIP-seq-analysis">ChIP-seq pipeline by Ming Tang</a></li>
+</ul>
+</div>
+<div id="atac-seq-resources" class="section level3">
+<h3>ATAC-seq resources</h3>
+<ul>
+<li><p><a href="https://gitlab.com/tangming2005/snakemake_ATACseq_pipeline/tree/shark">ATAC-seq pipeline by Ming Tang</a></p></li>
+<li><p><a href="https://github.com/ThomasCarroll/ATAC_Workshop">ATAC_seq Workshop</a></p></li>
+<li><p>Wei, Zheng, Wei Zhang, Huan Fang, Yanda Li, and Xiaowo Wang. “<a href="https://doi.org/10.1093/bioinformatics/bty141">EsATAC: An Easy-to-Use Systematic Pipeline for ATAC-Seq Data Analysis</a>.” Bioinformatics, March 7, 2018 - <a href="https://bioconductor.org/packages/esATAC/">esATAC R package</a> for full ATAC-seq data processing and analysis.</p></li>
+</ul>
+</div>
+<div id="other-seq-resources" class="section level3">
+<h3>Other-seq resources</h3>
+<ul>
+<li><p>Liu, Yongjing, Liangyu Fu, Kerstin Kaufmann, Dijun Chen, and Ming Chen. “[A Practical Guide for DNase-Seq Data Analysis: From Data Management to Common Applications](<a href="https://doi.org/10.1093/bib/bby0570" class="uri">https://doi.org/10.1093/bib/bby0570</a>.” Briefings in Bioinformatics, July 12, 2018 - DNAse-seq analysis guide. Tools for QC, peak calling, analysis, footprint detection, motif analysis, visualization, all-in-one tools (<a href="https://academic.oup.com/bib/advance-article/doi/10.1093/bib/bby057/5053117#118754375">Table 2</a>)</p></li>
+<li><p>Skene, Peter J, and Steven Henikoff. “<a href="https://doi.org/10.7554/eLife.21856">An Efficient Targeted Nuclease Strategy for High-Resolution Mapping of DNA Binding Sites</a>.” Genes and Chromosomes, eLife, Jan 12, 2017 - CUT&amp;RUN technology, chromatin profiling strategy, antibody-targeted controlled cleavage by micrococcal nuclease. Cost-efficient, low input requirements, easier.</p></li>
+</ul>
+</div>
 </div>

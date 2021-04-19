@@ -27,3 +27,11 @@ editor_options:
 ```{r echo=FALSE}
 knitr::include_url('../../slides/12_ChIP-seq/01_ChIP-seq.pdf')
 ```
+
+### ATAC-seq and other seq
+
+<a href="../../slides/12_ChIP-seq/02_Other-seq.pdf" target="_blank">Lecture slides in PDF format</a>
+
+```{r echo=FALSE}
+knitr::include_url('../../slides/12_ChIP-seq/02_Other-seq.pdf')
+```

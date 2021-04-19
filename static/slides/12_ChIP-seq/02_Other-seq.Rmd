@@ -1,0 +1,218 @@
+---
+title: "Other chromatin capture/targeted sequencing"
+author: "Mikhail Dozmorov"
+date: "2021-04-19"
+output:
+  beamer_presentation:
+    # colortheme: seahorse
+    colortheme: dolphin
+    fig_caption: no
+    fig_height: 6
+    fig_width: 7
+    fonttheme: structurebold
+    # theme: boxes
+    theme: AnnArbor
+---
+
+## Transcription factor binding regulates gene expression
+
+\begin{center}
+\includegraphics[height=170px]{img/tf_regulation1.png}
+\end{center}
+
+\tiny http://www.biostat.jhsph.edu/~khansen/teaching/2014/140.668/GeneRegulation.pdf
+
+## Transcription factors recognize specific motifs
+
+\begin{center}
+\includegraphics[height=180px]{img/tf_regulation2.png}
+\end{center}
+
+\tiny http://www.biostat.jhsph.edu/~khansen/teaching/2014/140.668/GeneRegulation.pdf
+
+## Other "captured/targeted" sequencing technologies
+
+- Enrich and then sequence selected genomic regions.
+    - **DNase-seq**, **MNase-seq**, **FAIRE-seq**, **ATAC-seq**: detect open chromatin sites.
+    - **CUT&RUN**, **CUT&TAG**: improved ChIP-seq profiling.
+    - **MeDIP-seq**: measure methylated DNA.
+    - **GRO-seq**: map the position, amount and orientation of transcriptionally engaged RNA polymerases.
+    - **Ribo-seq**: detect ribosome occupancy on mRNA. This is captured RNA-seq.
+
+## DNAse-seq
+
+- A widely used approach in gene regulation studies uses DNase I as a tool to identify DNase I Hypersensitive Sites (DHSs) within chromatin
+- DHSs represent open chromatin regions that are normally only accessible at sites of active regulatory elements such as transcriptional enhancers
+
+\begin{center}
+\includegraphics[height=120px]{img/dnase.png}
+\end{center}
+
+\tiny Cockerill,P.N. (2011) Structure and function of active chromatin and DNase I hypersensitive sites. FEBS J., 278, 2182–2210.
+
+## Overview of DNase-seq experimental protocols
+
+\begin{center}
+\includegraphics[height=200px]{img/dnase_experimental.png}
+\end{center}
+
+\tiny Yongjing Liu et al. A practical guide for DNase-seq data analysis: from data management to common applications, September 2019 https://doi.org/10.1093/bib/bby057
+
+## General analysis pipeline for sequence-tag experiments
+
+\begin{center}
+\includegraphics[height=180px]{img/dnase_pipeline.png}
+\end{center}
+
+[Computational methods for DNase-seq data analysis](https://academic.oup.com/view-large/206395460)
+
+\tiny Yongjing Liu et al. A practical guide for DNase-seq data analysis: from data management to common applications, September 2019 https://doi.org/10.1093/bib/bby057
+
+<!--Figure from https://academic.oup.com/nar/article/41/21/e201/1283596-->
+
+<!--
+## High-throughput chromatin organization techniques
+
+\begin{center}
+\includegraphics[height=180px]{img/chromatin_technologies.png}
+\end{center}
+
+\tiny Kagohara, Luciane T., Genevieve L. Stein-O’Brien, Dylan Kelley, Emily Flam, Heather C. Wick, Ludmila V. Danilova, Hariharan Easwaran, et al. “Epigenetic Regulation of Gene Expression in Cancer: Techniques, Resources and Analysis.” Briefings in Functional Genomics, August 11, 2017. https://doi.org/10.1093/bfgp/elx018.
+-->
+
+## Other technologies to assess open chromatin
+
+- **FAIRE-seq** - Formaldehyde-Assisted Isolation of Regulatory Elements followed by sequencing.
+
+- **MNase-seq** - Micrococcal Nuclease-assisted assessment of open chromatin.
+
+- **ATAC-seq** - Assay for transposase- accessible chromatin using sequencing. Tn5 transposase is used to transpose sequencing adapters into the genomic DNA
+
+## Comparison of experimental protocols
+
+\begin{center}
+\includegraphics[height=180px]{img/other_seq.png}
+\end{center}
+
+\tiny https://zhonglab.gitbook.io/3dgenome/chap2-experiment-tools-for-exploring-genome-interaction/2.2-primary-order
+
+## ATAC-seq: finding open chromatin regions
+
+- ATAC-seq is an ensemble measure of open chromatin that uses the prokaryotic Tn5 transposase to tag regulatory regions by inserting sequencing adapters into accessible regions of the genome
+
+\begin{center}
+\includegraphics[height=80px]{img/atac-seq1.png}
+\end{center}
+
+\tiny Jason D Buenrostro et al., “Transposition of Native Chromatin for Fast and Sensitive Epigenomic Profiling of Open Chromatin, DNA-Binding Proteins and Nucleosome Position,” Nature Methods 10, no. 12 (December 2013): 1213–18, https://doi.org/10.1038/nmeth.2688.
+
+<!--(a) ATAC-seq reaction schematic. Transposase (green), loaded with sequencing adaptors (red and blue), inserts only in regions of open chromatin (between nucleosomes in gray) and generates sequencing-library fragments that can be PCR-amplified. (b) Approximate reported input material and sample preparation time requirements for genome-wide methods of open-chromatin analysis.-->
+
+## ATAC-seq: revealing nucleosome positioning
+
+\begin{center}
+\includegraphics[height=180px]{img/atac_nucleosome.png}
+\end{center}
+
+\tiny https://www.nature.com/articles/s41598-019-44076-8
+
+## ATAC-seq: finding open chromatin regions
+
+\begin{center}
+\includegraphics[height=180px]{img/atacseq_vs_others.png}
+\end{center}
+
+\tiny Jason D Buenrostro et al., “Transposition of Native Chromatin for Fast and Sensitive Epigenomic Profiling of Open Chromatin, DNA-Binding Proteins and Nucleosome Position,” Nature Methods 10, no. 12 (December 2013): 1213–18, https://doi.org/10.1038/nmeth.2688.
+
+<!--
+## DamID
+
+- DamID, an alternative technique to ChIP-seq (no need for antibodies) to map genome-wide occupancy of interaction sites in vivo
+- DamID is based on the expression of a fusion protein consisting of a protein of interest and DNA adenine methyltransferase (Dam). 
+- Binding of the protein of interest leads to methylation of **adenines** near binding sites, a modification not present in most eukaryotes.
+- These methylated sequences are subsequently amplified by a methylation-specific PCR protocol and identified by hybridization to microarrays.
+- Adenine-methylated DNA from cells expressing unfused Dam should processed in parallel and served as a reference (think input ChIP-seq)
+- The resolution of DamID is about 1 kb
+
+\tiny Vogel, Maartje J., Daniel Peric-Hupkes, and Bas van Steensel. “Detection of in Vivo Protein-DNA Interactions Using DamID in Mammalian Cells.” Nature Protocols 2, no. 6 (2007): 1467–78. https://doi.org/10.1038/nprot.2007.148.
+
+## Technology-specific data
+
+Peaks produced by different technologies are different - calling peaks should be adjusted
+
+\begin{center}
+\includegraphics[height=170px]{img/mnase_dnase_atac.jpg}
+\end{center}
+
+\tiny https://www.the-scientist.com/?articles.view/articleNo/44772/title/Reveling-in-the-Revealed/
+
+https://www.biostars.org/p/209592/
+
+## Calling peaks in any-seq
+
+- General signal detection problem for peaks of arbitrary shape
+- `DFilter` algorithm - a linear detection filter, known as a Hotelling observer, that provides mathematically optimal detection accuracy
+- The objective of the Hotelling detection filter is to maximize the difference between filter outputs at true-positive regions and noise regions. 
+- More precisely, the Hotelling detection filter maximizes the ratio of the mean of this difference to its s.d. 
+
+\tiny Kumar, Vibhor, Masafumi Muratani, Nirmala Arul Rayan, Petra Kraus, Thomas Lufkin, Huck Hui Ng, and Shyam Prabhakar. “Uniform, Optimal Signal Processing of Mapped Deep-Sequencing Data.” Nature Biotechnology 31, no. 7 (July 2013): 615–22. https://doi.org/10.1038/nbt.2596.
+
+http://collaborations.gis.a-star.edu.sg/~cmb6/kumarv1/dfilter/
+
+Hotelling, Harold. “The Generalization of Student’s Ratio.” The Annals of Mathematical Statistics 2, no. 3 (August 1931): 360–78. https://doi.org/10.1214/aoms/1177732979. https://projecteuclid.org/download/pdf_1/euclid.aoms/1177732979
+
+## Hotelling detection filter
+
+\includegraphics[height=200px]{img/hotelling_observer1.png}
+
+## Hotelling detection filter
+
+\includegraphics[height=200px]{img/hotelling_observer2.png}
+-->
+
+<!--For every bin in genome the number of tags starting from it’s location is counted and called as its tag­count. The binned tag­count signal is divided by tag density of control (see Methods) and then positive and negative regions are chosen. The mean (tag­count profile) and covariance matrices of tag­count signal are calculated separately for positives and negatives regions. Element (i,j) of the covariance matrix quantifies how much the tag­count in bins i and j covary. Finally to achieve Hotelling detection filter, difference in tag profiles at positives and negatives is multiplied to inverse of sum of covariance matrices of positives and negatives. The inverse covariance matrix has as a role of “whitening” that transforms the original detection­signal such that the background noise distribution is uncorrelated.-->
+
+<!--
+## General analysis pipeline for sequence-tag experiments
+
+\begin{center}
+\includegraphics[height=200px]{img/other_seq_pipeline.png}
+\end{center}
+
+\tiny https://www.nature.com/nrg/journal/v13/n12/full/nrg3306.html
+
+## Selected software tools available for three key steps in the analysis of sequence data
+
+\begin{center}
+\includegraphics[height=200px]{img/other_seq_soft.png}
+\end{center}
+
+\tiny https://www.nature.com/nrg/journal/v13/n12/full/nrg3306.html
+-->
+
+## CUT&RUN
+
+- Cleavage Under Targets and Release Using Nuclease
+- Antibody-targeted controlled cleavage by micrococcal nuclease
+
+\begin{center}
+\includegraphics[height=150px]{img/CUT&RUN_summary_image_4DN.png}
+\end{center}
+
+\tiny https://data.4dnucleome.org/experiment-types/cut-n-run/
+
+## CUT&TAG
+
+- Cleavage Under Targets and Tagmentation
+- Tn5 transposase conjugated with adapters inserts them directly into cut sequences
+
+\begin{center}
+\includegraphics[height=150px]{img/cutrun_summary.png}
+\end{center}
+
+\tiny https://www.activemotif.com/blog-cut-tag
+
+## More
+
+- ChIP-seq analysis notes from Ming Tang, https://github.com/crazyhottommy/ChIP-seq-analysis
+- Notes on ChIP-seq and other-seq-related tools, https://github.com/mdozmorov/ChIP-seq_notes
