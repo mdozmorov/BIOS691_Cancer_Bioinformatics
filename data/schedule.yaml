@@ -73,3 +73,9 @@ lessons:
     reading: "12-reading"
     # assignment: "01-problem-set"
     class: "12-class"
+
+  - title: '**Single-cell sequencing**'
+    date: "April 19 - April 21"
+    reading: "13-reading"
+    # assignment: "01-problem-set"
+    class: "13-class"

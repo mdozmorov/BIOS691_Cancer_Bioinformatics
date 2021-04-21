@@ -1,0 +1,530 @@
+---
+title: "Single-cell RNA-seq"
+author: "Mikhail Dozmorov"
+date: "2021-04-21"
+output:
+  beamer_presentation:
+    # colortheme: seahorse
+    colortheme: dolphin
+    fig_caption: no
+    fig_height: 6
+    fig_width: 7
+    fonttheme: structurebold
+    # theme: boxes
+    theme: AnnArbor
+---
+
+## Background
+
+- Most of the biological experiments are performed on "bulk" samples, which contain a large number of cells (millions).
+- The high-throughput data we discussed so far are all "bulk" data, which measures the average (gene expression, TF binding, methylation, etc.) of many cells.
+- The bulk measurement ignores the cellular heterogeneity:
+    - Different cell types.
+    - Biological variation among the same type of cell.
+
+
+## Single cell sequencing applications
+
+- Sequencing of genetic material from individual cells provides more detailed, higher resolution information.
+- Infer cell lineages
+- Identify subpopulations
+- Outline temporal evolution
+- Define subpopulation-specific biological characteristics, e.g., differentially expressed genes
+
+
+## Single cell timeline
+
+\begin{center}
+\includegraphics[height=150px]{img/timeline.png}
+\end{center}
+
+\tiny Svensson, Valentine, Roser Vento-Tormo, and Sarah A. Teichmann. “Exponential Scaling of Single-Cell RNA-Seq in the Past Decade.” Nature Protocols 13, no. 4 (April 2018): 599–604. https://doi.org/10.1038/nprot.2017.149.
+
+
+## Drop-Seq: We measure single-cell expression by counting cells and genes (mRNA)
+
+\begin{center}
+\includegraphics[height=80px]{img/dropseq1.png}
+\end{center}
+
+\tiny Macosko, Evan Z., Anindita Basu, Rahul Satija, James Nemesh, Karthik Shekhar, Melissa Goldman, Itay Tirosh, et al. “Highly Parallel Genome-Wide Expression Profiling of Individual Cells Using Nanoliter Droplets.” Cell 161, no. 5 (May 21, 2015): 1202–14. https://doi.org/10.1016/j.cell.2015.05.002.
+
+## Single-cell Sequencing Technology
+
+\begin{center}
+\includegraphics[height=140px]{img/technology.png}
+\end{center}
+
+A single device has three input ports (oil, barcoded beads in lysis buffer, and cells of interest) and a single output port used for collecting bead–cell-containing lipid droplets. Then each cell (or RNA in the cell) is marked by the unique barcode and processed on the bead for sequencing
+
+## Cells are barcoded and sorted & genes are uniquely counted
+
+\begin{center}
+\includegraphics[height=160px]{img/dropseq2.png}
+\end{center}
+
+## Create unique barcode sequence patterns with combinatorics on our side (bead-specific indexes)
+
+\begin{center}
+\includegraphics[height=160px]{img/dropseq3.png}
+\end{center}
+
+\tiny Macosko, Evan Z., Anindita Basu, Rahul Satija, James Nemesh, Karthik Shekhar, Melissa Goldman, Itay Tirosh, et al. “Highly Parallel Genome-Wide Expression Profiling of Individual Cells Using Nanoliter Droplets.” Cell 161, no. 5 (May 21, 2015): 1202–14. https://doi.org/10.1016/j.cell.2015.05.002.
+
+## Create unique barcode sequence patterns with combinatorics on our side (bead-specific indexes)
+
+\begin{center}
+\includegraphics[height=130px]{img/dropseq4.png}
+\end{center}
+
+\tiny Macosko, Evan Z., Anindita Basu, Rahul Satija, James Nemesh, Karthik Shekhar, Melissa Goldman, Itay Tirosh, et al. “Highly Parallel Genome-Wide Expression Profiling of Individual Cells Using Nanoliter Droplets.” Cell 161, no. 5 (May 21, 2015): 1202–14. https://doi.org/10.1016/j.cell.2015.05.002.
+
+## Create unique barcode sequence patterns with combinatorics on our side (bead-specific indexes)
+
+\begin{center}
+\includegraphics[height=130px]{img/dropseq5.png}
+\end{center}
+
+\tiny Macosko, Evan Z., Anindita Basu, Rahul Satija, James Nemesh, Karthik Shekhar, Melissa Goldman, Itay Tirosh, et al. “Highly Parallel Genome-Wide Expression Profiling of Individual Cells Using Nanoliter Droplets.” Cell 161, no. 5 (May 21, 2015): 1202–14. https://doi.org/10.1016/j.cell.2015.05.002.
+
+## Unique Molecular Identifier (UMI) to quantify number of genes within each cell
+
+- Random 8-mers incorporated into mRNA fragments before amplification. This is in addition to cell barcodes and primers
+- For each cell barcode, count the number of UMIs for every transcript and aggregate this number across all transcripts derived from the same gene locus
+- Significantly reduce noise, improve gene expression quantification
+
+\begin{center}
+\includegraphics[height=100px]{img/dropseq6.png}
+\end{center}
+
+\tiny Grün, Dominic, Lennart Kester, and Alexander van Oudenaarden. “Validation of Noise Models for Single-Cell Transcriptomics.” Nature Methods 11, no. 6 (June 2014): 637–40. https://doi.org/10.1038/nmeth.2930.
+
+## Drop-seq: highly parallelized counting of cells and genes using cell- and UMI indexes
+
+\begin{center}
+\includegraphics[height=140px]{img/dropseq7.png}
+\end{center}
+
+## 3'-end Sequencing with UMIs (10X Genomics)
+
+\begin{center}
+\includegraphics[height=170px]{img/10xgenomics.png}
+\end{center}
+
+## scRNA-seq design considerations
+
+Each step is vulnerable to experimental/technical noise and human errors:
+
+- Randomize batch effects
+- Spike-ins (debatable), or unique molecular identifiers (UMIs)
+- Record all sources of variability, check for confounding with the main effect
+
+Low amount of starting material
+
+- Approximately $10^{5} - 10^{6}$ mRNA molecules are present in a typical single mammalian cell, and up to 10,000 different genes may be expressed
+- \~500,000 to 1M reads per cell (sometimes less (\~50,000) reads is sufficient for cell classification [Pollen AA et.al. Nat. Biotechnol. 2014]) vs. 20-30M reads in bulk RNA-seq
+
+## Computational analysis of scRNA-seq data
+
+How does single-cell data differ from bulk RNA-seq
+
+- **Abundance of zeros:** Even with the most sensitive platforms, the data are relatively sparse owing to a high frequency of dropout events (lack of detection of specific transcripts)
+- The numbers of expressed genes detected from single cells are typically lower compared with population-level ensemble measurements
+
+\begin{center}
+\includegraphics[height=80px]{img/prop_zeros.png}
+\end{center}
+
+\tiny Bacher, Rhonda, and Christina Kendziorski. “Design and Computational Analysis of Single-Cell RNA-Sequencing Experiments.” Genome Biology 17 (April 7, 2016): 63. https://doi.org/10.1186/s13059-016-0927-y.
+
+<!--Prominent features in single-cell RNA-seq data relative to bulk RNA-seq include an abundance of zeros, increased variability, and multi-modal expression distributions. a Boxplots of the gene-specific proportion of zeros in a bulk (bulk1) and single-cell (sc1) dataset stratified by percentile of median gene expression. Sequencing depth ranges from 420,000 to 16.6 million in bulk1 and 385,000 to 16.4 million in sc1 (samples were chosen to have comparable depths; see the “Data” section).-->
+
+## How does single-cell data differ from bulk RNA-seq
+
+- **Multimodal distribution of variance:** scRNA-seq data, in general, are much more variable than bulk data
+- Distributions of transcript quantities are often more complex in single-cell datasets than in bulk RNA-seq - negative binomial or multimodal distributions
+
+\begin{center}
+\includegraphics[height=100px]{img/multimodality.png}
+\end{center}
+
+\tiny Bacher, Rhonda, and Christina Kendziorski. “Design and Computational Analysis of Single-Cell RNA-Sequencing Experiments.” Genome Biology 17 (April 7, 2016): 63. https://doi.org/10.1186/s13059-016-0927-y.
+
+<!--b Densities of gene-specific log variance for all genes in three bulk and three single-cell RNA-seq datasets. Densities are also shown for the single-cell datasets for log variances calculated following the removal of zeros, emphasizing that the increased variability observed relative to bulk is not entirely due to the presence of zeros. c For each dataset shown in b, 1000 genes were selected at random from the list of genes for which at least 75 % of cells showed non-zero expression. For each gene, zeros were removed and Mclust [92] was applied to log expression to estimate the number of modes. Because zeros were removed prior to Mclust, a mode at zero will not contribute to the total number of modes shown-->
+
+## Correlation with regular RNA-seq data
+
+\begin{center}
+\includegraphics[height=190px]{img/scrnaseq_vs_rnaseq.png}
+\end{center}
+
+\tiny https://www.nature.com/nmeth/journal/v11/n1/full/nmeth.2694.html
+
+## Filtering
+
+- Filter cells and/or genes
+- No single consensus, frequently used criteria include:
+    - relative library size (cells with insufficient number of reads should be removed)
+    - number of detected genes (< 10,000)
+    - fraction of reads mapping to mitochondria-encoded genes (indicator of dead/broken cells)
+    
+<!--
+## Noise in scRNA-seq
+
+- Technical noise can be approximated with Poisson distribution
+- Low–read count genes show strong noise and high–read count genes show weak noise
+
+\begin{center}
+\includegraphics[height=150px]{img/singlecell_dilution.png}
+\end{center}
+
+https://www.ncbi.nlm.nih.gov/pubmed/24056876
+
+## Drop-out rate
+
+- Depends on the expected expression magnitude
+- Genes with lower expression magnitude are more likely to be affected by dropout than genes that are expressed with greater magnitude
+
+## Normalization
+
+Ideally, normalize for
+
+- Capture efficiency
+- Amplification biases
+- GC content
+- Differences in total RNA content
+- Sequencing depth (that's what is done in reality)
+-->
+
+## Global-scaling normalization
+
+\begin{center}
+\includegraphics[height=120px]{img/global_normalization.jpg}
+\end{center}
+
+
+\tiny Vallejos, Catalina A, Davide Risso, Antonio Scialdone, Sandrine Dudoit, and John C Marioni. “Normalizing Single-Cell RNA Sequencing Data: Challenges and Opportunities.” Nature Methods 14, no. 6 (May 15, 2017): 565–71. https://doi.org/10.1038/nmeth.4292.
+
+## Between-sample normalization
+
+TPM or RPKM/FPKM (within-cell normalization) is insufficient - between-sample normalization is needed
+
+- **Median normalization** - identify relatively stable genes to calculate global scaling factors (one for each cell, common across genes in the cell)
+- **Spike-in based normalization** - estimate global rescaling factors from known spike-in concentration
+
+## Spike-in sequences and normalization
+
+<!--
+- A set of RNA standards for RNA-seq
+    - 92 polyadenylated transcripts that mimic natural eukaryotic mRNAs
+    - Designed to have a wide range of lengths (250–2,000 nucleotides) and GC-contents (5–51%) and can be spiked into RNA samples before library preparation at various concentrations (106-fold range)
+-->
+
+- External RNA Control Consortium (ERCC) spike-in controls can be used for normalization in the context of a global expression shift
+    - Count the number of cells in each sample
+    - Add the ERCC spike-in sequences to each sample in proportion to the number of cells
+    - Normalize read counts based on cyclic loess robust local regression on the spike-in counts
+
+\tiny Baker, S.C. et al. The external RNA controls consortium: a progress report. Nat. Methods 2, 731–734 (2005).
+
+Jiang, L. et al. Synthetic spike-in standards for RNA-seq experiments. Genome Res. 21, 1543–1551 (2011).
+
+Loven, J. et al. Revisiting global gene expression analysis. Cell 151, 476–482
+(2012).
+
+## Tools and methods
+
+The computational workflow for single cell experiments
+
+\begin{center}
+\includegraphics[height=190px]{img/workflow.jpg}
+\end{center}
+
+## From FASTQ files to the matrix of single-cell gene expression
+
+**CellRanger** - a set of tools that process 10X Genomics Chromium single-cell data, generate feature-barcode matrices, perform clustering, and more.
+
+https://support.10xgenomics.com/single-cell-gene-expression/software/pipelines/latest/what-is-cell-ranger
+
+**Alevin** - end-to-end droplet-based scRNA-seq (10X Genomics) processing pipeline performing cell barcode detection (two-step whitelisting procedure), read mapping, UMI deduplication (parsimonious UMI graphs, PUGs), resolving multimapped reads (EM method to resolve UMI collisions), gene count estimation. Intelligently handles UMI deduplication and multimapped reads, resulting in more accurate gene abundance estimation.
+
+https://salmon.readthedocs.io/en/latest/alevin.html
+
+\tiny https://github.com/mdozmorov/scRNA-seq_notes#preprocessing-pipelines
+
+## Quality control
+
+- Mapping	statistics (% uniquely mapping)	
+- Mismatch rate	
+- Fraction of exon-mapping reads	
+- 3’ bias (degraded	RNA)  	
+- mRNA-mapping	reads	
+- Number of detected genes	
+- Empty droplets, droplets with barcode-swapped pseudo-cells
+- Doublets
+- Mitochondrial gene expression
+- Outliers (genes, cells)
+
+\tiny https://github.com/mdozmorov/scRNA-seq_notes#quality-control
+
+## Batch correction
+
+- Particularly important when combining multiple datasets.
+- Many methods for data integration across batches and technologies.
+- Example: MNN - mutual nearest neighbors method for single-cell batch correction.
+
+\begin{center}
+\includegraphics[height=100px]{img/mnn.png}
+\end{center}
+
+\tiny Haghverdi, Laleh, Aaron T L Lun, Michael D Morgan, and John C Marioni. “Batch Effects in Single-Cell RNA-Sequencing Data Are Corrected by Matching Mutual Nearest Neighbors.” Nature Biotechnology, April 2, 2018. https://doi.org/10.1038/nbt.4091.
+\tiny https://github.com/mdozmorov/scRNA-seq_notes#batch-effect-merging
+
+## Imputation
+
+- To account for the high dropout level, many methods for imputing scRNA-seq data were developed.
+- Goal - to improve clustering, differential expression.
+- Issues - unknown origin of dropouts, may be technical or biological.
+- Methods range from k-nearest neighborhood, graph imputation, matrix decomposition, to (autoencoder-based) neural networks
+
+\tiny https://github.com/mdozmorov/scRNA-seq_notes#imputation
+
+## Filtering
+
+- In	most	cases,	all	genes	are	not	used.
+- Filtering	based	on:	
+    - Biologically	variable	genes	(Brenneke	method	based	on	spike-in	data)	or	top	variable	genes	if	no	spike-in	data.	
+    - Genes	expressed	in	X	cells.	
+    – Filter	out	genes	with	correlation	to	few	other	genes	
+    - Prior	knowledge	/	annotation		
+    - DE	genes	from	bulk	experiments
+
+## Dimensionality reduction
+
+– PCA	(principal	component	analysis)	
+– ICA	(independent	component	analysis)	
+– MDS	(multidimensional	scaling)	
+– Non-linear	PCA	
+– t-SNE	(t-distributed	stochastic	neighbor	embedding)	
+– Diffusion	maps	
+– Neural network-based	methods
+
+\tiny https://github.com/mdozmorov/scRNA-seq_notes#dimensionality-reduction
+
+## Cell clustering
+
+- Perhaps the most active topic in scRNA-seq
+- The goals include:
+    - Cluster cells into subgroups
+    - Model temporal transcriptomic dynamics: reconstruct “pseudo-time” for cells. This is useful for understanding development or disease progression
+- Traditional method like k-means or hierarchical clustering need to be used with caution due to dropout events
+- In single-cell world, clustering is typically performed on reduced dimensionality data
+
+\tiny https://github.com/mdozmorov/scRNA-seq_notes#clustering
+
+## TF-IDF transformation
+
+\begin{center}
+\includegraphics[height=130px]{img/tfidf1.png}
+\end{center}
+
+## TF-IDF transformation
+
+\begin{center}
+\includegraphics[height=130px]{img/tfidf2.png}
+\end{center}
+
+## Graph-based clustering
+
+- Undirected graph
+    - Cells = vertices
+    - Edges = connecting pairs of cells for which the binarized TF-IDF transformed expression signature vectors have Euclidean, Pearson, Cosine, or Jaccard similarity above a user-defined threshold
+    - Weights = edges weighted by the corresponding pairwise similarity measures 
+- Clustering by greedy/Louvain modularity optimization (igraph R). 
+- Keep on partitioning based on silhouette score for homogeneity and to force a minimum number of clusters (or “optimal number of clusters”) when required. 
+
+\begin{center}
+\includegraphics[height=60px]{img/graph.png}
+\end{center}
+
+## Louvain Method
+
+- First, small communities are found by optimizing modularity locally on all nodes (evaluates the change of modularity by removing i from its community and then by moving it into a neighboring community).
+- Then each small community is grouped into one node and the first step is repeated.
+
+\begin{center}
+\includegraphics[height=140px]{img/louvain.png}
+\end{center}
+
+## t-SNE: a useful visualization tool
+
+- t-SNE (t-distributed stochastic neighbor embedding): visualize high-dimensional data on 2-/3-D map
+- Method often used in single cell data.	
+    - Step 1 - probability distribution for all pairs in PCA space	with	N	principal	components	
+    - Step 2	–	dimensionality	reduction	with	similar	probability	distribution	and	minimization	of	divergence	between	distributions	
+- Implementations	in	R:	
+    – tsne
+    – Rtsne	(Barnes-Hut	t-SNE)	
+- For	other	languages	(python,	java,	matlab,	C++	etc.) - http://lvdmaaten.github.io/tsne/	
+
+## t-SNE	vs	PCA	dimensionality	reduction	
+
+\begin{center}
+\includegraphics[height=170px]{img/tsne_vs_pca.png}
+\end{center}
+
+## Visualization
+
+- Many visualization tools are parts of pipelines for performing other analyses (filtering, normalization, dimensionality reduction, etc.)
+- Many are web-based or Shiny apps
+- **Loupe Browser** - a desctop application (Windows, Mac) that provides interactive visualization for 10X Genomics data
+
+https://support.10xgenomics.com/single-cell-gene-expression/software/visualization/latest/what-is-loupe-cell-browser
+
+\tiny https://github.com/mdozmorov/scRNA-seq_notes#visualization-pipelines
+
+## Pseudotemporal ordering 
+
+- Idea - cells at different differentiation (or other biological process) stage are presented with different expression profiles
+- Dynamics of cellular processes can be reconstructed from expression profiles
+- Key assumption: genes do not change direction very often, thus samples with similar transcriptional profiles should be close in order
+- Most approaches are dimensionality reduction-based, and apply graph theory designed to traverse nodes in a graph efficiently
+- **Monocle** - Independent component analysis, then a minimum spanning three through the dimension-reduced data
+
+\tiny https://github.com/mdozmorov/scRNA-seq_notes#time-trajectory-inference
+
+## Monocle, An analysis toolkit for single-cell RNA-seq
+
+Single-cell trajectories, clustering, visualization, differential expression
+
+\begin{center}
+\includegraphics[height=130px]{img/monocle.png}
+\end{center}
+
+\tiny https://cole-trapnell-lab.github.io/monocle-release/
+
+Trapnell, Cole, Davide Cacchiarelli, Jonna Grimsby, Prapti Pokharel, Shuqiang Li, Michael Morse, Niall J. Lennon, Kenneth J. Livak, Tarjei S. Mikkelsen, and John L. Rinn. “The Dynamics and Regulators of Cell Fate Decisions Are Revealed by Pseudotemporal Ordering of Single Cells.” Nature Biotechnology 32, no. 4 (April 2014): 381–86. https://doi.org/10.1038/nbt.2859.
+
+## RNA velocity
+
+\begin{center}
+\includegraphics[height=140px]{img/velocity.png}
+\end{center}
+
+\tiny La Manno, Gioele, Ruslan Soldatov, Amit Zeisel, Emelie Braun, Hannah Hochgerner, Viktor Petukhov, Katja Lidschreiber, et al. “RNA Velocity of Single Cells.” Nature 560, no. 7719 (August 2018): 494–98. https://doi.org/10.1038/s41586-018-0414-6.
+
+https://github.com/mdozmorov/scRNA-seq_notes#rna-velocity
+
+## Differentially expressed genes
+
+- Goal is to identify cluster/condition-specific genes
+- Many scRNA-seq-specific methods were developed
+- Methods for bulk RNA-seq (edgeR, DESeq2) perform well
+
+\tiny https://github.com/mdozmorov/scRNA-seq_notes#differential-expression
+
+## Annotation, subpopulation identification
+
+- Grand question - what cell types are in diffefent clusters?
+- Main idea - match cluster/condition-specific gene expression profiles to reference profiles/gene markers
+- Many methods, from clustering, joint embedding to graph networks, machine learning
+- Need cell markers databases
+
+\tiny https://github.com/mdozmorov/scRNA-seq_notes#annotation-subpopulation-identification
+
+https://github.com/mdozmorov/scRNA-seq_notes#cell-markers
+
+## scRNA-seq databases
+
+- Numerous scRNA-seq experiments were performed - databases collect processed data
+- Each data frequently has meta-data - which cells are which (what cluster they belong to)
+- Interesting datasets include immune cells, brain cells, cancer cells
+- Human Cell Atlas - all cells in human body https://www.humancellatlas.org/
+
+\tiny https://github.com/mdozmorov/scRNA-seq_notes#data
+
+## Other analyses
+
+- Functional enrichment analysis - what functions are shared by cluster/condition-specific genes?
+- Gene networks - infer gene regulatory networks, https://github.com/mdozmorov/scRNA-seq_notes#networks
+- Single Nubleotide Polymorphisms, Copy Number Variants, https://github.com/mdozmorov/scRNA-seq_notes#cnv
+- Immuno-analyses, T/B cell receptor sequencing, https://github.com/mdozmorov/scRNA-seq_notes#immuno-analysis
+- Power analysis - how many cells to sequence to identify subpopulations. https://github.com/mdozmorov/scRNA-seq_notes#power
+
+## scRNA-seq analysis pipelines
+
+- **Seurat** - the comprehensive collection of tools for single-cell multi-omics analysis. Single ecosystem.
+- **Bioconductor** - SingleCellExperiment object, wide variety of packages described in the "Orchestrating Single-Cell Analysis with Bioconductor" (OSCA) book
+
+\tiny https://satijalab.org/seurat/
+
+https://bioconductor.org/books/release/OSCA/
+
+https://github.com/mdozmorov/scRNA-seq_notes#courses
+
+## Spatial transcriptomics
+
+\begin{center}
+\includegraphics[height=150px]{img/spatial.png}
+\end{center}
+
+\tiny https://github.com/mdozmorov/scRNA-seq_notes#spatial-transcriptomics
+
+https://www.10xgenomics.com/spatial-transcriptomics
+
+Dries, Ruben, Qian Zhu, Chee-Huat Linus Eng, Arpan Sarkar, Feng Bao, Rani E George, Nico Pierson, Long Cai, and Guo-Cheng Yuan. “Giotto, a Pipeline for Integrative Analysis and Visualization of Single-Cell Spatial Transcriptomic Data.” Preprint. Bioinformatics, July 13, 2019. https://doi.org/10.1101/701680.
+
+## Spatial transcriptomics
+
+\begin{center}
+\includegraphics[height=150px]{img/spatial2.png}
+\end{center}
+
+\tiny https://github.com/mdozmorov/scRNA-seq_notes#spatial-transcriptomics
+
+https://www.10xgenomics.com/spatial-transcriptomics
+
+Dries, Ruben, Qian Zhu, Chee-Huat Linus Eng, Arpan Sarkar, Feng Bao, Rani E George, Nico Pierson, Long Cai, and Guo-Cheng Yuan. “Giotto, a Pipeline for Integrative Analysis and Visualization of Single-Cell Spatial Transcriptomic Data.” Preprint. Bioinformatics, July 13, 2019. https://doi.org/10.1101/701680.
+
+## single-cell ATAC-seq
+
+\begin{center}
+\includegraphics[height=200px]{img/scATAC-seq_overview.png}
+\end{center}
+
+\tiny Chen et al., “Assessment of Computational Methods for the Analysis of Single-Cell ATAC-Seq Data.”
+
+<!--Fig. 1 Schematic overview of single-cell ATAC-seq assays and analysis steps. a Single-cell ATAC libraries are created from single cells that have been exposed to the Tn5 transposase using one of the following three protocols: (1) Single cells are individually barcoded by a split-and-pool approach where unique barcodes added at each step can be used to identify reads originating from each cell, (2) microfluidic droplet-based technologies provided by 10X Genomics and BioRad are used to extract and label DNA from each cell, or (3) each single cell is deposited into a multi-well plate or array from ICELL8 or Fluidigm C1 for library preparation. b After sequencing, the raw reads obtained in .fastq format for each single cell are mapped to a reference genome, producing aligned reads in .bam format. Finally, peak calling and read counting return the genomic position and the read count files in. bed and .txt format, respectively. Data in these file formats is then used for downstream analysis. c ATAC-seq peaks in bulk samples can generally be recapitulated in aggregated single-cell samples, but not every single cell has a fragment at every peak. A feature matrix can be constructed from single cells (e.g., by counting the number of reads at each peak for every cell). d Following the construction of the feature matrix, common downstream analyses including visualization, clustering, trajectory inference, determination of differential accessibility, and the prediction of cis-regulatory networks can be performed using the methods benchmarked in this manuscript-->
+
+## single-cell ATAC-seq challenges
+
+- While for an expressed gene several RNA molecules are present in a single cell, scATAC-seq assays profile DNA, a molecule which is present in only two copies per cell (for a diploid organism)
+- The low copy number results in an inherent per-cell data sparsity, where only 1– 10% of expected accessible peaks are detected in single cells from scATAC-seq data, compared to 10–45% of expressed genes detected in single cells from scRNA-seq data
+
+<!--
+\begin{center}
+\includegraphics[height=100px]{img/scATAC-seq_peaks_pct.png}
+\end{center}
+-->
+
+\tiny Chen et al., “Assessment of Computational Methods for the Analysis of Single-Cell ATAC-Seq Data.”
+
+## single-cell ATAC-seq challenges
+
+- The potential feature set in scATAC-seq, which includes genome-wide regions of accessible chromatin, is typically 10–20X the size of the feature set in scRNA-seq experiments (which is defined and limited by the number of genes expressed).
+
+\tiny Chen et al., “Assessment of Computational Methods for the Analysis of Single-Cell ATAC-Seq Data.”
+
+## References
+
+https://github.com/mdozmorov/scRNA-seq_notes
+
+https://github.com/mdozmorov/scATAC-seq_notes
+
+
+
+
+
+
+
+

@@ -1,0 +1,37 @@
+---
+title: "scRNA-seq"
+# linktitle: "1. Introduction to RStudio and Images"
+date: "2021-04-21"
+class_date: "2021-04-21"
+output:
+  blogdown::html_page:
+    toc: false
+menu:
+  class:
+    parent: Class sessions
+    weight: 14
+type: docs
+# weight: 1 
+# pdf: 
+# thumb: 
+editor_options: 
+  chunk_output_type: console
+---
+
+## Slides
+
+### Single-cell RNA-seq
+
+<a href="../../slides/13_single_cell/01_single_cell.pdf" target="_blank">Lecture slides in PDF format</a>
+
+```{r echo=FALSE}
+knitr::include_url('../../slides/13_single_cell/01_single_cell.pdf')
+```
+
+### ATAC-seq and other seq
+
+<a href="../../slides/12_ChIP-seq/02_Other-seq.pdf" target="_blank">Lecture slides in PDF format</a>
+
+```{r echo=FALSE}
+knitr::include_url('../../slides/12_ChIP-seq/02_Other-seq.pdf')
+```

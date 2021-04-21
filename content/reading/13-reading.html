@@ -1,0 +1,77 @@
+---
+title: "scRNA-seq"
+# linktitle: "1. Introduction to RStudio and Images"
+date: "2021-04-21"
+# class_date: "2021-01-25"
+output:
+  blogdown::html_page:
+    toc: false
+menu:
+  reading:
+    parent: Reading
+    weight: 15
+type: docs
+# weight: 1 
+# pdf: 
+# thumb: 
+editor_options: 
+  chunk_output_type: console
+---
+
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+
+
+<div id="scrna-seq" class="section level2">
+<h2>scRNA-seq</h2>
+<div id="technology" class="section level3">
+<h3>Technology</h3>
+<ul>
+<li><p>Svensson, Valentine, Roser Vento-Tormo, and Sarah A Teichmann. “<a href="https://doi.org/10.1038/nprot.2017.149">Exponential Scaling of Single-Cell RNA-Seq in the Past Decade</a>.” Nature Protocols, (March 1, 2018) - scRNA-seq technology development.</p></li>
+<li><p>Wang, Yong, and Nicholas E. Navin. “<a href="https://doi.org/10.1016/j.molcel.2015.05.005">Advances and Applications of Single-Cell Sequencing Technologies</a>.” Molecular Cell, (May 21, 2015) - Single cell sequencing review, all technologies. Whole genome amplification.</p></li>
+<li><p>Zheng, Grace X. Y., Jessica M. Terry, Phillip Belgrader, Paul Ryvkin, Zachary W. Bent, Ryan Wilson, Solongo B. Ziraldo, et al. “<a href="https://doi.org/10.1038/ncomms14049">Massively Parallel Digital Transcriptional Profiling of Single Cells</a>.” Nature Communications 8 (January 16, 2017) - 10X technology. Details of each wet-lab step, sequencing, and basic computational analysis.</p></li>
+<li><p>Dal Molin, Alessandra, and Barbara Di Camillo. “<a href="https://doi.org/10.1093/bib/bby007">How to Design a Single-Cell RNA-Sequencing Experiment: Pitfalls, Challenges and Perspectives</a>.” Briefings in Bioinformatics, January 31, 2018 - single-cell RNA-seq review. From experimental to bioinformatics steps. Cell isolation (FACS, microfluidics, droplet-based), mRNA capture, RT and amplification (poly-A tails, template switching, IVT), quantitative standards (spike-ins, UMIs), transcript quantification, normalization, batch effect removal, visualization.</p></li>
+</ul>
+</div>
+<div id="methods" class="section level3">
+<h3>Methods</h3>
+<ul>
+<li><p>Camara, Pablo G. “<a href="https://doi.org/10.1016/j.coisb.2017.12.007">Methods and Challenges in the Analysis of Single-Cell RNA-Sequencing Data</a>.” Current Opinion in Systems Biology (February 2018) - scRNA-seq conscise review of computational analysis steps.</p></li>
+<li><p>Bacher, Rhonda, and Christina Kendziorski. “<a href="https://genomebiology.biomedcentral.com/articles/10.1186/s13059-016-0927-y">Design and Computational Analysis of Single-Cell RNA-Sequencing Experiments</a>.” Genome Biology (April 7, 2016) - scRNA-seq analysis. Table 1 - categorized tools and description. Normalization, noise reduction, clustering, differential expression, pseudotime ordering.</p></li>
+<li><p>Vallejos, Catalina A, Davide Risso, Antonio Scialdone, Sandrine Dudoit, and John C Marioni. “<a href="https://doi.org/10.1038/nmeth.4292">Normalizing Single-Cell RNA Sequencing Data: Challenges and Opportunities</a>.” Nature Methods, (May 15, 2017) - single-cell RNA-seq normalization methods. Noise, sparsity. Cell- and gene-specific effects. Bulk RNA-seq normalization methods don’t work well. Overview of RPKM, TPM, TMM, DESeq normalizations. Spike-in based normalization methods.</p></li>
+<li><p>Freytag, Saskia, Luyi Tian, Ingrid Lönnstedt, Milica Ng, and Melanie Bahlo. “<a href="https://doi.org/10.12688/f1000research.15809.1">Comparison of Clustering Tools in R for Medium-Sized 10x Genomics Single-Cell RNA-Sequencing Data</a>.” F1000Research (August 15, 2018) - Comparison of 12 scRNA-seq clustering tools on medium-size 10X genomics datasets. Adjusted Rand index, normalized mutual information, homogeneity score, stability by random sampling of samples or genes. Seurat and Cell Ranger outperform other methods.</p></li>
+</ul>
+</div>
+<div id="statistics" class="section level3">
+<h3>Statistics</h3>
+<ul>
+<li><p>Brennecke, Philip, Simon Anders, Jong Kyoung Kim, Aleksandra A Kołodziejczyk, Xiuwei Zhang, Valentina Proserpio, Bianka Baying, et al. “<a href="https://doi.org/10.1038/nmeth.2645">Accounting for Technical Noise in Single-Cell RNA-Seq Experiments</a>.” Nature Methods, (September 22, 2013) - Single-cell noise. Technical, biological. Use spike-ins to estimate noise. Can be approximated with Poisson distribution.</p></li>
+<li><p>Grün, Dominic, Lennart Kester, and Alexander van Oudenaarden. “<a href="https://doi.org/10.1038/nmeth.2930">Validation of Noise Models for Single-Cell Transcriptomics</a>.” Nature Methods, (June 2014) - Quantification of sampling noise and global cell-to-cell variation in sequencing efficiency. Three noise models. 4-bases-long UMIs are sufficient for transcript quantification, improve CV. Negative binomial component of expressed genes. Statistics of transcript counting from UMIs, negative binomial distribution, noise models</p></li>
+<li><p>Risso, Davide, Fanny Perraudeau, Svetlana Gribkova, Sandrine Dudoit, and Jean-Philippe Vert. “<a href="https://doi.org/10.1101/125112">ZINB-WaVE: A General and Flexible Method for Signal Extraction from Single-Cell RNA-Seq Data</a>.” BioRxiv, January 1, 2017 - Zero-inflated negative binomial model for normalization, batch removal, and dimensionality reduction. Extends the RUV model with more careful definition of “unwanted” variation as it may be biological. Good statistical derivations in Methods. Refs to real and simulated scRNA-seq datasets</p></li>
+<li><p>Ding, Bo, Lina Zheng, Yun Zhu, Nan Li, Haiyang Jia, Rizi Ai, Andre Wildberg, and Wei Wang. “<a href="https://doi.org/10.1093/bioinformatics/btv122">Normalization and Noise Reduction for Single Cell RNA-Seq Experiments</a>.” Bioinformatics, (July 1, 2015) - Fitting gamma distribution to log2 read counts of known spike-in ERCC controls, predicting RNA concentration from it.</p></li>
+<li><p>Bacher, Rhonda, Li-Fang Chu, Ning Leng, Audrey P Gasch, James A Thomson, Ron M Stewart, Michael Newton, and Christina Kendziorski. “<a href="https://doi.org/10.1038/nmeth.4263">SCnorm: Robust Normalization of Single-Cell RNA-Seq Data</a>.” Nature Methods, (April 17, 2017) - SCnorm - normalization for single-cell data. Quantile regression to estimate the dependence of transcript expression on sequencing depth for every gene. Genes with similar dependence are then grouped, and a second quantile regression is used to estimate scale factors within each group. Within-group adjustment for sequencing depth is then performed using the estimated scale factors to provide normalized estimates of expression. Good statistical methods description</p></li>
+<li><p>Finak, Greg, Andrew McDavid, Masanao Yajima, Jingyuan Deng, Vivian Gersuk, Alex K. Shalek, Chloe K. Slichter, et al. “<a href="https://doi.org/10.1186/s13059-015-0844-5">MAST: A Flexible Statistical Framework for Assessing Transcriptional Changes and Characterizing Heterogeneity in Single-Cell RNA Sequencing Data</a>.” Genome Biology (December 10, 2015) - MAST, scRNA-seq DEG analysis. CDR - the fraction of genes that are detectably expressed in each cell - added to the hurdle model that explicitly parameterizes distributions of expressed and non-expressed genes.</p></li>
+</ul>
+</div>
+<div id="workflows-and-tools" class="section level3">
+<h3>Workflows and tools</h3>
+<ul>
+<li><p>Amezquita, Robert A., Vincent J. Carey, Lindsay N. Carpp, Ludwig Geistlinger, Aaron TL Lun, Federico Marini, Kevin Rue-Albrecht, et al. “<a href="https://doi.org/10.1038/s41592-019-0654-x">Orchestrating Single-Cell Analysis with Bioconductor</a>.” Nature Methods, 13 September 2019 - scRNA-seq analysis overview within Bioconductor ecosystem. SingleCellexperiment, scran and scater examples. Table S1 - summary of packages for data input, infrastructure, QC, integration, dimensionality reduction, clustering, pseudotime, differential expression, functional enrichment, simulation.</p></li>
+<li><p>Poirion, Olivier B., Xun Zhu, Travers Ching, and Lana Garmire. “<a href="https://doi.org/10.3389/fgene.2016.00163">Single-Cell Transcriptomics Bioinformatics and Computational Challenges</a>.” Frontiers in Genetics (2016) - single-cell RNA-seq review. Workflow, table 1 - tools, table 2 - data. Workflow sections describe each tools. References to all tools.</p></li>
+<li><p>Lun, Aaron T. L., Davis J. McCarthy, and John C. Marioni. “<a href="https://doi.org/10.12688/f1000research.9501.2">A Step-by-Step Workflow for Low-Level Analysis of Single-Cell RNA-Seq Data with Bioconductor</a>.” F1000Research (2016) - scRNA-seq analysis, from count matrix. Noise. Use of ERCCs and UMIs. QC metrics - library size, expression level, mitochondrial genes. Tests for batch effect. Finding highly variable genes, clustering. Several examples, with R code. <a href="https://bioconductor.org/help/workflows/simpleSingleCell/">A step-by-step workflow for low-level analysis of single-cell RNA-seq data with Bioconductor</a>, <a href="https://bioconductor.org/packages/devel/bioc/html/scran.html">Methods for Single-Cell RNA-Seq Data Analysis</a></p></li>
+<li><p>Perraudeau, Fanny, Davide Risso, Kelly Street, Elizabeth Purdom, and Sandrine Dudoit. “<a href="https://doi.org/10.12688/f1000research.12122">Bioconductor Workflow for Single-Cell RNA Sequencing: Normalization, Dimensionality Reduction, Clustering, and Lineage Inference</a>.” F1000Research (July 21, 2017) - single-cell RNA-seq pipeline. Post-processing analysis in R, uzinng SummarizedExperiment object, scone for QC, ZINB-WaVE for normalization and dim. reduction, clusterExperiment for clustering, slingshot for temporal inference, differential expression using generalized additive model</p></li>
+<li><p>McCarthy, Davis J., Kieran R. Campbell, Aaron T. L. Lun, and Quin F. Wills. “<a href="https://doi.org/10.1093/bioinformatics/btw777">Scater: Pre-Processing, Quality Control, Normalization and Visualization of Single-Cell RNA-Seq Data in R</a>.” Bioinformatics, (April 15, 2017)</p></li>
+<li><p>Zappia, Luke, Belinda Phipson, and Alicia Oshlack. “<a href="https://doi.org/10.1101/206573">Exploring the Single-Cell RNA-Seq Analysis Landscape with the ScRNA-Tools Database</a>.” BioRxiv, January 1, 2018 - <a href="www.scrna-tools.org">www.scrna-tools.org</a> - structured collection of scRNA-seq tools, from visualization, specialized tools, to full pipelines</p></li>
+</ul>
+</div>
+</div>
+<div id="scrna-seq-resources" class="section level2">
+<h2>scRNA-seq resources</h2>
+<ul>
+<li><p><a href="https://github.com/crazyhottommy/scRNAseq-analysis-notes">scRNA-seq analysis notes by Ming Tang, tutorials, tools, papers, code snippets</a></p></li>
+<li><p><a href="https://github.com/mikelove/awesome-multi-omics">List of software packages for multi-omics analysis by Mike Love</a></p></li>
+<li><p><a href="https://github.com/seandavi/awesome-single-cell">List of software packages for single-cell data analysis, including RNA-seq, ATAC-seq, etc by Sean Davis</a></p></li>
+<li><p><a href="https://scrnaseq-course.cog.sanger.ac.uk/website/index.html">Analysis of single cell RNA-seq data course, Cambridge University, UK</a>. <a href="https://www.youtube.com/playlist?list=PLEyKDyF1qdOYAhwU71qlrOXYsYHtyIu8n">Videos</a></p></li>
+<li><p><a href="https://portals.broadinstitute.org/single_cell">Single cell data portal</a></p></li>
+<li><p><a href="http://imlspenticton.uzh.ch:3838/conquer/">Conquer DB of scRNA-seq datasets</a></p></li>
+</ul>
+</div>
