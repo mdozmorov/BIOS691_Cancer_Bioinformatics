@@ -1,0 +1,52 @@
+---
+title: "Metagenomics"
+# linktitle: "1. Introduction to RStudio and Images"
+date: "2021-04-26"
+# class_date: "2021-01-25"
+output:
+  blogdown::html_page:
+    toc: false
+menu:
+  reading:
+    parent: Reading
+    weight: 16
+type: docs
+# weight: 1 
+# pdf: 
+# thumb: 
+editor_options: 
+  chunk_output_type: console
+---
+
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+
+
+<div id="metagenomics" class="section level2">
+<h2>Metagenomics</h2>
+<ul>
+<li><p>Morgan, Xochitl C., and Curtis Huttenhower. “<a href="https://doi.org/10.1371/journal.pcbi.1002808">Chapter 12: Human Microbiome Analysis</a>.” PLoS Computational Biology 8, no. 12 (December 27, 2012) - Human Microbiome Analysis review. History, technologies, 16S, OTUs, alpha diversity (Shannon index), beta-diversity (Bray-Curtis dissimilarity) formulas. Includes exercises.</p></li>
+<li><p>Goodrich, Julia K., Sara C. Di Rienzi, Angela C. Poole, Omry Koren, William A. Walters, J. Gregory Caporaso, Rob Knight, and Ruth E. Ley. “<a href="https://doi.org/10.1016/j.cell.2014.06.037">Conducting a Microbiome Study</a>.” Cell, (July 17, 2014) - A good review about conducting a microbiome study. Experimental and computational aspects. 16S, ITS, OTU, alpha/beta diversity, Bray-Curtis and UniFrac distance, PCoA.</p></li>
+<li><p>Franzosa, Eric A., Tiffany Hsu, Alexandra Sirota-Madi, Afrah Shafquat, Galeb Abu-Ali, Xochitl C. Morgan, and Curtis Huttenhower. “<a href="https://doi.org/10.1038/nrmicro3451">Sequencing and beyond: Integrating Molecular ‘omics’ for Microbial Community Profiling</a>.” Nature Reviews Microbiology, (June 2015) - Metagenomics technology, methods and analysis review. Multi-omics integrative analyses, statistical considerations. Well-written, references.</p></li>
+<li><p>Ghodsi, Mohammadreza, Bo Liu, and Mihai Pop. “<a href="https://doi.org/10.1186/1471-2105-12-271">DNACLUST: Accurate and Efficient Clustering of Phylogenetic Marker Genes</a>.” BMC Bioinformatics (June 30, 2011) - DNACLUST - metagenomics clustering of 16S sequencing. Comparison with CD-HIT and UCLUST. Recruit sequences within the radius around cluster seed. Explanation of distance, Needleman-Wunsch algorithm.</p></li>
+<li><p>Grice, Elizabeth A., and Julia A. Segre. “<a href="https://doi.org/10.1146/annurev-genom-090711-163814">The Human Microbiome: Our Second Genome</a>.” Annual Review of Genomics and Human Genetics, (September 22, 2012) - Review on microbiome, 16S RNA, tools, human microbiome project.</p></li>
+<li><p>Kong, Heidi H. “<a href="https://doi.org/10.1016/j.molmed.2011.01.013">Skin Microbiome: Genomics-Based Insights into the Diversity and Role of Skin Microbes</a>.” Trends in Molecular Medicine, (June 2011) - Skin microbiome review. Introduction about microbiome sequencing (culture and direct), 16S sequencing, other markers. Definitions. Skin-specific findings.</p></li>
+<li><p>McDonald, Daniel, Zhenjiang Xu, Embriette R. Hyde, and Rob Knight. “<a href="https://rnajournal.cshlp.org/content/21/4/692">Ribosomal RNA, the Lens into Life</a>.” RNA, (April 2015) - Short review of 16S rRNA history, databases (RDP&lt; Greengenes, SILVA), QIIME</p></li>
+<li><p>Huson, D. H., A. F. Auch, J. Qi, and S. C. Schuster. “<a href="http://www.genome.org/cgi/doi/10.1101/gr.5969107">MEGAN Analysis of Metagenomic Data</a>.” Genome Research, (February 6, 2007) - MEGAN paper. Intro into metagenomics, sequencing, alignment analysis. LCA (lowest common ancestor) algorithm.</p></li>
+<li><p>Kuczynski, Justin, Christian L. Lauber, William A. Walters, Laura Wegener Parfrey, José C. Clemente, Dirk Gevers, and Rob Knight. “<a href="https://doi.org/10.1038/nrg3129">Experimental and Analytical Tools for Studying the Human Microbiome</a>.” Nature Reviews Genetics, (December 16, 2011)</p></li>
+<li><p>Hamady, Micah, and Rob Knight. “<a href="http://www.genome.org/cgi/doi/10.1101/gr.085464.108">Microbial Community Profiling for Human Microbiome Projects: Tools, Techniques, and Challenges</a>.” Genome Research, (July 2009) - Introduction, background of metagenomics. 16S vs. sequencing, experimental questions like read length, sampling depth, how to analyze.</p></li>
+<li><p>Schloss, P. D., S. L. Westcott, T. Ryabin, J. R. Hall, M. Hartmann, E. B. Hollister, R. A. Lesniewski, et al. “<a href="https://doi.org/10.1128/AEM.01541-09">Introducing Mothur: Open-Source, Platform-Independent, Community-Supported Software for Describing and Comparing Microbial Communities</a>.” Applied and Environmental Microbiology, (December 1, 2009) - mothur paper. <a href="https://www.mothur.org/" class="uri">https://www.mothur.org/</a></p></li>
+<li><p>Wang, Q., G. M. Garrity, J. M. Tiedje, and J. R. Cole. “<a href="https://doi.org/10.1128/AEM.00062-07">Naive Bayesian Classifier for Rapid Assignment of RRNA Sequences into the New Bacterial Taxonomy</a>.” Applied and Environmental Microbiology, (August 15, 2007) - Naive Bayes classifier used in Ribosome Database Project (RDP). Good methods statistical description.</p></li>
+<li><p>Sczyrba, Alexander, Peter Hofmann, Peter Belmann, David Koslicki, Stefan Janssen, Johannes Dröge, Ivan Gregor, et al. “<a href="https://doi.org/10.1038/nmeth.4458">Critical Assessment of Metagenome Interpretation-a Benchmark of Metagenomics Software</a>.” Nature Methods, (November 2017) - Critical Assessment of Metagenome Interpretation (CAMI) paper. Assessment of microbial genome assemblers, effect of sequencing depth, strain diversity, taxonomic binning, etc., recommendations on software and best practices.</p></li>
+<li><p>Letunic, Ivica, and Peer Bork. “<a href="https://doi.org/10.1093/bioinformatics/btl529">Interactive Tree Of Life (ITOL): An Online Tool for Phylogenetic Tree Display and Annotation</a>.” Bioinformatics, (January 1, 2007) - iTOL - manipulation and visualization of phylogenetic trees. New Hampshire and Newick formats, displaying, pruning, annotating.  <a href="https://itol.embl.de/" class="uri">https://itol.embl.de/</a></p></li>
+<li><p>McMurdie, Paul J., and Susan Holmes. “<a href="https://doi.org/10.1371/journal.pcbi.1003531">Waste Not, Want Not: Why Rarefying Microbiome Data Is Inadmissible</a>.” PLoS Computational Biology, (April 3, 2014) - Rarefying microbiome data or using proportions is wrong, statistical arguments. Variance stabilization (DESeq) and upper-quartile log-fold change normalization (edgeR) perform well to normalize the data. Negative binomial and zero-inflated Gaussian mixture models are recommended to test for differential abundance, differential abundance test in metagenomeSeq package also performs well. Rarefying lead to high proportion of false positives. Importance of filtering.</p></li>
+<li><p><a href="https://www.youtube.com/playlist?list=PLOPiWVjg6aTzsA53N19YqJQeZpSCH9QPc">Microbiome Discovery</a> - video course playlist about microbiome, from biology to statistics, by Dan Knights.</p></li>
+</ul>
+<div id="metagenomic-resources" class="section level3">
+<h3>Metagenomic resources</h3>
+<ul>
+<li><p><a href="https://github.com/stevetsa/awesome-microbes">awesome-microbes</a> - List of software packages (and the people developing these methods) for microbiome (16S), metagenomics (WGS, Shot-gun sequencing), and pathogen identification/detection/characterization.</p></li>
+<li><p>Schiffer, Lucas, Rimsha Azhar, Lori Shepherd, Marcel Ramos, Ludwig Geistlinger, Curtis Huttenhower, Jennifer B Dowd, Nicola Segata, and Levi Waldron. “<a href="https://doi.org/10.1101/299115">HMP16SData: Efficient Access to the Human Microbiome Project through Bioconductor</a>,” August 29, 2018 - <a href="https://bioconductor.org/packages/HMP16SData/">HMP16SData</a> - SummarizedExperiment of 16S sequencing data (counts) for V13 and V35 variable regions with clinical annotations (visit number, sex, run center, body site, and body subsite) and an option to attach controlled access clinical annotations. Compatible with phylosec.</p></li>
+<li><p><a href="https://github.com/LangilleLab/microbiome_helper/wiki">Microbiome Helper</a> - wrapper scripts and tutorials for metagenomics analysis. Main paper: Comeau, André M., Gavin M. Douglas, and Morgan G. I. Langille. “<a href="https://doi.org/10.1128/mSystems.00127-16">Microbiome Helper: A Custom and Streamlined Workflow for Microbiome Research</a>.” MSystems, (February 28, 2017)</p></li>
+</ul>
+</div>
+</div>

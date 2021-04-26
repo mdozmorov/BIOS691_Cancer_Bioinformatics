@@ -1,0 +1,29 @@
+---
+title: "Metagenomics"
+# linktitle: "1. Introduction to RStudio and Images"
+date: "2021-04-26"
+class_date: "2021-04-26"
+output:
+  blogdown::html_page:
+    toc: false
+menu:
+  class:
+    parent: Class sessions
+    weight: 15
+type: docs
+# weight: 1 
+# pdf: 
+# thumb: 
+editor_options: 
+  chunk_output_type: console
+---
+
+## Slides
+
+### Metagenomics
+
+<a href="../../slides/14_Metagenomics/01_Metagenomics.pdf" target="_blank">Lecture slides in PDF format</a>
+
+```{r echo=FALSE}
+knitr::include_url('../../slides/14_Metagenomics/01_Metagenomics.pdf')
+```
