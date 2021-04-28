@@ -1,0 +1,29 @@
+---
+title: "Genomic variation"
+# linktitle: "1. Introduction to RStudio and Images"
+date: "2021-04-28"
+class_date: "2021-04-28"
+output:
+  blogdown::html_page:
+    toc: false
+menu:
+  class:
+    parent: Class sessions
+    weight: 16
+type: docs
+# weight: 1 
+# pdf: 
+# thumb: 
+editor_options: 
+  chunk_output_type: console
+---
+
+## Slides
+
+### Single Nuvleotide Polymorphisms
+
+<a href="../../slides/15_SNPs/02_SNPs.pdf" target="_blank">Lecture slides in PDF format</a>
+
+```{r echo=FALSE}
+knitr::include_url('../../slides/15_SNPs/02_SNPs.pdf')
+```

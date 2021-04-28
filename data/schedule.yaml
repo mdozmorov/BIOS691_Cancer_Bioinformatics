@@ -81,9 +81,15 @@ lessons:
     class: "13-class"
 
   - title: '**Metagenomics**'
-    date: "April 16"
+    date: "April 26"
     reading: "14-reading"
     # assignment: "01-problem-set"
     class: "14-class"
+
+  - title: '**Genomic variation**'
+    date: "April 28 - May 3"
+    reading: "15-reading"
+    # assignment: "01-problem-set"
+    class: "15-class"
 
 
