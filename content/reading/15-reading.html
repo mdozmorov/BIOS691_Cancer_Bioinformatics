@@ -32,3 +32,42 @@ editor_options:
 <li><p>MacArthur, D. G., T. A. Manolio, D. P. Dimmock, H. L. Rehm, J. Shendure, G. R. Abecasis, D. R. Adams, et al. “<a href="https://doi.org/10.1038/nature13127">Guidelines for Investigating Causality of Sequence Variants in Human Disease</a>.” Nature, (April 24, 2014) - Definitions and guidelines to define pathogenicity of SNPs</p></li>
 </ul>
 </div>
+<div id="structural-and-copy-number-variants" class="section level2">
+<h2>Structural and Copy Number Variants</h2>
+<ul>
+<li><p>Liu, Biao, Jeffrey M. Conroy, Carl D. Morrison, Adekunle O. Odunsi, Maochun Qin, Lei Wei, Donald L. Trump, Candace S. Johnson, Song Liu, and Jianmin Wang. “<a href="https://doi.org/10.18632/oncotarget.3491">Structural Variation Discovery in the Cancer Genome Using next Generation Sequencing: Computational Solutions and Perspectives</a>.” Oncotarget 6, no. 8 (March 20, 2015) - Structural variants and tools. Six SV types: deletion, insertion, tandem duplication, inversion, intra- and interchromosomal translocations (Figure 1). Detection from paired-end sequencing signatures: discordant read-pairs, splitting reads (Figure 2, Tools in Table 1). Description of each tool.</p></li>
+<li><p>Quinlan, Aaron R., and Ira M. Hall. “<a href="(https://www.sciencedirect.com/science/article/pii/S0168952511001685)">Characterizing Complex Structural Variation in Germline and Somatic Genomes</a>.” Trends in Genetics: TIG 28, no. 1 (January 2012) - SV review, types, how generated, technologies for detection (Box 1. depth, paired-end, split-read)</p></li>
+<li><p>Alkan, Can, Bradley P. Coe, and Evan E. Eichler. “<a href="(https://www.nature.com/articles/nrg2958)">Genome Structural Variation Discovery and Genotyping</a>.” Nature Reviews Genetics 12, no. 5 (May 2011) - CNV, structural detection review</p></li>
+<li><p>Zhang, Feng, Wenli Gu, Matthew E. Hurles, and James R. Lupski. “<a href="https://doi.org/10.1146/annurev.genom.9.081307.164217">Copy Number Variation in Human Health, Disease, and Evolution</a>.” Annual Review of Genomics and Human Genetics 10 (2009) - CNV review, mechanisms, analytical difficulties, roles in individual diseases</p></li>
+<li><p>Trost, Brett, Susan Walker, Zhuozhi Wang, Bhooma Thiruvahindrapuram, Jeffrey R. MacDonald, Wilson W. L. Sung, Sergio L. Pereira, et al. “<a href="https://doi.org/10.1016/j.ajhg.2017.12.007">A Comprehensive Workflow for Read Depth-Based Identification of Copy-Number Variation from Whole-Genome Sequence Data</a>.” American Journal of Human Genetics 102, no. 1 (January 4, 2018) - CNV (&gt;1kb) read-depth detection workflow, from experimental considerations to computational analysis. HuRef (NA12878) genome, supplemental files contain CNV genomic coordinates. CNVnator and ERDS perform optimally. Tools comparison, links to resources.</p></li>
+</ul>
+</div>
+<div id="gwas" class="section level2">
+<h2>GWAS</h2>
+<ul>
+<li>Bush, William S., and Jason H. Moore. “<a href="https://doi.org/10.1371/journal.pcbi.1002822">Chapter 11: Genome-Wide Association Studies</a>.” PLoS Computational Biology, (December 27, 2012) - GWAS key concepts review. Examples of GWAS findings. Definitions of allele frequency, linkage disequilibrium and D’ and r^2 definitions, technology, study design, association tests using GLM, ANOVA, logistic regression frameworks, population stratification, meta-analysis considerations, data phasing, imputation. Tools.</li>
+</ul>
+</div>
+<div id="tools" class="section level2">
+<h2>Tools</h2>
+<ul>
+<li><p>Xu, Chang. “<a href="https://doi.org/10.1016/j.csbj.2018.01.003">A Review of Somatic Single Nucleotide Variant Calling Algorithms for Next-Generation Sequencing Data</a>.” Computational and Structural Biotechnology Journal 16 (2018) - Overview of 46 somatic Single Nucleotide Variant (SNV) caller tools. Pre-processing, variant evaluation, and post-filtering steps. Four categories of algorithms, description of each, and the corresponding tools: matched tumor-normal (position-, haplotype-, mathine learning-based methods, Table 1), single-sample (Table 1, 2, some offer somatic-germline classification), UMI-based (UMI technology, Figure 1, Table 3), and RNA-seq (Technology, issues, Table 4) variant calling. Benchmarking using tools for generating synthetic reads, spike-ins, GiAB, melanoma-normal samples, performance evaluation metrics. Issues in representing complex variants and tools for variant normalization. Deep neural network-based algorithms perform best.</p></li>
+<li><p>Pirooznia, Mehdi, Melissa Kramer, Jennifer Parla, Fernando S. Goes, James B. Potash, W. Richard McCombie, and Peter P. Zandi. “<a href="https://humgenomics.biomedcentral.com/articles/10.1186/1479-7364-8-14">Validation and Assessment of Variant Calling Pipelines for Next-Generation Sequencing</a>.” Human Genomics 8 (July 30, 2014) - SNP pipeline benchmarking, GATK vs. samtools. GATK is the best. Supplementary - actual commands to run. <a href="http://metamoodics.org/wiki/index.php?title=Whole_Exome_Sequencing_Analysis_Pipeline">Whole Exome Sequencing Analysis Pipeline</a></p></li>
+<li><p>Purcell, Shaun, Benjamin Neale, Kathe Todd-Brown, Lori Thomas, Manuel A. R. Ferreira, David Bender, Julian Maller, et al. “<a href="https://doi.org/10.1086/519795">PLINK: A Tool Set for Whole-Genome Association and Population-Based Linkage Analyses</a>.” American Journal of Human Genetics 81, no. 3 (September 2007) - PLINK - a tool for whole-genome association studies data management, summary statistics, population stratification, association analysis, and identity-by-descent estimation. Details of each task. gPLINK - graphical user interface integrated with HaploView. <a href="http://zzz.bwh.harvard.edu/plink/">PLINK website</a></p></li>
+<li><p>Shabalin, Andrey A. “<a href="https://doi.org/10.1093/bioinformatics/bts163">Matrix EQTL: Ultra Fast EQTL Analysis via Large Matrix Operations</a>.” Bioinformatics 28, no. 10 (May 15, 2012) - eQTL detection using linear regression/ANOVA models. Genotype by gene expression matrix multiplication to calculate model statistics. Handling of covariates, correlation structure, FDR correction, handling of cis/trans qtls. <a href="http://www.bios.unc.edu/research/genomic_software/Matrix_eQTL/">Matrix eQTL website</a></p></li>
+</ul>
+</div>
+<div id="workflows-and-tutorials" class="section level2">
+<h2>Workflows and tutorials</h2>
+<ul>
+<li><p><a href="https://github.com/MareesAT/GWA_tutorial">MareesAT/GWA_tutorial</a> - A comprehensive tutorial about GWAS and PRS</p></li>
+<li><p>Van der Auwera, Geraldine A., Mauricio O. Carneiro, Chris Hartl, Ryan Poplin, Guillermo Del Angel, Ami Levy-Moonshine, Tadeusz Jordan, et al. “<a href="https://doi.org/10.1002/0471250953.bi1110s43">From FastQ Data to High Confidence Variant Calls: The Genome Analysis Toolkit Best Practices Pipeline</a>.” Current Protocols in Bioinformatics 43 (2013)</p></li>
+<li><p>Reed, Eric, Sara Nunez, David Kulp, Jing Qian, Muredach P. Reilly, and Andrea S. Foulkes. “<a href="https://doi.org/10.1002/sim.6605">A Guide to Genome-Wide Association Analysis and Post-Analytic Interrogation</a>.” Statistics in Medicine 34, no. 28 (December 10, 2015) - GWAS R tutorial. Workflow details, file types, filtering steps, PCA, post-analysis visualization.</p></li>
+<li><p><a href="https://github.com/crazyhottommy/DNA-seq-analysis">Notes on whole exome and whole genome sequencing analysis</a> by Ming Tang</p></li>
+<li><p>Thousand Variant Callers Project Github Repo, links and short descriptions of different genomic variant callers. <a href="https://github.com/deaconjs/ThousandVariantCallersRepo">https://github.com/deaconjs/ThousandVariantCallersRepo</a></p></li>
+<li><p><a href="https://github.com/datacarpentry/wrangling-genomics">“Wrangling genomics” SNP calling pipeline</a> by DataCarpentry</p></li>
+<li><p><a href="https://www.simoncoetzee.com/bioc2017.html">Variant Annotation Workshop with FunciVAR, StateHub and MotifBreakR</a></p></li>
+<li><p><a href="https://poissonisfish.wordpress.com/2017/10/09/genome-wide-association-studies-in-r/">Genome-wide association studies in R</a>, and <a href="https://github.com/monogenea/GWAStutorial">GWAS tutorial</a></p></li>
+<li><p><a href="https://github.com/ekg/alignment-and-variant-calling-tutorial">Basic walk-throughs for alignment and variant calling from NGS sequencing data</a>, by Erik Garrison.</p></li>
+</ul>
+</div>
