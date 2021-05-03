@@ -20,10 +20,35 @@ editor_options:
 
 ## Slides
 
-### Single Nuvleotide Polymorphisms
+### Single Nucleotide Polymorphisms
 
 <a href="../../slides/15_SNPs/02_SNPs.pdf" target="_blank">Lecture slides in PDF format</a>
 
 ```{r echo=FALSE}
 knitr::include_url('../../slides/15_SNPs/02_SNPs.pdf')
 ```
+
+### Structural and Copy Number Variants
+
+<a href="../../slides/15_SNPs/06_CNVs.pdf" target="_blank">Lecture slides in PDF format</a>
+
+```{r echo=FALSE}
+knitr::include_url('../../slides/15_SNPs/06_CNVs.pdf')
+```
+
+### Genome-Wide Association Studies
+
+<a href="../../slides/15_SNPs/04_GWAS.pdf" target="_blank">Lecture slides in PDF format</a>
+
+```{r echo=FALSE}
+knitr::include_url('../../slides/15_SNPs/04_GWAS.pdf')
+```
+
+### eQTLs - expression quantitative trait loci
+
+<a href="../../slides/15_SNPs/05_eQTLs.pdf" target="_blank">Lecture slides in PDF format</a>
+
+```{r echo=FALSE}
+knitr::include_url('../../slides/15_SNPs/05_eQTLs.pdf')
+```
+
