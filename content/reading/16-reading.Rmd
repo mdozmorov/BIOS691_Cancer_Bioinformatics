@@ -1,0 +1,42 @@
+---
+title: "Hi-C"
+# linktitle: "1. Introduction to RStudio and Images"
+date: "2021-05-05"
+# class_date: "2021-01-25"
+output:
+  blogdown::html_page:
+    toc: false
+menu:
+  reading:
+    parent: Reading
+    weight: 18
+type: docs
+# weight: 1 
+# pdf: 
+# thumb: 
+editor_options: 
+  chunk_output_type: console
+---
+
+## Chromatin conformation capture technologies
+
+- Belton, Jon-Matthew, Rachel Patton McCord, Johan Harmen Gibcus, Natalia Naumova, Ye Zhan, and Job Dekker. “[Hi-C: A Comprehensive Technique to Capture the Conformation of Genomes](https://doi.org/10.1016/j.ymeth.2012.05.001).” Methods, (November 2012) - Hi-C protocol. Biases. Matrix balancing works as well as Yaffe and Tanay protocol. Power law.
+
+- Han, Zhijun, and Gang Wei. “[Computational Tools for Hi-C Data Analysis](https://doi.org/10.1007/s40484-017-0113-6).” Quantitative Biology, July 29, 2017 - All practical aspects and tools for Hi-C data processing, from mapping, pairing, filtering, binning, to TAD calling methods, visualization. Brief description of each tool for processing, normalization, TAD calling (Table 1) and algorithm.
+
+- Hu, Ming, Ke Deng, Zhaohui Qin, and Jun S. Liu. “[Understanding Spatial Organizations of Chromosomes via Statistical Analysis of Hi-C Data](https://doi.org/10.1007/s40484-013-0016-0).” Quantitative Biology, (June 2013) - Classical review of the role of the 3D genome structure in health and disease (cancer), technologies, studies, and analysis techniques. Detailed protocol, alignment, filtering steps. Sparsity of the data, bias. "Correction" and "normalization" methods. Improvement in reproducibility after normalization, A/B compartments, TADs, epigenomic elements at TAD boundaries, tools for TAD boundary detection, modeling of the 3D structure. Table 1 - categorized tools.
+
+- Lajoie, Bryan R., Job Dekker, and Noam Kaplan. “[The Hitchhiker’s Guide to Hi-C Analysis: Practical Guidelines](https://doi.org/10.1016/j.ymeth.2014.10.031).” Methods, (January 15, 2015) - Hi-C techniques review. Technology, ~100 million valid junctions is sufficient for 40kb data resolution. Paired-end sequencing and single-end alignment. Iterative mapping approach. Matrix normalization, balancing, Sinkhorn-Knopp algorithm. Power law decay of interaction frequency with distance. TAD identification - Dixon directionality index and sliding window.
+
+- Pal, Koustav, Mattia Forcato, and Francesco Ferrari. “[Hi-C Analysis: From Data Generation to Integration](https://doi.org/10.1007/s12551-018-0489-1).” Biophysical Reviews, December 20, 2018 - Hi-C technology, data, 3D structures, analysis, and tools. Technology improvement and increasing resolution. FASTQ processing steps ("Hi-C data analysis: from FASTQ to interaction maps" section), pipelines, finding minimum resolution, normalization. Downstream analysis: A/B compartment detection, TAD callers, Hierarchical TADs, interaction callers. Data formats (pairix, sparse matrix format, cool, hic, butlr, hdf5, pgl). Hi-C visualization tools. [Table 2 - summary and comparison of all tools.](https://link.springer.com/article/10.1007%2Fs12551-018-0489-1#Tab2)
+
+- Servant, Nicolas, Nelle Varoquaux, Bryan R. Lajoie, Eric Viara, Chong-Jian Chen, Jean-Philippe Vert, Edith Heard, Job Dekker, and Emmanuel Barillot. “[HiC-Pro: An Optimized and Flexible Pipeline for Hi-C Data Processing](https://doi.org/10.1186/s13059-015-0831-x).” Genome Biology, (December 1, 2015) - HiC pipeline, references to other pipelines, comparison. From raw reads to normalized matrices. Normalization methods, fast and memory-efficient implementation of iterative correction normalization (ICE). Data format. Using genotyping information to phase contact maps. [HiC-Pro GitHub](https://github.com/nservant/HiC-Pro)
+
+- Wingett, Steven, Philip Ewels, Mayra Furlan-Magaril, Takashi Nagano, Stefan Schoenfelder, Peter Fraser, and Simon Andrews. “[HiCUP: Pipeline for Mapping and Processing Hi-C Data](https://doi.org/10.12688/f1000research.7334.1).” F1000Research, (2015) - HiCUP pipeline, alignment only, removes artifacts (religations, duplicate reads) creating BAM files. Details about Hi-C sequencing artefacts. Used in conjunction with other pipelines. [HiCUP](http://www.bioinformatics.babraham.ac.uk/projects/hicup/)
+
+- Review of Hi-C, Capture-C, and Capture-C technologies, their computational preprocessing. Experimental protocols, similarities and differences, types of reads (figures), details of alignment, read orientation, elimination of artefacts, quality metrics. Brief overview of preprocessing tools. Example preprocessing of three types of data. Java tool for preprocessing all types of data, [Diachromatic](https://github.com/TheJacksonLaboratory/diachromatic) (Differential Analysis of Chromatin Interactions by Capture), [GOPHER](https://github.com/TheJacksonLaboratory/Gopher) (Generator Of Probes for capture Hi-C Experiments at high Resolution) for genome cutting, probe design
+    - Hansen, Peter, Michael Gargano, Jochen Hecht, Jonas Ibn-Salem, Guy Karlebach, Johannes T. Roehr, and Peter N. Robinson. “[Computational Processing and Quality Control of Hi-C, Capture Hi-C and Capture-C Data](https://doi.org/10.3390/genes10070548).” Genes, (July 18, 2019)
+
+## Videos
+
+- Video lecture by Feng Yu [1](https://www.youtube.com/watch?v=ddyWbxjkhos), [2](https://www.youtube.com/watch?v=qQIlqTTTLcA), [3](https://www.youtube.com/watch?v=ytVxgHG5REg), [4](https://www.youtube.com/watch?v=Lgu4HHDpqOI), [5](https://www.youtube.com/watch?v=odA3uAMx1pA), [6](https://www.youtube.com/watch?v=is8RwBGl1r4), [7](https://www.youtube.com/watch?v=LNq5fcFhaLk), [8](https://www.youtube.com/watch?v=Q3-8R1gs-eU)

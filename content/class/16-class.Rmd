@@ -1,0 +1,30 @@
+---
+title: "Hi-C"
+# linktitle: "1. Introduction to RStudio and Images"
+date: "2021-05-05"
+class_date: "2021-05-05"
+output:
+  blogdown::html_page:
+    toc: false
+menu:
+  class:
+    parent: Class sessions
+    weight: 17
+type: docs
+# weight: 1 
+# pdf: 
+# thumb: 
+editor_options: 
+  chunk_output_type: console
+---
+
+## Slides
+
+### Chromatin conformation capture technologies
+
+<a href="https://github.com/mdozmorov/Talk_Hi-C/raw/master/presentation.pdf" target="_blank">Lecture slides in PDF format</a>
+
+```{r echo=FALSE}
+knitr::include_url('https://github.com/mdozmorov/Talk_Hi-C/raw/master/presentation.pdf')
+```
+

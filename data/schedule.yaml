@@ -92,4 +92,9 @@ lessons:
     # assignment: "01-problem-set"
     class: "15-class"
 
+  - title: '**Hi-C**'
+    date: "May 5"
+    reading: "16-reading"
+    # assignment: "01-problem-set"
+    class: "16-class"
 
